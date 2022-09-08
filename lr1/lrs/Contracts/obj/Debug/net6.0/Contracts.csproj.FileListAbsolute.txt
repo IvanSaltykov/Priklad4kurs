@@ -1,0 +1,12 @@
+D:\файлы\4курс\прикладное4\lrs\Contracts\bin\Debug\net6.0\Contracts.deps.json
+D:\файлы\4курс\прикладное4\lrs\Contracts\bin\Debug\net6.0\Contracts.dll
+D:\файлы\4курс\прикладное4\lrs\Contracts\bin\Debug\net6.0\Contracts.pdb
+D:\файлы\4курс\прикладное4\lrs\Contracts\obj\Debug\net6.0\Contracts.csproj.AssemblyReference.cache
+D:\файлы\4курс\прикладное4\lrs\Contracts\obj\Debug\net6.0\Contracts.GeneratedMSBuildEditorConfig.editorconfig
+D:\файлы\4курс\прикладное4\lrs\Contracts\obj\Debug\net6.0\Contracts.AssemblyInfoInputs.cache
+D:\файлы\4курс\прикладное4\lrs\Contracts\obj\Debug\net6.0\Contracts.AssemblyInfo.cs
+D:\файлы\4курс\прикладное4\lrs\Contracts\obj\Debug\net6.0\Contracts.csproj.CoreCompileInputs.cache
+D:\файлы\4курс\прикладное4\lrs\Contracts\obj\Debug\net6.0\Contracts.dll
+D:\файлы\4курс\прикладное4\lrs\Contracts\obj\Debug\net6.0\refint\Contracts.dll
+D:\файлы\4курс\прикладное4\lrs\Contracts\obj\Debug\net6.0\Contracts.pdb
+D:\файлы\4курс\прикладное4\lrs\Contracts\obj\Debug\net6.0\ref\Contracts.dll

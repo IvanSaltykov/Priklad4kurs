@@ -1,0 +1,15 @@
+D:\файлы\4курс\прикладное4\lrs\LoggerService\bin\Debug\net6.0\LoggerService.deps.json
+D:\файлы\4курс\прикладное4\lrs\LoggerService\bin\Debug\net6.0\LoggerService.dll
+D:\файлы\4курс\прикладное4\lrs\LoggerService\bin\Debug\net6.0\LoggerService.pdb
+D:\файлы\4курс\прикладное4\lrs\LoggerService\bin\Debug\net6.0\Contracts.dll
+D:\файлы\4курс\прикладное4\lrs\LoggerService\bin\Debug\net6.0\Contracts.pdb
+D:\файлы\4курс\прикладное4\lrs\LoggerService\obj\Debug\net6.0\LoggerService.csproj.AssemblyReference.cache
+D:\файлы\4курс\прикладное4\lrs\LoggerService\obj\Debug\net6.0\LoggerService.GeneratedMSBuildEditorConfig.editorconfig
+D:\файлы\4курс\прикладное4\lrs\LoggerService\obj\Debug\net6.0\LoggerService.AssemblyInfoInputs.cache
+D:\файлы\4курс\прикладное4\lrs\LoggerService\obj\Debug\net6.0\LoggerService.AssemblyInfo.cs
+D:\файлы\4курс\прикладное4\lrs\LoggerService\obj\Debug\net6.0\LoggerService.csproj.CoreCompileInputs.cache
+D:\файлы\4курс\прикладное4\lrs\LoggerService\obj\Debug\net6.0\LoggerService.csproj.CopyComplete
+D:\файлы\4курс\прикладное4\lrs\LoggerService\obj\Debug\net6.0\LoggerService.dll
+D:\файлы\4курс\прикладное4\lrs\LoggerService\obj\Debug\net6.0\refint\LoggerService.dll
+D:\файлы\4курс\прикладное4\lrs\LoggerService\obj\Debug\net6.0\LoggerService.pdb
+D:\файлы\4курс\прикладное4\lrs\LoggerService\obj\Debug\net6.0\ref\LoggerService.dll
