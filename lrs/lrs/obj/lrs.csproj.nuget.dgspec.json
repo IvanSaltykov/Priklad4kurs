@@ -1,0 +1,355 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\lrs\\lrs.csproj": {}
+  },
+  "projects": {
+    "D:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\Contracts\\Contracts.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\Contracts\\Contracts.csproj",
+        "projectName": "Contracts",
+        "projectPath": "D:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\Contracts\\Contracts.csproj",
+        "packagesPath": "C:\\Users\\Админ\\.nuget\\packages\\",
+        "outputPath": "D:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\Contracts\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Админ\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\Entities\\Entities.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\Entities\\Entities.csproj",
+        "projectName": "Entities",
+        "projectPath": "D:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\Entities\\Entities.csproj",
+        "packagesPath": "C:\\Users\\Админ\\.nuget\\packages\\",
+        "outputPath": "D:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\Entities\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Админ\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.9, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\LoggerService\\LoggerService.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\LoggerService\\LoggerService.csproj",
+        "projectName": "LoggerService",
+        "projectPath": "D:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\LoggerService\\LoggerService.csproj",
+        "packagesPath": "C:\\Users\\Админ\\.nuget\\packages\\",
+        "outputPath": "D:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\LoggerService\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Админ\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\Contracts\\Contracts.csproj": {
+                "projectPath": "D:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\Contracts\\Contracts.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "NLog.Extensions.Logging": {
+              "target": "Package",
+              "version": "[5.0.4, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\lrs\\lrs.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\lrs\\lrs.csproj",
+        "projectName": "lrs",
+        "projectPath": "D:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\lrs\\lrs.csproj",
+        "packagesPath": "C:\\Users\\Админ\\.nuget\\packages\\",
+        "outputPath": "D:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\lrs\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Админ\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\Entities\\Entities.csproj": {
+                "projectPath": "D:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\Entities\\Entities.csproj"
+              },
+              "D:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\LoggerService\\LoggerService.csproj": {
+                "projectPath": "D:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\LoggerService\\LoggerService.csproj"
+              },
+              "D:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\Repository\\Repository.csproj": {
+                "projectPath": "D:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\Repository\\Repository.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.9, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.9, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.2.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\Repository\\Repository.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\Repository\\Repository.csproj",
+        "projectName": "Repository",
+        "projectPath": "D:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\Repository\\Repository.csproj",
+        "packagesPath": "C:\\Users\\Админ\\.nuget\\packages\\",
+        "outputPath": "D:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\Repository\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Админ\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\Contracts\\Contracts.csproj": {
+                "projectPath": "D:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\Contracts\\Contracts.csproj"
+              },
+              "D:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\Entities\\Entities.csproj": {
+                "projectPath": "D:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\Entities\\Entities.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
