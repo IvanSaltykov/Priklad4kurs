@@ -22,3 +22,15 @@ D:\files\4курс\прикладное4\lrs\Entities\obj\Debug\net6.0\Entities.
 D:\files\4курс\прикладное4\lrs\Entities\obj\Debug\net6.0\refint\Entities.dll
 D:\files\4курс\прикладное4\lrs\Entities\obj\Debug\net6.0\Entities.pdb
 D:\files\4курс\прикладное4\lrs\Entities\obj\Debug\net6.0\ref\Entities.dll
+D:\files\4курс\прикладное4\lrs_in_git\IvanSaltykov\Priklad4kurs\lrs\Entities\bin\Debug\net6.0\Entities.deps.json
+D:\files\4курс\прикладное4\lrs_in_git\IvanSaltykov\Priklad4kurs\lrs\Entities\bin\Debug\net6.0\Entities.dll
+D:\files\4курс\прикладное4\lrs_in_git\IvanSaltykov\Priklad4kurs\lrs\Entities\bin\Debug\net6.0\Entities.pdb
+D:\files\4курс\прикладное4\lrs_in_git\IvanSaltykov\Priklad4kurs\lrs\Entities\obj\Debug\net6.0\Entities.csproj.AssemblyReference.cache
+D:\files\4курс\прикладное4\lrs_in_git\IvanSaltykov\Priklad4kurs\lrs\Entities\obj\Debug\net6.0\Entities.GeneratedMSBuildEditorConfig.editorconfig
+D:\files\4курс\прикладное4\lrs_in_git\IvanSaltykov\Priklad4kurs\lrs\Entities\obj\Debug\net6.0\Entities.AssemblyInfoInputs.cache
+D:\files\4курс\прикладное4\lrs_in_git\IvanSaltykov\Priklad4kurs\lrs\Entities\obj\Debug\net6.0\Entities.AssemblyInfo.cs
+D:\files\4курс\прикладное4\lrs_in_git\IvanSaltykov\Priklad4kurs\lrs\Entities\obj\Debug\net6.0\Entities.csproj.CoreCompileInputs.cache
+D:\files\4курс\прикладное4\lrs_in_git\IvanSaltykov\Priklad4kurs\lrs\Entities\obj\Debug\net6.0\Entities.dll
+D:\files\4курс\прикладное4\lrs_in_git\IvanSaltykov\Priklad4kurs\lrs\Entities\obj\Debug\net6.0\refint\Entities.dll
+D:\files\4курс\прикладное4\lrs_in_git\IvanSaltykov\Priklad4kurs\lrs\Entities\obj\Debug\net6.0\Entities.pdb
+D:\files\4курс\прикладное4\lrs_in_git\IvanSaltykov\Priklad4kurs\lrs\Entities\obj\Debug\net6.0\ref\Entities.dll

@@ -18,13 +18,14 @@ namespace Entities
         {
             modelBuilder.ApplyConfiguration(new CompanyConfiguration());
             modelBuilder.ApplyConfiguration(new EmployeeConfiguration());
+            modelBuilder.ApplyConfiguration(new PartWorldConfiguration());
         }
         public DbSet<Company> Companies { get; set; }
         public DbSet<Employee> Employees { get; set; }
-        //public DbSet<PartWorld> PartWorlds { get; set; }
-        //public DbSet<Country> Countries { get; set; }
-        //public DbSet<City> Cities { get; set; }
-        //public DbSet<Hotel> Hotels { get; set; }
+        public DbSet<PartWorld> PartWorlds { get; set; }
+        public DbSet<Country> Countries { get; set; }
+        public DbSet<City> Cities { get; set; }
+        public DbSet<Hotel> Hotels { get; set; }
 
     }
 }

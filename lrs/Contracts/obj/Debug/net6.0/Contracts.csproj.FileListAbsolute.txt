@@ -22,3 +22,15 @@ D:\files\4курс\прикладное4\lrs\Contracts\obj\Debug\net6.0\Contract
 D:\files\4курс\прикладное4\lrs\Contracts\obj\Debug\net6.0\refint\Contracts.dll
 D:\files\4курс\прикладное4\lrs\Contracts\obj\Debug\net6.0\Contracts.pdb
 D:\files\4курс\прикладное4\lrs\Contracts\obj\Debug\net6.0\ref\Contracts.dll
+D:\files\4курс\прикладное4\lrs_in_git\IvanSaltykov\Priklad4kurs\lrs\Contracts\bin\Debug\net6.0\Contracts.deps.json
+D:\files\4курс\прикладное4\lrs_in_git\IvanSaltykov\Priklad4kurs\lrs\Contracts\bin\Debug\net6.0\Contracts.dll
+D:\files\4курс\прикладное4\lrs_in_git\IvanSaltykov\Priklad4kurs\lrs\Contracts\bin\Debug\net6.0\Contracts.pdb
+D:\files\4курс\прикладное4\lrs_in_git\IvanSaltykov\Priklad4kurs\lrs\Contracts\obj\Debug\net6.0\Contracts.csproj.AssemblyReference.cache
+D:\files\4курс\прикладное4\lrs_in_git\IvanSaltykov\Priklad4kurs\lrs\Contracts\obj\Debug\net6.0\Contracts.GeneratedMSBuildEditorConfig.editorconfig
+D:\files\4курс\прикладное4\lrs_in_git\IvanSaltykov\Priklad4kurs\lrs\Contracts\obj\Debug\net6.0\Contracts.AssemblyInfoInputs.cache
+D:\files\4курс\прикладное4\lrs_in_git\IvanSaltykov\Priklad4kurs\lrs\Contracts\obj\Debug\net6.0\Contracts.AssemblyInfo.cs
+D:\files\4курс\прикладное4\lrs_in_git\IvanSaltykov\Priklad4kurs\lrs\Contracts\obj\Debug\net6.0\Contracts.csproj.CoreCompileInputs.cache
+D:\files\4курс\прикладное4\lrs_in_git\IvanSaltykov\Priklad4kurs\lrs\Contracts\obj\Debug\net6.0\Contracts.dll
+D:\files\4курс\прикладное4\lrs_in_git\IvanSaltykov\Priklad4kurs\lrs\Contracts\obj\Debug\net6.0\refint\Contracts.dll
+D:\files\4курс\прикладное4\lrs_in_git\IvanSaltykov\Priklad4kurs\lrs\Contracts\obj\Debug\net6.0\Contracts.pdb
+D:\files\4курс\прикладное4\lrs_in_git\IvanSaltykov\Priklad4kurs\lrs\Contracts\obj\Debug\net6.0\ref\Contracts.dll
