@@ -19,6 +19,10 @@ namespace Entities
             modelBuilder.ApplyConfiguration(new CompanyConfiguration());
             modelBuilder.ApplyConfiguration(new EmployeeConfiguration());
             modelBuilder.ApplyConfiguration(new PartWorldConfiguration());
+            modelBuilder.ApplyConfiguration(new CountryConfiguration());
+            modelBuilder.ApplyConfiguration(new CityConfiguration());
+            //modelBuilder.ApplyConfiguration(new HotelConfiguration());
+            //modelBuilder.ApplyConfiguration(new TicketConfiguration());
         }
         public DbSet<Company> Companies { get; set; }
         public DbSet<Employee> Employees { get; set; }
@@ -26,6 +30,7 @@ namespace Entities
         public DbSet<Country> Countries { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<Hotel> Hotels { get; set; }
+        public DbSet<Ticket> Ticket { get; set; }
 
     }
 }

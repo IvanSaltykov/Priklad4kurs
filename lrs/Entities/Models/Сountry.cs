@@ -12,17 +12,17 @@ namespace Entities.Models
     {
         [Required]
         [Column("CountryId")]
+        [Key]
         public Guid Id { get; set; }
-
-        [Required]
-        [ForeignKey(nameof(PartWorld))]
-        public string PatrWorldId { get; set; }
 
         [Required]
         [MaxLength(20, ErrorMessage = "Максимальное количество символов 20")]
         public string Name { get; set; }
 
-        public PartWorld partWorld { get; set; }
+        //[Required]
+        //[ForeignKey(nameof(PartWorld))]
+        //public Guid PatrWorldId { get; set; }
+        //public PartWorld World { get; set; }
 
         public ICollection<City> Cities { get; set; }
     }

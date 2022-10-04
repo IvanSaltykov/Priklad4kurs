@@ -29,23 +29,26 @@ namespace lrs.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CityId");
 
-                    b.Property<string>("CountrId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid?>("CountryId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<Guid>("countryId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("countryId");
+                    b.HasIndex("CountryId");
 
                     b.ToTable("Cities");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("3a4156b4-6368-4808-8ca0-898edc8f4615"),
+                            Name = "Анапа"
+                        });
                 });
 
             modelBuilder.Entity("Entities.Models.Company", b =>
@@ -102,18 +105,121 @@ namespace lrs.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<string>("PatrWorldId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("partWorldId")
+                    b.Property<Guid?>("PartWorldId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("partWorldId");
+                    b.HasIndex("PartWorldId");
 
                     b.ToTable("Countries");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("30ac4b5d-f73c-452b-93c3-0af8ba31129a"),
+                            Name = "Россия"
+                        },
+                        new
+                        {
+                            Id = new Guid("f9ede011-01c7-4ee7-abd0-084e7762634d"),
+                            Name = "Китай"
+                        },
+                        new
+                        {
+                            Id = new Guid("515ac902-4f8a-49e1-a2ad-7a76592c9786"),
+                            Name = "Индия"
+                        },
+                        new
+                        {
+                            Id = new Guid("965bdc2a-aea2-4170-9fd2-f70c1baedcbf"),
+                            Name = "Италия"
+                        },
+                        new
+                        {
+                            Id = new Guid("ef581d2f-bc3e-4b3d-a0cd-03389b10aa80"),
+                            Name = "Испания"
+                        },
+                        new
+                        {
+                            Id = new Guid("e2ee981b-13d8-4252-94e9-1038ac1f3bf0"),
+                            Name = "Канада"
+                        },
+                        new
+                        {
+                            Id = new Guid("600d3f5a-415f-44ef-b123-a71df57fd299"),
+                            Name = "США"
+                        },
+                        new
+                        {
+                            Id = new Guid("69b84acb-8159-4aef-a57d-d357f4d890dc"),
+                            Name = "Бразилия"
+                        },
+                        new
+                        {
+                            Id = new Guid("f44bfd5d-b398-4bf4-9df2-7dbb987435cb"),
+                            Name = "Австралия"
+                        },
+                        new
+                        {
+                            Id = new Guid("0afb027f-c88f-4671-b8c1-0fc98dabc446"),
+                            Name = "Португалия"
+                        },
+                        new
+                        {
+                            Id = new Guid("8cb64f0c-8068-465f-9bdc-7b2ff2fdbc39"),
+                            Name = "Грузия"
+                        },
+                        new
+                        {
+                            Id = new Guid("c11e1c93-1f0c-4bad-8b10-eadae5db99a6"),
+                            Name = "Англия"
+                        },
+                        new
+                        {
+                            Id = new Guid("4045fa2b-02c6-4add-9d56-8d0d17d870b5"),
+                            Name = "Япония"
+                        },
+                        new
+                        {
+                            Id = new Guid("1fbd32e1-1d16-41f4-b5c0-59778602243a"),
+                            Name = "Германия"
+                        },
+                        new
+                        {
+                            Id = new Guid("e9752849-1302-476f-89bb-63f76ed69b58"),
+                            Name = "Армения"
+                        },
+                        new
+                        {
+                            Id = new Guid("20aa4f75-ee9f-447d-80ef-c50cbec55bfd"),
+                            Name = "Франция"
+                        },
+                        new
+                        {
+                            Id = new Guid("3f559611-e30a-4927-83ac-2b4b55e35336"),
+                            Name = "Чили"
+                        },
+                        new
+                        {
+                            Id = new Guid("dea5d47c-2c86-47b6-9c70-6d9e2a38b20d"),
+                            Name = "Египет"
+                        },
+                        new
+                        {
+                            Id = new Guid("ff8372e8-ac6d-41b7-aab8-6de6e16e6c10"),
+                            Name = "Тунис"
+                        },
+                        new
+                        {
+                            Id = new Guid("3fdc31a1-7f45-4102-ba94-7f75c77264e9"),
+                            Name = "Марокко"
+                        },
+                        new
+                        {
+                            Id = new Guid("908e9dda-0daa-4668-acd4-350b4e273a1a"),
+                            Name = "ЮАР"
+                        });
                 });
 
             modelBuilder.Entity("Entities.Models.Employee", b =>
@@ -179,21 +285,17 @@ namespace lrs.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("HotelId");
 
-                    b.Property<string>("CityId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid?>("CityId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<Guid>("cityId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("cityId");
+                    b.HasIndex("CityId");
 
                     b.ToTable("Hotels");
                 });
@@ -217,51 +319,76 @@ namespace lrs.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("d7d92ec3-7be7-4e53-862b-086f83640617"),
+                            Id = new Guid("b111fac4-5b5c-40e2-a68d-53c2907e1d2e"),
                             Name = "Европа"
                         },
                         new
                         {
-                            Id = new Guid("b11e6aab-92dd-4a60-8719-7a964b4a7f25"),
+                            Id = new Guid("1239cd80-60b0-41cb-a3a2-9e2cce94ce11"),
                             Name = "Азия"
                         },
                         new
                         {
-                            Id = new Guid("fb4bcfa9-4c0e-4fd2-aa88-a1dcce7233d8"),
+                            Id = new Guid("dceb4d64-723e-4086-a95e-423421b30bfd"),
                             Name = "Африка"
                         },
                         new
                         {
-                            Id = new Guid("318c9129-301d-4608-ba00-8b06c1cbb2bc"),
+                            Id = new Guid("07900f58-5836-4765-a6ff-e3d6fc2d88b8"),
                             Name = "Австралия"
                         },
                         new
                         {
-                            Id = new Guid("0bb98096-7c1c-4b0d-98e9-c35c71656a9c"),
+                            Id = new Guid("e21357cb-6126-4fee-9fb0-14c2020b14bb"),
                             Name = "Америка"
                         });
                 });
 
+            modelBuilder.Entity("Entities.Models.Ticket", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("TicketId");
+
+                    b.Property<Guid>("City")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("Country")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("Hotel")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
+
+                    b.Property<int>("User")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Week")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("World")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Ticket");
+                });
+
             modelBuilder.Entity("Entities.Models.City", b =>
                 {
-                    b.HasOne("Entities.Models.Country", "country")
+                    b.HasOne("Entities.Models.Country", null)
                         .WithMany("Cities")
-                        .HasForeignKey("countryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("country");
+                        .HasForeignKey("CountryId");
                 });
 
             modelBuilder.Entity("Entities.Models.Country", b =>
                 {
-                    b.HasOne("Entities.Models.PartWorld", "partWorld")
+                    b.HasOne("Entities.Models.PartWorld", null)
                         .WithMany("Countries")
-                        .HasForeignKey("partWorldId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("partWorld");
+                        .HasForeignKey("PartWorldId");
                 });
 
             modelBuilder.Entity("Entities.Models.Employee", b =>
@@ -277,13 +404,9 @@ namespace lrs.Migrations
 
             modelBuilder.Entity("Entities.Models.Hotel", b =>
                 {
-                    b.HasOne("Entities.Models.City", "city")
+                    b.HasOne("Entities.Models.City", null)
                         .WithMany("hotels")
-                        .HasForeignKey("cityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("city");
+                        .HasForeignKey("CityId");
                 });
 
             modelBuilder.Entity("Entities.Models.City", b =>
