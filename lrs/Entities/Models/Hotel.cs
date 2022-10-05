@@ -12,15 +12,13 @@ namespace Entities.Models
     {
         [Required]
         [Column("HotelId")]
-        [Key]
         public Guid Id { get; set; }
         [Required]
         [MaxLength(20, ErrorMessage = "Максимальное количество символов 20")]
         public string Name { get; set; }
 
-        //[Required]
-        //[ForeignKey(nameof(City))]
-        //public Guid CityId { get; set; }
-        //public City City { get; set; }
+        [ForeignKey(nameof(City))]
+        public Guid CityId { get; set; }
+        public City City { get; set; }
     }
 }

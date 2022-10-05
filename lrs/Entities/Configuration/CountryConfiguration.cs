@@ -17,129 +17,129 @@ namespace Entities.Configuration
             (
                 new Country
                 {
-                    Id = Guid.NewGuid(),
+                    Id = new Guid("d075f092-113c-487a-8d25-1da6f29de000"),
                     Name = "Россия",
-                    //PatrWorldId = new Guid("8daf4fdc-310b-4b7d-acf4-2f5291b47128")
+                    PartWorldId = new Guid("8daf4fdc-310b-4b7d-acf4-2f5291b47120")
                 },
                 new Country
                 {
-                    Id = Guid.NewGuid(),
+                    Id = new Guid("d075f092-113c-487a-8d25-1da6f29de001"),
                     Name = "Китай",
-                    //PatrWorldId = new Guid("d075f092-113c-487a-8d25-1da6f29de001")
+                    PartWorldId = new Guid("8daf4fdc-310b-4b7d-acf4-2f5291b47121")
                 },
                 new Country
                 {
-                    Id = Guid.NewGuid(),
+                    Id = new Guid("d075f092-113c-487a-8d25-1da6f29de002"),
                     Name = "Индия",
-                    //PatrWorldId = new Guid("d075f092-113c-487a-8d25-1da6f29de001")
+                    PartWorldId = new Guid("8daf4fdc-310b-4b7d-acf4-2f5291b47121")
                 },
                 new Country
                 {
-                    Id = Guid.NewGuid(),
+                    Id = new Guid("d075f092-113c-487a-8d25-1da6f29de003"),
                     Name = "Италия",
-                    //PatrWorldId = new Guid("8daf4fdc-310b-4b7d-acf4-2f5291b47128")
+                    PartWorldId = new Guid("8daf4fdc-310b-4b7d-acf4-2f5291b47120")
                 },
                 new Country
                 {
-                    Id = Guid.NewGuid(),
+                    Id = new Guid("d075f092-113c-487a-8d25-1da6f29de004"),
                     Name = "Испания",
-                    //PatrWorldId = new Guid("8daf4fdc-310b-4b7d-acf4-2f5291b47128")
+                    PartWorldId = new Guid("8daf4fdc-310b-4b7d-acf4-2f5291b47120")
                 },
                 new Country
                 {
-                    Id = Guid.NewGuid(),
+                    Id = new Guid("d075f092-113c-487a-8d25-1da6f29de005"),
                     Name = "Канада",
-                    //PatrWorldId = new Guid("adcead95-068e-448a-b0e2-3f6a4c64abe0")
+                    PartWorldId = new Guid("8daf4fdc-310b-4b7d-acf4-2f5291b47124")
                 },
                 new Country
                 {
-                    Id = Guid.NewGuid(),
+                    Id = new Guid("d075f092-113c-487a-8d25-1da6f29de006"),
                     Name = "США",
-                    //PatrWorldId = new Guid("adcead95-068e-448a-b0e2-3f6a4c64abe0")
+                    PartWorldId = new Guid("8daf4fdc-310b-4b7d-acf4-2f5291b47124")
                 },
                 new Country
                 {
-                    Id = Guid.NewGuid(),
+                    Id = new Guid("d075f092-113c-487a-8d25-1da6f29de007"),
                     Name = "Бразилия",
-                    //PatrWorldId = new Guid("adcead95-068e-448a-b0e2-3f6a4c64abe0")
+                    PartWorldId = new Guid("8daf4fdc-310b-4b7d-acf4-2f5291b47124")
                 },
                 new Country
                 {
-                    Id = Guid.NewGuid(),
+                    Id = new Guid("d075f092-113c-487a-8d25-1da6f29de008"),
                     Name = "Австралия",
-                    //PatrWorldId = new Guid("8daf4fdc-310b-4b7d-acf4-2f5291b47128")
+                    PartWorldId = new Guid("8daf4fdc-310b-4b7d-acf4-2f5291b47123")
                 },
                 new Country
                 {
-                    Id = Guid.NewGuid(),
+                    Id = new Guid("d075f092-113c-487a-8d25-1da6f29de009"),
                     Name = "Португалия",
-                    //PatrWorldId = new Guid("8daf4fdc-310b-4b7d-acf4-2f5291b47128")
+                    PartWorldId = new Guid("8daf4fdc-310b-4b7d-acf4-2f5291b47120")
                 },
                 new Country
                 {
-                    Id = Guid.NewGuid(),
+                    Id = new Guid("d075f092-113c-487a-8d25-1da6f29de010"),
                     Name = "Грузия",
-                    //PatrWorldId = new Guid("8daf4fdc-310b-4b7d-acf4-2f5291b47128")
+                    PartWorldId = new Guid("8daf4fdc-310b-4b7d-acf4-2f5291b47121")
                 },
                 new Country
                 {
-                    Id = Guid.NewGuid(),
+                    Id = new Guid("d075f092-113c-487a-8d25-1da6f29de011"),
                     Name = "Англия",
-                    //PatrWorldId = new Guid("8daf4fdc-310b-4b7d-acf4-2f5291b47128")
+                    PartWorldId = new Guid("8daf4fdc-310b-4b7d-acf4-2f5291b47120")
                 },
                 new Country
                 {
-                    Id = Guid.NewGuid(),
+                    Id = new Guid("d075f092-113c-487a-8d25-1da6f29de012"),
                     Name = "Япония",
-                    //PatrWorldId = new Guid("d075f092-113c-487a-8d25-1da6f29de001")
+                    PartWorldId = new Guid("8daf4fdc-310b-4b7d-acf4-2f5291b47121")
                 },
                 new Country
                 {
-                    Id = Guid.NewGuid(),
+                    Id = new Guid("d075f092-113c-487a-8d25-1da6f29de013"),
                     Name = "Германия",
-                    //PatrWorldId = new Guid("8daf4fdc-310b-4b7d-acf4-2f5291b47128")
+                    PartWorldId = new Guid("8daf4fdc-310b-4b7d-acf4-2f5291b47120")
                 },
                 new Country
                 {
-                    Id = Guid.NewGuid(),
+                    Id = new Guid("d075f092-113c-487a-8d25-1da6f29de014"),
                     Name = "Армения",
-                    //PatrWorldId = new Guid("8daf4fdc-310b-4b7d-acf4-2f5291b47128")
+                    PartWorldId = new Guid("8daf4fdc-310b-4b7d-acf4-2f5291b47120")
                 },
                 new Country
                 {
-                    Id = Guid.NewGuid(),
+                    Id = new Guid("d075f092-113c-487a-8d25-1da6f29de015"),
                     Name = "Франция",
-                    //PatrWorldId = new Guid("8daf4fdc-310b-4b7d-acf4-2f5291b47128")
+                    PartWorldId = new Guid("8daf4fdc-310b-4b7d-acf4-2f5291b47120")
                 },
                 new Country
                 {
-                    Id = Guid.NewGuid(),
+                    Id = new Guid("d075f092-113c-487a-8d25-1da6f29de016"),
                     Name = "Чили",
-                    //PatrWorldId = new Guid("adcead95-068e-448a-b0e2-3f6a4c64abe0")
+                    PartWorldId = new Guid("8daf4fdc-310b-4b7d-acf4-2f5291b47124")
                 },
                 new Country
                 {
-                    Id = Guid.NewGuid(),
+                    Id = new Guid("d075f092-113c-487a-8d25-1da6f29de017"),
                     Name = "Египет",
-                    //PatrWorldId = new Guid("6873c93f-3d2b-4f14-92c6-7397d12a9b30")
+                    PartWorldId = new Guid("8daf4fdc-310b-4b7d-acf4-2f5291b47122")
                 },
                 new Country
                 {
-                    Id = Guid.NewGuid(),
+                    Id = new Guid("d075f092-113c-487a-8d25-1da6f29de018"),
                     Name = "Тунис",
-                    //PatrWorldId = new Guid("6873c93f-3d2b-4f14-92c6-7397d12a9b30")
+                    PartWorldId = new Guid("8daf4fdc-310b-4b7d-acf4-2f5291b47122")
                 },
                 new Country
                 {
-                    Id = Guid.NewGuid(),
+                    Id = new Guid("d075f092-113c-487a-8d25-1da6f29de019"),
                     Name = "Марокко",
-                    //PatrWorldId = new Guid("6873c93f-3d2b-4f14-92c6-7397d12a9b30")
+                    PartWorldId = new Guid("8daf4fdc-310b-4b7d-acf4-2f5291b47122")
                 },
                 new Country
                 {
-                    Id = Guid.NewGuid(),
+                    Id = new Guid("d075f092-113c-487a-8d25-1da6f29de020"),
                     Name = "ЮАР",
-                    //PatrWorldId = new Guid("6873c93f-3d2b-4f14-92c6-7397d12a9b30")
+                    PartWorldId = new Guid("8daf4fdc-310b-4b7d-acf4-2f5291b47122")
                 }
             );
         }

@@ -17,27 +17,27 @@ namespace Entities.Configuration
             (
                 new PartWorld
                 {
-                    Id = Guid.NewGuid(),
+                    Id = new Guid("8daf4fdc-310b-4b7d-acf4-2f5291b47120"),
                     Name = "Европа"
                 },
                 new PartWorld
                 {
-                    Id= Guid.NewGuid(),
+                    Id = new Guid("8daf4fdc-310b-4b7d-acf4-2f5291b47121"),
                     Name = "Азия"
                 },
                 new PartWorld
                 {
-                    Id = Guid.NewGuid(),
+                    Id = new Guid("8daf4fdc-310b-4b7d-acf4-2f5291b47122"),
                     Name = "Африка"
                 },
                 new PartWorld
                 {
-                    Id = Guid.NewGuid(),
+                    Id = new Guid("8daf4fdc-310b-4b7d-acf4-2f5291b47123"),
                     Name = "Австралия"
                 },
                 new PartWorld
                 {
-                    Id = Guid.NewGuid(),
+                    Id = new Guid("8daf4fdc-310b-4b7d-acf4-2f5291b47124"),
                     Name = "Америка"
                 }
             );

@@ -10,6 +10,11 @@ namespace Contracts
     {
         ICompanyRepository Company { get; }
         IEmployeeRepository Employee { get; }
+        IPartWorldRepository PartWorld { get; }
+        ICountryRepository Country { get; }
+        ICityRepository City { get; }
+        IHotelRepository Hotel { get; }
+        ITicketRepository Ticket { get; }
         void Save();
     }
 }

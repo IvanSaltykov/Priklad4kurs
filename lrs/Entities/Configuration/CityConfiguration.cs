@@ -17,9 +17,21 @@ namespace Entities.Configuration
             (
                  new City
                  {
-                     Id = Guid.NewGuid(),
-                     Name = "Анапа"
-                     //CountryId = new Guid("8daf4fdc-310b-4b7d-acf4-2f5291b47128")
+                     Id = new Guid("8daf4fdc-310b-4b7d-acf4-2f5291b47000"),
+                     Name = "Анапа",
+                     CountryId = new Guid("d075f092-113c-487a-8d25-1da6f29de000")
+                 },
+                 new City
+                 {
+                     Id = new Guid("8daf4fdc-310b-4b7d-acf4-2f5291b47001"),
+                     Name = "Мадрид",
+                     CountryId = new Guid("d075f092-113c-487a-8d25-1da6f29de004")
+                 },
+                 new City
+                 {
+                     Id = new Guid("8daf4fdc-310b-4b7d-acf4-2f5291b47002"),
+                     Name = "Саранск",
+                     CountryId = new Guid("d075f092-113c-487a-8d25-1da6f29de000")
                  }
             );
         }
