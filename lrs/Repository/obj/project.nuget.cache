@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "3qU+HB9630UTQJNk5FOwTHjvMtw7hTQ5z+NG/LDgrTCUOmmDKE1RcWxEjzkQUP270jfsy0rCztRmdrWzxlojTA==",
+  "dgSpecHash": "pm1IkZGmnld128PU9Rsx1xnE/WOK3W9cHlaqKvdpxCSWyBWreURtQC6bjBv6cAxS9m4VtrI1gcsGP/o0aoikxQ==",
   "success": true,
   "projectFilePath": "E:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\Repository\\Repository.csproj",
   "expectedPackageFiles": [
@@ -15,6 +15,7 @@
     "C:\\Users\\Админ\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.0\\microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
     "C:\\Users\\Админ\\.nuget\\packages\\microsoft.extensions.options\\6.0.0\\microsoft.extensions.options.6.0.0.nupkg.sha512",
     "C:\\Users\\Админ\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+    "C:\\Users\\Админ\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\Админ\\.nuget\\packages\\system.collections.immutable\\6.0.0\\system.collections.immutable.6.0.0.nupkg.sha512",
     "C:\\Users\\Админ\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.0\\system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",
     "C:\\Users\\Админ\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"

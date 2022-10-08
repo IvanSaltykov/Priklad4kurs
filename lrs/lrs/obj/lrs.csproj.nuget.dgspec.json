@@ -31,7 +31,11 @@
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "E:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\Entities\\Entities.csproj": {
+                "projectPath": "E:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\Entities\\Entities.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -106,6 +110,10 @@
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[6.0.9, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
             }
           },
           "imports": [
@@ -225,9 +233,6 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "E:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\Entities\\Entities.csproj": {
-                "projectPath": "E:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\Entities\\Entities.csproj"
-              },
               "E:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\LoggerService\\LoggerService.csproj": {
                 "projectPath": "E:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\LoggerService\\LoggerService.csproj"
               },
@@ -247,6 +252,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.0, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[6.0.9, )"
@@ -256,6 +265,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[6.0.9, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
