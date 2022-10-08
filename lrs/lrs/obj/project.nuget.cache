@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "7pX51BaQOZ+Xa81ePToeDKnoac0CwXuD51tRaG92cU0WtTFcDi9NKIEsEG8h+igGAiEtHFMlVdv/VYGZoKLJpw==",
+  "dgSpecHash": "uLslHUET10nA3mQl4UG1yaYYvE+7zuSh8T0c1DlU05Uxp4SzMbwrIVDZW0WwbRDYMJZSosO7WmxHRNf97t9N/w==",
   "success": true,
-  "projectFilePath": "D:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\lrs\\lrs.csproj",
+  "projectFilePath": "E:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\lrs\\lrs.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Админ\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Админ\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
