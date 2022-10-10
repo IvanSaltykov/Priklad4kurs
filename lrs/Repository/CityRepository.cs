@@ -14,5 +14,8 @@ namespace Repository
         public CityRepository(RepositoryContext repositoryContext) : base(repositoryContext)
         {
         }
+
+        public IEnumerable<City> GetAllCities(bool trackChanges) => 
+            FindAll(trackChanges).OrderBy(c => c.Name).ToList();
     }
 }

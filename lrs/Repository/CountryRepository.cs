@@ -14,5 +14,8 @@ namespace Repository
         public CountryRepository(RepositoryContext repositoryContext) : base(repositoryContext)
         {
         }
+
+        public IEnumerable<Country> GetAllCountries(bool trackChanges) =>
+            FindAll(trackChanges).OrderBy(c => c.Name).ToList();
     }
 }

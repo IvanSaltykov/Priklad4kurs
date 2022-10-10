@@ -14,5 +14,8 @@ namespace Repository
         public TicketRepository(RepositoryContext repositoryContext) : base(repositoryContext)
         {
         }
+
+        public IEnumerable<Ticket> GetAllTickets(bool trackChanges) =>
+            FindAll(trackChanges).OrderBy(c => c.Id).ToList();
     }
 }

@@ -14,5 +14,8 @@ namespace Repository
         public HotelRepository(RepositoryContext repositoryContext) : base(repositoryContext)
         {
         }
+
+        public IEnumerable<Hotel> GetAllHotels(bool trackChanges) =>
+            FindAll(trackChanges).OrderBy(c => c.Name).ToList();
     }
 }

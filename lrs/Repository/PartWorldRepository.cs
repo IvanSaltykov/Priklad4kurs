@@ -14,5 +14,8 @@ namespace Repository
         public PartWorldRepository(RepositoryContext repositoryContext) : base(repositoryContext)
         {
         }
+
+        public IEnumerable<PartWorld> GetAllPartWorlds(bool trackChanges) =>
+            FindAll(trackChanges).OrderBy(c => c.Name).ToList();
     }
 }
