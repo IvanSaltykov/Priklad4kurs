@@ -10,5 +10,6 @@ namespace Contracts
     public interface IPartWorldRepository
     {
         IEnumerable<PartWorld> GetAllPartWorlds(bool trackChanges);
+        PartWorld GetPartWorld(Guid partWorldId, bool trackChanges);
     }
 }

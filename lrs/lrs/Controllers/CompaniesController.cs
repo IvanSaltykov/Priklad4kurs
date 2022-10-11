@@ -18,14 +18,22 @@ namespace lrs.Controllers
         {
             _repository = repository;
             _logger = logger;
-            _mapper = mapper;  
+            _mapper = mapper;
         }
-        [HttpGet]
-        public IActionResult GetCompanies()
+        [HttpGet("{id}")]
+        public IActionResult GetCompany(Guid id)
         {
-            var companies = _repository.Company.GetAllCompanies(trackChanges: false);
-            var companiesDto = _mapper.Map<IEnumerable<CompanyDto>>(companies);
-            return Ok(companiesDto);
+            var company = _repository.Company.GetCompany(id, false);
+            if (company == null)
+            {
+                _logger.LogInfo($"Company with id: {id} doesn't exist in the database.");
+                return NotFound();
+            }
+            else
+            {
+                var companyDto = _mapper.Map<CompanyDto>(company);
+                return Ok(companyDto);
+            }
         }
     }
 }

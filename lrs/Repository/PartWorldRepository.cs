@@ -17,5 +17,8 @@ namespace Repository
 
         public IEnumerable<PartWorld> GetAllPartWorlds(bool trackChanges) =>
             FindAll(trackChanges).OrderBy(c => c.Name).ToList();
+
+        public PartWorld GetPartWorld(Guid partWorldId, bool trackChanges) =>
+            FindByCondition(c => c.Id.Equals(partWorldId), trackChanges).SingleOrDefault();
     }
 }
