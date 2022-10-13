@@ -15,7 +15,10 @@ namespace Repository
         {
         }
 
-        public IEnumerable<City> GetAllCities(bool trackChanges) => 
-            FindAll(trackChanges).OrderBy(c => c.Name).ToList();
+        public IEnumerable<City> GetCities(Guid countryId, bool trackChanges) =>
+            FindByCondition(e => e.CountryId.Equals(countryId), trackChanges).OrderBy(e => e.Name);
+
+        public City GetCity(Guid countryId, Guid id, bool trackChanges) =>
+            FindByCondition(e => e.CountryId.Equals(countryId) && e.Id.Equals(id), trackChanges).SingleOrDefault();
     }
 }

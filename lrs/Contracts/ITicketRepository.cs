@@ -9,6 +9,7 @@ namespace Contracts
 {
     public interface ITicketRepository
     {
-        IEnumerable<Ticket> GetAllTickets(bool trackChanges);
+        IEnumerable<Ticket> GetTickets(Guid hotelId, bool trackChanges);
+        Ticket GetTicket(Guid hotelId, Guid id, bool trackChanges);
     }
 }

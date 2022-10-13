@@ -9,6 +9,7 @@ namespace Contracts
 {
     public interface ICityRepository
     {
-        IEnumerable<City> GetAllCities(bool trackChanges);
+        IEnumerable<City> GetCities(Guid countryId, bool trackChanges);
+        City GetCity(Guid countryId, Guid id, bool trackChanges);
     }
 }

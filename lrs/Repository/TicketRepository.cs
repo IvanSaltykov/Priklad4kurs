@@ -15,7 +15,10 @@ namespace Repository
         {
         }
 
-        public IEnumerable<Ticket> GetAllTickets(bool trackChanges) =>
-            FindAll(trackChanges).OrderBy(c => c.Id).ToList();
+        public IEnumerable<Ticket> GetTickets(Guid hotelId, bool trackChanges) =>
+            FindByCondition(e => e.Hotel.Equals(hotelId), trackChanges).OrderBy(e => e.Id);
+
+        public Ticket GetTicket(Guid hotelId, Guid id, bool trackChanges) =>
+            FindByCondition(e => e.Hotel.Equals(hotelId) && e.Id.Equals(id), trackChanges).SingleOrDefault();
     }
 }

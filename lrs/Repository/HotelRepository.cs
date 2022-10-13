@@ -15,7 +15,10 @@ namespace Repository
         {
         }
 
-        public IEnumerable<Hotel> GetAllHotels(bool trackChanges) =>
-            FindAll(trackChanges).OrderBy(c => c.Name).ToList();
+        public Hotel GetHotel(Guid cityId, Guid id, bool trackChanges) =>
+            FindByCondition(e => e.CityId.Equals(cityId) && e.Id.Equals(id), trackChanges).SingleOrDefault();
+
+        public IEnumerable<Hotel> GetHotels(Guid cityId, bool trackChanges) =>
+            FindByCondition(e => e.CityId.Equals(cityId), trackChanges).OrderBy(e => e.Name);
     }
 }
