@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace lrs.Controllers
 {
-    [Route("api/countries")]
+    [Route("api/partworlds/{partWorldId}/countries")]
     [ApiController]
     public class CountriesController : ControllerBase
     {
@@ -22,11 +22,35 @@ namespace lrs.Controllers
             _mapper = mapper;
         }
         [HttpGet]
-        public IActionResult GetCountries()
+        public IActionResult GetCountries(Guid partWorldId)
         {
-            var countries = _repository.Country.GetAllCountries(false);
-            var countriesDto = _mapper.Map<IEnumerable<CountryDto>>(countries);
+            var partWorld = _repository.PartWorld.GetPartWorld(partWorldId, false);
+            if (partWorld == null)
+            {
+                _logger.LogInfo($"Partworld with id: {partWorldId} doesn't exist in the database.");
+                return NotFound();
+            }
+            var countriesFromDb = _repository.Country.GetCountries(partWorldId, false);
+            var countriesDto = _mapper.Map<IEnumerable<CountryDto>>(countriesFromDb);
             return Ok(countriesDto);
+        }
+        [HttpGet("{id}")]
+        public IActionResult GetCountry(Guid partWorldId, Guid id)
+        {
+            var partWorld = _repository.PartWorld.GetPartWorld(partWorldId, false);
+            if (partWorld == null)
+            {
+                _logger.LogInfo($"Partworld with id: {partWorldId} doesn't exist in the database.");
+                return NotFound();
+            }
+            var countryDb = _repository.Country.GetCountry(partWorldId, id, false);
+            if (countryDb == null)
+            {
+                _logger.LogInfo($"Country with id: {id} doesn't exist in the database.");
+                return NotFound();
+            }
+            var country = _mapper.Map<CountryDto>(countryDb);
+            return Ok(country);
         }
     }
 }

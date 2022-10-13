@@ -46,3 +46,15 @@ E:\files\4курс\прикладное4\lrs_in_git\IvanSaltykov\Priklad4kurs\lr
 E:\files\4курс\прикладное4\lrs_in_git\IvanSaltykov\Priklad4kurs\lrs\Entities\obj\Debug\net6.0\refint\Entities.dll
 E:\files\4курс\прикладное4\lrs_in_git\IvanSaltykov\Priklad4kurs\lrs\Entities\obj\Debug\net6.0\Entities.pdb
 E:\files\4курс\прикладное4\lrs_in_git\IvanSaltykov\Priklad4kurs\lrs\Entities\obj\Debug\net6.0\ref\Entities.dll
+E:\files\4курс\прикладное4\lrs_in_git\Priklad4kurs\lrs\Entities\bin\Debug\net6.0\Entities.deps.json
+E:\files\4курс\прикладное4\lrs_in_git\Priklad4kurs\lrs\Entities\bin\Debug\net6.0\Entities.dll
+E:\files\4курс\прикладное4\lrs_in_git\Priklad4kurs\lrs\Entities\bin\Debug\net6.0\Entities.pdb
+E:\files\4курс\прикладное4\lrs_in_git\Priklad4kurs\lrs\Entities\obj\Debug\net6.0\Entities.csproj.AssemblyReference.cache
+E:\files\4курс\прикладное4\lrs_in_git\Priklad4kurs\lrs\Entities\obj\Debug\net6.0\Entities.GeneratedMSBuildEditorConfig.editorconfig
+E:\files\4курс\прикладное4\lrs_in_git\Priklad4kurs\lrs\Entities\obj\Debug\net6.0\Entities.AssemblyInfoInputs.cache
+E:\files\4курс\прикладное4\lrs_in_git\Priklad4kurs\lrs\Entities\obj\Debug\net6.0\Entities.AssemblyInfo.cs
+E:\files\4курс\прикладное4\lrs_in_git\Priklad4kurs\lrs\Entities\obj\Debug\net6.0\Entities.csproj.CoreCompileInputs.cache
+E:\files\4курс\прикладное4\lrs_in_git\Priklad4kurs\lrs\Entities\obj\Debug\net6.0\Entities.dll
+E:\files\4курс\прикладное4\lrs_in_git\Priklad4kurs\lrs\Entities\obj\Debug\net6.0\refint\Entities.dll
+E:\files\4курс\прикладное4\lrs_in_git\Priklad4kurs\lrs\Entities\obj\Debug\net6.0\Entities.pdb
+E:\files\4курс\прикладное4\lrs_in_git\Priklad4kurs\lrs\Entities\obj\Debug\net6.0\ref\Entities.dll

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "tME8hvnGGjkbIaolIuKmFjrdLySjC1kgY0/Amf44HuTK0IhEDDeCv6GwYVmXzPIJEr9f4Zw1PkTnHi+8bxZ/uQ==",
+  "dgSpecHash": "vrQNf6q6Ga3KW6AjzwJSOw5gpFwFmhrO7WgnMrlh1ZyRWNMYE3927bnVFw9OERTvh6QPeCaB+Q9ffIXLAoOjbg==",
   "success": true,
-  "projectFilePath": "E:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\lrs\\lrs.csproj",
+  "projectFilePath": "E:\\files\\4курс\\прикладное4\\lrs_in_git\\Priklad4kurs\\lrs\\lrs\\lrs.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Админ\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\Админ\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",

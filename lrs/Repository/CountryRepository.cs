@@ -15,7 +15,10 @@ namespace Repository
         {
         }
 
-        public IEnumerable<Country> GetAllCountries(bool trackChanges) =>
-            FindAll(trackChanges).OrderBy(c => c.Name).ToList();
+        public IEnumerable<Country> GetCountries(Guid partWorldId, bool trackChanges) =>
+            FindByCondition(e => e.PartWorldId.Equals(partWorldId), trackChanges).OrderBy(e => e.Name);
+
+        public Country GetCountry(Guid partWorldId, Guid id, bool trackChanges) =>
+            FindByCondition(e => e.PartWorldId.Equals(partWorldId) && e.Id.Equals(id), trackChanges).SingleOrDefault();
     }
 }

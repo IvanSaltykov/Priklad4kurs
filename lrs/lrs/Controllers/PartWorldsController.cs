@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace lrs.Controllers
 {
-    [Route("api/partwords")]
+    [Route("api/partworlds")]
     [ApiController]
     public class PartWorldsController : ControllerBase
     {
@@ -34,6 +34,13 @@ namespace lrs.Controllers
                 var partWorldsDto = _mapper.Map<PartWorldDto>(partWorlds);
                 return Ok(partWorldsDto);
             }
+        }
+        [HttpGet]
+        public IActionResult GetPartWorlds()
+        {
+            var partWorlds = _repository.PartWorld.GetAllPartWorlds(false);
+            var partWorldsDto = _mapper.Map<IEnumerable<PartWorldDto>>(partWorlds);
+            return Ok(partWorldsDto);
         }
     }
 }

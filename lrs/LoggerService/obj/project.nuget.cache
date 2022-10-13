@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Ij1kSDbliOYnH/4g7rT/xptgLyaNN1EQgwdysEHR7Ta/gygRwG2h7Bwiozw4f2tNw/uEewuliz/P1JAwXU+BzQ==",
+  "dgSpecHash": "QhN9pdxIEX+RJvHJBZcXz3NSzK2SKY8MX+eSJPiINBR+pxkoVN3tqFRwatqtiFhCWP8J7j4+T7nS4697/QmTZA==",
   "success": true,
-  "projectFilePath": "E:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\LoggerService\\LoggerService.csproj",
+  "projectFilePath": "E:\\files\\4курс\\прикладное4\\lrs_in_git\\Priklad4kurs\\lrs\\LoggerService\\LoggerService.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Админ\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.9\\microsoft.entityframeworkcore.6.0.9.nupkg.sha512",
     "C:\\Users\\Админ\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\6.0.9\\microsoft.entityframeworkcore.abstractions.6.0.9.nupkg.sha512",

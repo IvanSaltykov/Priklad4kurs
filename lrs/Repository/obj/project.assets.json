@@ -664,11 +664,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\Repository\\Repository.csproj",
+      "projectUniqueName": "E:\\files\\4курс\\прикладное4\\lrs_in_git\\Priklad4kurs\\lrs\\Repository\\Repository.csproj",
       "projectName": "Repository",
-      "projectPath": "E:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\Repository\\Repository.csproj",
+      "projectPath": "E:\\files\\4курс\\прикладное4\\lrs_in_git\\Priklad4kurs\\lrs\\Repository\\Repository.csproj",
       "packagesPath": "C:\\Users\\Админ\\.nuget\\packages\\",
-      "outputPath": "E:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\Repository\\obj\\",
+      "outputPath": "E:\\files\\4курс\\прикладное4\\lrs_in_git\\Priklad4kurs\\lrs\\Repository\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "D:\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -689,11 +689,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "E:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\Contracts\\Contracts.csproj": {
-              "projectPath": "E:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\Contracts\\Contracts.csproj"
+            "E:\\files\\4курс\\прикладное4\\lrs_in_git\\Priklad4kurs\\lrs\\Contracts\\Contracts.csproj": {
+              "projectPath": "E:\\files\\4курс\\прикладное4\\lrs_in_git\\Priklad4kurs\\lrs\\Contracts\\Contracts.csproj"
             },
-            "E:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\Entities\\Entities.csproj": {
-              "projectPath": "E:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\Entities\\Entities.csproj"
+            "E:\\files\\4курс\\прикладное4\\lrs_in_git\\Priklad4kurs\\lrs\\Entities\\Entities.csproj": {
+              "projectPath": "E:\\files\\4курс\\прикладное4\\lrs_in_git\\Priklad4kurs\\lrs\\Entities\\Entities.csproj"
             }
           }
         }

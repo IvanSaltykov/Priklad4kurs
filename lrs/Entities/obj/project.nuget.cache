@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "/rIPpCZUJ8dG1T6gX6+w6dTtcYYz1iCX4AYPjFV20utt7TeUQU9mBo5hrKdAq4Kph/+jE1sDuf+0EeYzxMsPQA==",
+  "dgSpecHash": "Z1Hv3CMr8Mw9o5s5qNWLKPEEc7iwxF8k4dJvrsx8XqlJ+ueO93ZNrdH0QZwQlb7khclgDe/Rna50Fci1AiwoYg==",
   "success": true,
-  "projectFilePath": "E:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\Entities\\Entities.csproj",
+  "projectFilePath": "E:\\files\\4курс\\прикладное4\\lrs_in_git\\Priklad4kurs\\lrs\\Entities\\Entities.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Админ\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.9\\microsoft.entityframeworkcore.6.0.9.nupkg.sha512",
     "C:\\Users\\Админ\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\6.0.9\\microsoft.entityframeworkcore.abstractions.6.0.9.nupkg.sha512",

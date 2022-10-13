@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\Entities\\Entities.csproj": {}
+    "E:\\files\\4курс\\прикладное4\\lrs_in_git\\Priklad4kurs\\lrs\\Entities\\Entities.csproj": {}
   },
   "projects": {
-    "E:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\Entities\\Entities.csproj": {
+    "E:\\files\\4курс\\прикладное4\\lrs_in_git\\Priklad4kurs\\lrs\\Entities\\Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\Entities\\Entities.csproj",
+        "projectUniqueName": "E:\\files\\4курс\\прикладное4\\lrs_in_git\\Priklad4kurs\\lrs\\Entities\\Entities.csproj",
         "projectName": "Entities",
-        "projectPath": "E:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\Entities\\Entities.csproj",
+        "projectPath": "E:\\files\\4курс\\прикладное4\\lrs_in_git\\Priklad4kurs\\lrs\\Entities\\Entities.csproj",
         "packagesPath": "C:\\Users\\Админ\\.nuget\\packages\\",
-        "outputPath": "E:\\files\\4курс\\прикладное4\\lrs_in_git\\IvanSaltykov\\Priklad4kurs\\lrs\\Entities\\obj\\",
+        "outputPath": "E:\\files\\4курс\\прикладное4\\lrs_in_git\\Priklad4kurs\\lrs\\Entities\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Microsoft Visual Studio\\Shared\\NuGetPackages"
