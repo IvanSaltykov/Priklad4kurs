@@ -17,6 +17,8 @@ namespace lrs
             CreateMap<City, CityDto>();
             CreateMap<Hotel, HotelDto>();
             CreateMap<Ticket, TicketDto>();
+            CreateMap<CompanyForCreationDto, Company>();
+            CreateMap<EmployeeForCreationDto, Employee>();
         }
     }
 }
