@@ -20,5 +20,14 @@ namespace Repository
 
         public Ticket GetTicket(Guid hotelId, Guid id, bool trackChanges) =>
             FindByCondition(e => e.Hotel.Equals(hotelId) && e.Id.Equals(id), trackChanges).SingleOrDefault();
+
+        public void CreateTicket(Guid partWorldId, Guid countryId, Guid cityId, Guid hotelId, Ticket ticket)
+        {
+            ticket.World = partWorldId;
+            ticket.Country = countryId;
+            ticket.City = cityId;
+            ticket.Hotel = hotelId;
+            Create(ticket);
+        }
     }
 }

@@ -32,7 +32,7 @@ namespace lrs.Controllers
             var ticketsDto = _mapper.Map<IEnumerable<TicketDto>>(ticketsFromDb);
             return Ok(ticketsDto);
         }
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetTicket")]
         public IActionResult GetTicket(Guid partWorldId, Guid countryId, Guid cityId, Guid hotelId, Guid id)
         {
             var actionResult = checkResult(partWorldId, countryId, cityId, hotelId);
@@ -46,6 +46,30 @@ namespace lrs.Controllers
             }
             var ticket = _mapper.Map<TicketDto>(ticketDb);
             return Ok(ticket);
+        }
+        [HttpPost]
+        public IActionResult CreateTicket(Guid partWorldId, Guid countryId, Guid cityId, Guid hotelId, [FromBody] TicketCreateDto ticket)
+        {
+            if (ticket == null)
+            {
+                _logger.LogError("TicketCreationDto object sent from client is null.");
+                return BadRequest("TicketCreationDto object is null");
+            }
+            var actionResult = checkResult(partWorldId, countryId, cityId, hotelId);
+            if (actionResult != null)
+                return actionResult;
+            var ticketEntity = _mapper.Map<Ticket>(ticket);
+            _repository.Ticket.CreateTicket(partWorldId, countryId, cityId, hotelId, ticketEntity);
+            _repository.Save();
+            var ticketReturn = _mapper.Map<TicketDto>(ticketEntity);
+            return CreatedAtRoute("GetTicket", new
+            {
+                partWorldId,
+                countryId,
+                cityId,
+                hotelId,
+                ticketReturn.Id
+            }, ticketReturn);
         }
         private IActionResult checkResult(Guid partWorldId, Guid countryId, Guid cityId, Guid hotelId)
         {

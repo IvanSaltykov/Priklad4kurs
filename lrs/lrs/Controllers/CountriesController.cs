@@ -32,7 +32,7 @@ namespace lrs.Controllers
             var countriesDto = _mapper.Map<IEnumerable<CountryDto>>(countriesFromDb);
             return Ok(countriesDto);
         }
-        [HttpGet("{id}", Name = "GetCounties")]
+        [HttpGet("{id}", Name = "GetCountry")]
         public IActionResult GetCountry(Guid partWorldId, Guid id)
         {
             var actionResult = checkResult(partWorldId);
@@ -65,7 +65,7 @@ namespace lrs.Controllers
             _repository.Country.CreateCountry(partWorldId, countryEntity);
             _repository.Save();
             var countryReturn = _mapper.Map<CountryDto>(countryEntity);
-            return CreatedAtRoute("GetCounties", new { 
+            return CreatedAtRoute("GetCountry", new { 
                 partWorldId,
                 countryReturn.Id
             }, countryReturn);

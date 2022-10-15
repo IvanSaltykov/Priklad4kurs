@@ -30,7 +30,7 @@ namespace lrs.Controllers
             var hotelsDto = _mapper.Map<IEnumerable<HotelDto>>(hotelsFromDb);
             return Ok(hotelsDto);
         }
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetHotel")]
         public IActionResult GetHotel(Guid partWorldId, Guid countryId, Guid cityId, Guid id)
         {
             var actionResult = checkResult(partWorldId, countryId, cityId);
@@ -44,6 +44,29 @@ namespace lrs.Controllers
             }
             var hotel = _mapper.Map<HotelDto>(hotelDb);
             return Ok(hotel);
+        }
+        [HttpPost]
+        public IActionResult GetHotel(Guid partWorldId, Guid countryId, Guid cityId, [FromBody] HotelCreateDto hotel)
+        {
+            if (hotel == null)
+            {
+                _logger.LogError("HotelCreateDto object sent from client is null.");
+                return BadRequest("HotelCreateDto object is null");
+            }
+            var actionResult = checkResult(partWorldId, countryId, cityId);
+            if (actionResult != null)
+                return actionResult;
+            var hotelEntity = _mapper.Map<Hotel>(hotel);
+            _repository.Hotel.CreateHotel(cityId, hotelEntity);
+            _repository.Save();
+            var hotelReturn = _mapper.Map<HotelDto>(hotelEntity);
+            return CreatedAtRoute("GetHotel", new
+            {
+                partWorldId,
+                countryId,
+                cityId,
+                hotelReturn.Id
+            }, hotelReturn);
         }
         private IActionResult checkResult(Guid partWorldId, Guid countryId, Guid cityId)
         {

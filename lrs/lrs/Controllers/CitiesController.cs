@@ -31,7 +31,7 @@ namespace lrs.Controllers
             var citiesDto = _mapper.Map<IEnumerable<CityDto>>(citiesFromDb);
             return Ok(citiesDto);
         }
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetCity")]
         public IActionResult GetCity(Guid partWorldId, Guid countryId, Guid id)
         {
             var actionResult = checkResult(partWorldId, countryId);
@@ -45,6 +45,28 @@ namespace lrs.Controllers
             }
             var city = _mapper.Map<CityDto>(cityDb);
             return Ok(city);
+        }
+        [HttpPost]
+        public IActionResult CreateCity(Guid partWorldId, Guid countryId, [FromBody] CityCreateDto city)
+        {
+            if (city == null)
+            {
+                _logger.LogError("CityCreateDto object sent from client is null.");
+                return BadRequest("CityCreateDto object is null");
+            }
+            var actionResult = checkResult(partWorldId, countryId);
+            if (actionResult != null)
+                return actionResult;
+            var cityEntity = _mapper.Map<City>(city);
+            _repository.City.CreateCity(countryId, cityEntity);
+            _repository.Save();
+            var cityReturn = _mapper.Map<CityDto>(cityEntity);
+            return CreatedAtRoute("GetCity", new
+            {
+                partWorldId,
+                countryId,
+                cityReturn.Id
+            }, cityReturn);
         }
         private IActionResult checkResult(Guid partWorldId, Guid countryId)
         {
