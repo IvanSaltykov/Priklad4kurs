@@ -25,6 +25,8 @@ namespace lrs
             CreateMap<CityCreateDto, City>();
             CreateMap<HotelCreateDto, Hotel>();
             CreateMap<TicketCreateDto, Ticket>();
+            //update
+            CreateMap<EmployeeForUpdateDto, Employee>();
         }
     }
 }
