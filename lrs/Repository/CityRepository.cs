@@ -15,6 +15,12 @@ namespace Repository
         {
         }
 
+        public void CreateCity(Guid countryId, City city)
+        {
+            city.CountryId = countryId;
+            Create(city);
+        }
+
         public IEnumerable<City> GetCities(Guid countryId, bool trackChanges) =>
             FindByCondition(e => e.CountryId.Equals(countryId), trackChanges).OrderBy(e => e.Name);
 

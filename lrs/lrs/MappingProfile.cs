@@ -8,6 +8,7 @@ namespace lrs
     {
         public MappingProfile()
         {
+            //get
             CreateMap<Company, CompanyDto>()
             .ForMember(c => c.FullAddress,
             opt => opt.MapFrom(x => string.Join(' ', x.Address, x.Country)));
@@ -17,8 +18,12 @@ namespace lrs
             CreateMap<City, CityDto>();
             CreateMap<Hotel, HotelDto>();
             CreateMap<Ticket, TicketDto>();
+            //put
             CreateMap<CompanyForCreationDto, Company>();
             CreateMap<EmployeeForCreationDto, Employee>();
+            CreateMap<CountryCreateDto, Country>();
+            CreateMap<CityCreateDto, City>();
+            CreateMap<HotelCreateDto, Hotel>();
         }
     }
 }

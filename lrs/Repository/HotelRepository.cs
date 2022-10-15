@@ -15,6 +15,12 @@ namespace Repository
         {
         }
 
+        public void CreateHotel(Guid cityId, Hotel hotel)
+        {
+            hotel.CityId = cityId;
+            Create(hotel);
+        }
+
         public Hotel GetHotel(Guid cityId, Guid id, bool trackChanges) =>
             FindByCondition(e => e.CityId.Equals(cityId) && e.Id.Equals(id), trackChanges).SingleOrDefault();
 

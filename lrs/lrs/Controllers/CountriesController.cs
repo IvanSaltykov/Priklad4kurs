@@ -32,7 +32,7 @@ namespace lrs.Controllers
             var countriesDto = _mapper.Map<IEnumerable<CountryDto>>(countriesFromDb);
             return Ok(countriesDto);
         }
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetCounties")]
         public IActionResult GetCountry(Guid partWorldId, Guid id)
         {
             var actionResult = checkResult(partWorldId);
@@ -46,6 +46,29 @@ namespace lrs.Controllers
             }
             var country = _mapper.Map<CountryDto>(countryDb);
             return Ok(country);
+        }
+        [HttpPost]
+        public IActionResult CreateCountry(Guid partWorldId, [FromBody] CountryCreateDto country)
+        {
+            if (country == null)
+            {
+                _logger.LogError("CountryCreateDto object sent from client is null.");
+                return BadRequest("CountryCreateDto object is null"); ;
+            }
+            var partWorld = _repository.PartWorld.GetPartWorld(partWorldId, false);
+            if (partWorld == null)
+            {
+                _logger.LogInfo($"PartWorld with id: {partWorldId} doesn't exist in the database.");
+                return NotFound();
+            }
+            var countryEntity = _mapper.Map<Country>(country);
+            _repository.Country.CreateCountry(partWorldId, countryEntity);
+            _repository.Save();
+            var countryReturn = _mapper.Map<CountryDto>(countryEntity);
+            return CreatedAtRoute("GetCounties", new { 
+                partWorldId,
+                countryReturn.Id
+            }, countryReturn);
         }
         private IActionResult checkResult(Guid partWorldId)
         {

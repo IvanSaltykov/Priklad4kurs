@@ -15,6 +15,12 @@ namespace Repository
         {
         }
 
+        public void CreateCountry(Guid partWordId, Country country)
+        {
+            country.PartWorldId = partWordId;
+            Create(country);
+        }
+
         public IEnumerable<Country> GetCountries(Guid partWorldId, bool trackChanges) =>
             FindByCondition(e => e.PartWorldId.Equals(partWorldId), trackChanges).OrderBy(e => e.Name);
 
