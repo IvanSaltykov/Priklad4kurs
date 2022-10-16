@@ -26,7 +26,9 @@ namespace lrs
             CreateMap<HotelCreateDto, Hotel>();
             CreateMap<TicketCreateDto, Ticket>();
             //update
-            CreateMap<EmployeeForUpdateDto, Employee>();
+            //CreateMap<EmployeeForUpdateDto, Employee>();
+            CreateMap<CompanyForUpdateDto, Company>();
+            CreateMap<EmployeeForUpdateDto, Employee>().ReverseMap();
         }
     }
 }
