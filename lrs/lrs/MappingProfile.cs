@@ -30,6 +30,10 @@ namespace lrs
             CreateMap<CompanyForUpdateDto, Company>();
             CreateMap<EmployeeForUpdateDto, Employee>().ReverseMap();
             CreateMap<TicketUpdateDto, Ticket>().ReverseMap();
+            CreateMap<HotelUpdateDto, Hotel>().ReverseMap();
+            CreateMap<CityUpdateDto, City>().ReverseMap();
+            CreateMap<CountryUpdateDto, Country>().ReverseMap();
+            CreateMap<PartWorldUpdateDto, PartWorld>().ReverseMap();
         }
     }
 }

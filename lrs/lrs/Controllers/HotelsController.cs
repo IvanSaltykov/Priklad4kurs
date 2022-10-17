@@ -4,6 +4,7 @@ using Entities.DataTransferObjects;
 using Entities.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Sockets;
 
 namespace lrs.Controllers
 {
@@ -69,7 +70,7 @@ namespace lrs.Controllers
             }, hotelReturn);
         }
         [HttpDelete("{id}")]
-        public IActionResult DeleteCity(Guid partWorldId, Guid countryId, Guid cityId, Guid id)
+        public IActionResult DeleteHotel(Guid partWorldId, Guid countryId, Guid cityId, Guid id)
         {
             var actionResult = checkResult(partWorldId, countryId, cityId);
             if (actionResult != null)
@@ -84,7 +85,27 @@ namespace lrs.Controllers
             _repository.Save();
             return NoContent();
         }
-
+        [HttpPut("{id}")]
+        public IActionResult UpdateHotel(Guid partWorldId, Guid countryId, Guid cityId, Guid id, [FromBody] HotelUpdateDto hotel)
+        {
+            if (hotel == null)
+            {
+                _logger.LogError("HotelUpdateDto object sent from client is null.");
+                return BadRequest("HotelUpdateDto object is null");
+            }
+            var actionResult = checkResult(partWorldId, countryId, cityId);
+            if (actionResult != null)
+                return actionResult;
+            var hotelEntity = _repository.Hotel.GetHotel(cityId, id, true);
+            if (hotelEntity == null)
+            {
+                _logger.LogInfo($"Hotel with id: {id} doesn't exist in the database.");
+                return NotFound();
+            }
+            _mapper.Map(hotel, hotelEntity);
+            _repository.Save();
+            return NoContent();
+        }
         private IActionResult checkResult(Guid partWorldId, Guid countryId, Guid cityId)
         {
             var partWorld = _repository.PartWorld.GetPartWorld(partWorldId, false);

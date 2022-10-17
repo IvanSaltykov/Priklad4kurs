@@ -56,12 +56,9 @@ namespace lrs.Controllers
                 _logger.LogError("CountryCreateDto object sent from client is null.");
                 return BadRequest("CountryCreateDto object is null"); ;
             }
-            var partWorld = _repository.PartWorld.GetPartWorld(partWorldId, false);
-            if (partWorld == null)
-            {
-                _logger.LogInfo($"PartWorld with id: {partWorldId} doesn't exist in the database.");
-                return NotFound();
-            }
+            var actionResult = checkResult(partWorldId);
+            if (actionResult != null)
+                return actionResult;
             var countryEntity = _mapper.Map<Country>(country);
             _repository.Country.CreateCountry(partWorldId, countryEntity);
             _repository.Save();
@@ -84,6 +81,27 @@ namespace lrs.Controllers
                 return NotFound();
             }
             _repository.Country.DeleteCountry(country);
+            _repository.Save();
+            return NoContent();
+        }
+        [HttpPut("{id}")]
+        public IActionResult UpdateCountry(Guid partWorldId, Guid id, [FromBody] CountryUpdateDto country)
+        {
+            if (country == null)
+            {
+                _logger.LogError("CountryUpdateDto object sent from client is null.");
+                return BadRequest("CountryUpdateDto object is null");
+            }
+            var actionResult = checkResult(partWorldId);
+            if (actionResult != null)
+                return actionResult;
+            var countryEntity = _repository.Country.GetCountry(partWorldId, id, true);
+            if (countryEntity == null)
+            {
+                _logger.LogInfo($"Country with id: {id} doesn't exist in the database.");
+                return NotFound();
+            }
+            _mapper.Map(country, countryEntity);
             _repository.Save();
             return NoContent();
         }

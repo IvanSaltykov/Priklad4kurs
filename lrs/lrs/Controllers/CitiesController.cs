@@ -84,6 +84,27 @@ namespace lrs.Controllers
             _repository.Save();
             return NoContent();
         }
+        [HttpPut("{id}")]
+        public IActionResult UpdateCity(Guid partWorldId, Guid countryId, Guid id, [FromBody] CityUpdateDto city)
+        {
+            if (city == null)
+            {
+                _logger.LogError("CityUpdateDto object sent from client is null.");
+                return BadRequest("CityUpdateDto object is null");
+            }
+            var actionResult = checkResult(partWorldId, countryId);
+            if (actionResult != null)
+                return actionResult;
+            var cityEntity = _repository.City.GetCity(countryId, id, true);
+            if (cityEntity == null)
+            {
+                _logger.LogInfo($"City with id: {id} doesn't exist in the database.");
+                return NotFound();
+            }
+            _mapper.Map(city, cityEntity);
+            _repository.Save();
+            return NoContent();
+        }
         private IActionResult checkResult(Guid partWorldId, Guid countryId)
         {
             var partWorld = _repository.PartWorld.GetPartWorld(partWorldId, false);

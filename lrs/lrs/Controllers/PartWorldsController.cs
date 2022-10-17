@@ -73,5 +73,23 @@ namespace lrs.Controllers
                 partWorldReturn.Id
             }, partWorldReturn);
         }
+        [HttpPut("{id}")]
+        public IActionResult UpdatePartWorld(Guid id, [FromBody] PartWorldUpdateDto partWorld)
+        {
+            if (partWorld == null)
+            {
+                _logger.LogError("PartWorldCreateDto object sent from client is null.");
+                return BadRequest("PartWorldCreateDto object is null");
+            }
+            var partWorldEntity = _repository.PartWorld.GetPartWorld(id, true);
+            if (partWorldEntity == null)
+            {
+                _logger.LogInfo($"PartWorld with id: {id} doesn't exist in the database.");
+                return NotFound();
+            }
+            _mapper.Map(partWorld, partWorldEntity);
+            _repository.Save();
+            return NoContent();
+        }
     }
 }
