@@ -3,6 +3,7 @@ using Contracts;
 using Entities.DataTransferObjects;
 using Entities.Models;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 
 namespace lrs.Controllers
@@ -105,6 +106,29 @@ namespace lrs.Controllers
                 return NotFound();
             }
             _repository.Ticket.DeleteTicket(ticket);
+            _repository.Save();
+            return NoContent();
+        }
+        [HttpPatch("{id}")]
+        public IActionResult PatchUpdateTicket(Guid partWorldId, Guid countryId, Guid cityId, Guid hotelId, Guid id, [FromBody] JsonPatchDocument<TicketUpdateDto> ticket)
+        {
+            if (ticket == null)
+            {
+                _logger.LogError("TicketUpdateDto object sent from client is null.");
+                return BadRequest("TicketUpdateDto object is null");
+            }
+            var actionResult = checkResult(partWorldId, countryId, cityId, hotelId);
+            if (actionResult != null)
+                return actionResult;
+            var ticketEntity = _repository.Ticket.GetTicket(hotelId, id, true);
+            if (ticketEntity == null)
+            {
+                _logger.LogInfo($"Ticket with id: {id} doesn't exist in the database.");
+                return NotFound();
+            }
+            var ticketToPatch = _mapper.Map<TicketUpdateDto>(ticketEntity);
+            ticket.ApplyTo(ticketToPatch);
+            _mapper.Map(ticketToPatch, ticketEntity);
             _repository.Save();
             return NoContent();
         }
