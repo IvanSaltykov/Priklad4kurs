@@ -71,6 +71,27 @@ namespace lrs.Controllers
                 ticketReturn.Id
             }, ticketReturn);
         }
+        [HttpPut("{id}")]
+        public IActionResult UpdateTicket(Guid partWorldId, Guid countryId, Guid cityId, Guid hotelId, Guid id, [FromBody] TicketUpdateDto ticket)
+        {
+            if (ticket == null)
+            {
+                _logger.LogError("TicketCreationDto object sent from client is null.");
+                return BadRequest("TicketCreationDto object is null");
+            }
+            var actionResult = checkResult(partWorldId, countryId, cityId, hotelId);
+            if (actionResult != null)
+                return actionResult;
+            var ticketEntity = _repository.Ticket.GetTicket(hotelId, id, true);
+            if (ticketEntity == null)
+            {
+                _logger.LogInfo($"Ticket with id: {id} doesn't exist in the database.");
+                return NotFound();
+            }
+            _mapper.Map(ticket, ticketEntity);
+            _repository.Save();
+            return NoContent();
+        }
         private IActionResult checkResult(Guid partWorldId, Guid countryId, Guid cityId, Guid hotelId)
         {
             var partWorld = _repository.PartWorld.GetPartWorld(partWorldId, false);

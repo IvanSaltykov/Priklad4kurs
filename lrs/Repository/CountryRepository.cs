@@ -21,6 +21,11 @@ namespace Repository
             Create(country);
         }
 
+        public void DeleteCountry(Country country)
+        {
+            Delete(country);
+        }
+
         public IEnumerable<Country> GetCountries(Guid partWorldId, bool trackChanges) =>
             FindByCondition(e => e.PartWorldId.Equals(partWorldId), trackChanges).OrderBy(e => e.Name);
 

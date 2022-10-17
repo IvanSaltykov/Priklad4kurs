@@ -5,6 +5,7 @@ using Entities.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 
 namespace lrs.Controllers
 {
@@ -69,6 +70,22 @@ namespace lrs.Controllers
                 partWorldId,
                 countryReturn.Id
             }, countryReturn);
+        }
+        [HttpDelete("{id}")]
+        public IActionResult DeleteCountry(Guid partWorldId, Guid id)
+        {
+            var actionResult = checkResult(partWorldId);
+            if (actionResult != null)
+                return actionResult;
+            var country = _repository.Country.GetCountry(partWorldId, id, false);
+            if (country == null)
+            {
+                _logger.LogInfo($"Ccountry with id: {id} doesn't exist in the database.");
+                return NotFound();
+            }
+            _repository.Country.DeleteCountry(country);
+            _repository.Save();
+            return NoContent();
         }
         private IActionResult checkResult(Guid partWorldId)
         {
