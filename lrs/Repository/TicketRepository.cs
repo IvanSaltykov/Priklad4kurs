@@ -29,5 +29,10 @@ namespace Repository
             ticket.Hotel = hotelId;
             Create(ticket);
         }
+
+        public void DeleteTicket(Ticket ticket)
+        {
+            Delete(ticket);
+        }
     }
 }

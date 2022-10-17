@@ -21,6 +21,7 @@ namespace lrs
             //put
             CreateMap<CompanyForCreationDto, Company>();
             CreateMap<EmployeeForCreationDto, Employee>();
+            CreateMap<PartWorldCreateDto, PartWorld>();
             CreateMap<CountryCreateDto, Country>();
             CreateMap<CityCreateDto, City>();
             CreateMap<HotelCreateDto, Hotel>();

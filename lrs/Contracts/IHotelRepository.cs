@@ -12,5 +12,6 @@ namespace Contracts
         IEnumerable<Hotel> GetHotels(Guid cityId, bool trackChanges);
         Hotel GetHotel(Guid cityId, Guid id, bool trackChanges);
         void CreateHotel(Guid cityId, Hotel hotel);
+        void DeleteHotel(Hotel hotel);
     }
 }

@@ -12,5 +12,6 @@ namespace Contracts
         IEnumerable<Ticket> GetTickets(Guid hotelId, bool trackChanges);
         Ticket GetTicket(Guid hotelId, Guid id, bool trackChanges);
         void CreateTicket(Guid partWorldId, Guid countryId, Guid cityId, Guid hotelId, Ticket ticket);
+        void DeleteTicket(Ticket ticket);   
     }
 }

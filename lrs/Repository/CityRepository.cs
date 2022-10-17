@@ -21,6 +21,11 @@ namespace Repository
             Create(city);
         }
 
+        public void DeleteCity(City city)
+        {
+            Delete(city);
+        }
+
         public IEnumerable<City> GetCities(Guid countryId, bool trackChanges) =>
             FindByCondition(e => e.CountryId.Equals(countryId), trackChanges).OrderBy(e => e.Name);
 

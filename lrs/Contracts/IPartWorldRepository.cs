@@ -11,5 +11,7 @@ namespace Contracts
     {
         IEnumerable<PartWorld> GetAllPartWorlds(bool trackChanges);
         PartWorld GetPartWorld(Guid partWorldId, bool trackChanges);
+        void DeletePartWorld(PartWorld partWorld);
+        void CreatePartWorld(PartWorld partWorld);
     }
 }

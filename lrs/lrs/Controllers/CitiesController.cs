@@ -68,6 +68,22 @@ namespace lrs.Controllers
                 cityReturn.Id
             }, cityReturn);
         }
+        [HttpDelete("{id}")]
+        public IActionResult DeleteCity(Guid partWorldId, Guid countryId, Guid id)
+        {
+            var actionResult = checkResult(partWorldId, countryId);
+            if (actionResult != null)
+                return actionResult;
+            var city = _repository.City.GetCity(countryId, id, false);
+            if (city == null)
+            {
+                _logger.LogInfo($"City with id: {id} doesn't exist in the database.");
+                return NotFound();
+            }
+            _repository.City.DeleteCity(city);
+            _repository.Save();
+            return NoContent();
+        }
         private IActionResult checkResult(Guid partWorldId, Guid countryId)
         {
             var partWorld = _repository.PartWorld.GetPartWorld(partWorldId, false);

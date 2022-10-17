@@ -21,6 +21,11 @@ namespace Repository
             Create(hotel);
         }
 
+        public void DeleteHotel(Hotel hotel)
+        {
+            Delete(hotel);
+        }
+
         public Hotel GetHotel(Guid cityId, Guid id, bool trackChanges) =>
             FindByCondition(e => e.CityId.Equals(cityId) && e.Id.Equals(id), trackChanges).SingleOrDefault();
 

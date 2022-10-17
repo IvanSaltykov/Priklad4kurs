@@ -12,5 +12,6 @@ namespace Contracts
         IEnumerable<City> GetCities(Guid countryId, bool trackChanges);
         City GetCity(Guid countryId, Guid id, bool trackChanges);
         void CreateCity(Guid countryId, City city);
+        void DeleteCity(City city);
     }
 }

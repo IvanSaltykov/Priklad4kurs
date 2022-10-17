@@ -68,6 +68,23 @@ namespace lrs.Controllers
                 hotelReturn.Id
             }, hotelReturn);
         }
+        [HttpDelete("{id}")]
+        public IActionResult DeleteCity(Guid partWorldId, Guid countryId, Guid cityId, Guid id)
+        {
+            var actionResult = checkResult(partWorldId, countryId, cityId);
+            if (actionResult != null)
+                return actionResult;
+            var hotel = _repository.Hotel.GetHotel(cityId, id, false);
+            if (hotel == null)
+            {
+                _logger.LogInfo($"Hotel with id: {id} doesn't exist in the database.");
+                return NotFound();
+            }
+            _repository.Hotel.DeleteHotel(hotel);
+            _repository.Save();
+            return NoContent();
+        }
+
         private IActionResult checkResult(Guid partWorldId, Guid countryId, Guid cityId)
         {
             var partWorld = _repository.PartWorld.GetPartWorld(partWorldId, false);

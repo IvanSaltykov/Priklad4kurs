@@ -92,6 +92,22 @@ namespace lrs.Controllers
             _repository.Save();
             return NoContent();
         }
+        [HttpDelete("{id}")]
+        public IActionResult DeleteTicket(Guid partWorldId, Guid countryId, Guid cityId, Guid hotelId, Guid id)
+        {
+            var actionResult = checkResult(partWorldId, countryId, cityId, hotelId);
+            if (actionResult != null)
+                return actionResult;
+            var ticket = _repository.Ticket.GetTicket(hotelId, id, false);
+            if (ticket == null)
+            {
+                _logger.LogInfo($"Ticket with id: {id} doesn't exist in the database.");
+                return NotFound();
+            }
+            _repository.Ticket.DeleteTicket(ticket);
+            _repository.Save();
+            return NoContent();
+        }
         private IActionResult checkResult(Guid partWorldId, Guid countryId, Guid cityId, Guid hotelId)
         {
             var partWorld = _repository.PartWorld.GetPartWorld(partWorldId, false);

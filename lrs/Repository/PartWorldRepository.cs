@@ -15,6 +15,16 @@ namespace Repository
         {
         }
 
+        public void CreatePartWorld(PartWorld partWorld)
+        {
+            Create(partWorld);
+        }
+
+        public void DeletePartWorld(PartWorld partWorld)
+        {
+            Delete(partWorld);
+        }
+
         public IEnumerable<PartWorld> GetAllPartWorlds(bool trackChanges) =>
             FindAll(trackChanges).OrderBy(c => c.Name).ToList();
 
