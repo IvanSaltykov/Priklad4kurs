@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entities.DataTransferObjects
 {
-    public class TicketUpdateDto
+    public class TicketUpdateDto : TicketManipulationDto
     {
-        public ushort Week { get; set; }
-        public int User { get; set; }
-        public int Price { get; set; }
     }
 }

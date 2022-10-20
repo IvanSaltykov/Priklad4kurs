@@ -56,6 +56,11 @@ namespace lrs.Controllers
                 _logger.LogError("TicketCreationDto object sent from client is null.");
                 return BadRequest("TicketCreationDto object is null");
             }
+            if (!ModelState.IsValid)
+            {
+                _logger.LogError("Invalid model state for the TicketCreateDto object");
+                return UnprocessableEntity(ModelState);
+            }
             var actionResult = checkResult(partWorldId, countryId, cityId, hotelId);
             if (actionResult != null)
                 return actionResult;
@@ -79,6 +84,11 @@ namespace lrs.Controllers
             {
                 _logger.LogError("TicketCreationDto object sent from client is null.");
                 return BadRequest("TicketCreationDto object is null");
+            }
+            if (!ModelState.IsValid)
+            {
+                _logger.LogError("Invalid model state for the TicketUpdateDto object");
+                return UnprocessableEntity(ModelState);
             }
             var actionResult = checkResult(partWorldId, countryId, cityId, hotelId);
             if (actionResult != null)

@@ -1,6 +1,7 @@
 ﻿using Contracts;
 using lrs.Extensions;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.Mvc;
 using NLog;
 
 public class Startup
@@ -28,6 +29,10 @@ public class Startup
         }).AddNewtonsoftJson().AddXmlDataContractSerializerFormatters().AddCustomCSVFormatter();
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
+        services.Configure<ApiBehaviorOptions>(options =>
+        {
+            options.SuppressModelStateInvalidFilter = true;
+        });
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

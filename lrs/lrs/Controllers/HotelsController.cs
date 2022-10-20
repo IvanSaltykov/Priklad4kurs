@@ -54,6 +54,11 @@ namespace lrs.Controllers
                 _logger.LogError("HotelCreateDto object sent from client is null.");
                 return BadRequest("HotelCreateDto object is null");
             }
+            if (!ModelState.IsValid)
+            {
+                _logger.LogError("Invalid model state for the HotelCreateDto object");
+                return UnprocessableEntity(ModelState);
+            }
             var actionResult = checkResult(partWorldId, countryId, cityId);
             if (actionResult != null)
                 return actionResult;
@@ -92,6 +97,11 @@ namespace lrs.Controllers
             {
                 _logger.LogError("HotelUpdateDto object sent from client is null.");
                 return BadRequest("HotelUpdateDto object is null");
+            }
+            if (!ModelState.IsValid)
+            {
+                _logger.LogError("Invalid model state for the HotelUpdateDto object");
+                return UnprocessableEntity(ModelState);
             }
             var actionResult = checkResult(partWorldId, countryId, cityId);
             if (actionResult != null)

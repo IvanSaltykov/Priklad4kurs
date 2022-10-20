@@ -56,6 +56,11 @@ namespace lrs.Controllers
                 _logger.LogError("CountryCreateDto object sent from client is null.");
                 return BadRequest("CountryCreateDto object is null"); ;
             }
+            if (!ModelState.IsValid)
+            {
+                _logger.LogError("Invalid model state for the CountryCreateDto object");
+                return UnprocessableEntity(ModelState);
+            }
             var actionResult = checkResult(partWorldId);
             if (actionResult != null)
                 return actionResult;
@@ -91,6 +96,11 @@ namespace lrs.Controllers
             {
                 _logger.LogError("CountryUpdateDto object sent from client is null.");
                 return BadRequest("CountryUpdateDto object is null");
+            }
+            if (!ModelState.IsValid)
+            {
+                _logger.LogError("Invalid model state for the CountryUpdateDto object");
+                return UnprocessableEntity(ModelState);
             }
             var actionResult = checkResult(partWorldId);
             if (actionResult != null)

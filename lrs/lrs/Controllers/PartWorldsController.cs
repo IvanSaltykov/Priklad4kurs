@@ -64,6 +64,11 @@ namespace lrs.Controllers
                 _logger.LogError("PartWorldCreateDto object sent from client is null.");
                 return BadRequest("PartWorldCreateDto object is null");
             }
+            if (!ModelState.IsValid)
+            {
+                _logger.LogError("Invalid model state for the PartWorldCreateDto object");
+                return UnprocessableEntity(ModelState);
+            }
             var partWorldEntity = _mapper.Map<PartWorld>(partWorld);
             _repository.PartWorld.CreatePartWorld(partWorldEntity);
             _repository.Save();
@@ -80,6 +85,11 @@ namespace lrs.Controllers
             {
                 _logger.LogError("PartWorldCreateDto object sent from client is null.");
                 return BadRequest("PartWorldCreateDto object is null");
+            }
+            if (!ModelState.IsValid)
+            {
+                _logger.LogError("Invalid model state for the PartWorldUpdateDto object");
+                return UnprocessableEntity(ModelState);
             }
             var partWorldEntity = _repository.PartWorld.GetPartWorld(id, true);
             if (partWorldEntity == null)

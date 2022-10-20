@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entities.DataTransferObjects
 {
-    public class PartWorldCreateDto
+    public class PartWorldCreateDto : PartWorldManipulationDto
     {
-        public string Name { get; set; }
     }
 }
