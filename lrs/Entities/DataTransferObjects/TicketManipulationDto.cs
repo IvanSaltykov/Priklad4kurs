@@ -10,11 +10,13 @@ namespace Entities.DataTransferObjects
     public abstract class TicketManipulationDto
     {
         [Required]
-        public ushort Week { get; set; }
+        [Range(1, 10, ErrorMessage = "Значение должно быть от 1 до 10")]
+        public int Week { get; set; }
         [Required]
+        [Range(1, int.MaxValue, ErrorMessage = "Значение должно быть положительным")]
         public int User { get; set; }
         [Required]
-        [Range(18, int.MaxValue, ErrorMessage = "Age is required and it can't be lower than 18")]
+        [Range(0, int.MaxValue, ErrorMessage = "Значение должно быть положительным")]
         public int Price { get; set; }
     }
 }

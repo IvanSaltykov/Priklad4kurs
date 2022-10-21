@@ -15,6 +15,7 @@ namespace Contracts
         ICityRepository City { get; }
         IHotelRepository Hotel { get; }
         ITicketRepository Ticket { get; }
+        Task SaveAsync();
         void Save();
     }
 }
