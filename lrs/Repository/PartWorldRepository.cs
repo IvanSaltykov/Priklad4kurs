@@ -1,6 +1,7 @@
 ﻿using Contracts;
 using Entities;
 using Entities.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,10 +26,10 @@ namespace Repository
             Delete(partWorld);
         }
 
-        public IEnumerable<PartWorld> GetAllPartWorlds(bool trackChanges) =>
-            FindAll(trackChanges).OrderBy(c => c.Name).ToList();
+        public async Task<IEnumerable<PartWorld>> GetAllPartWorldsAsync(bool trackChanges) =>
+            await FindAll(trackChanges).OrderBy(c => c.Name).ToListAsync();
 
-        public PartWorld GetPartWorld(Guid partWorldId, bool trackChanges) =>
-            FindByCondition(c => c.Id.Equals(partWorldId), trackChanges).SingleOrDefault();
+        public async Task<PartWorld> GetPartWorldAsync(Guid partWorldId, bool trackChanges) =>
+            await FindByCondition(c => c.Id.Equals(partWorldId), trackChanges).SingleOrDefaultAsync();
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Contracts;
 using Entities;
 using Entities.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,16 +21,15 @@ namespace Repository
             hotel.CityId = cityId;
             Create(hotel);
         }
-
         public void DeleteHotel(Hotel hotel)
         {
             Delete(hotel);
         }
 
-        public Hotel GetHotel(Guid cityId, Guid id, bool trackChanges) =>
-            FindByCondition(e => e.CityId.Equals(cityId) && e.Id.Equals(id), trackChanges).SingleOrDefault();
+        public async Task<Hotel> GetHotelAsync(Guid cityId, Guid id, bool trackChanges) =>
+            await FindByCondition(e => e.CityId.Equals(cityId) && e.Id.Equals(id), trackChanges).SingleOrDefaultAsync();
 
-        public IEnumerable<Hotel> GetHotels(Guid cityId, bool trackChanges) =>
-            FindByCondition(e => e.CityId.Equals(cityId), trackChanges).OrderBy(e => e.Name);
+        public async Task<IEnumerable<Hotel>> GetHotelsAsync(Guid cityId, bool trackChanges) =>
+            await FindByCondition(e => e.CityId.Equals(cityId), trackChanges).OrderBy(e => e.Name).ToListAsync();
     }
 }

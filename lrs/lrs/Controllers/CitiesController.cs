@@ -22,22 +22,22 @@ namespace lrs.Controllers
             _mapper = mapper;
         }
         [HttpGet]
-        public IActionResult GetCities(Guid partWorldId, Guid countryId)
+        public async Task<IActionResult> GetCitiesAsync(Guid partWorldId, Guid countryId)
         {
-            var actionResult = checkResult(partWorldId, countryId);
+            var actionResult = await checkResultAsync(partWorldId, countryId);
             if (actionResult != null)
                 return actionResult;
-            var citiesFromDb = _repository.City.GetCities(countryId, false);
+            var citiesFromDb = await _repository.City.GetCitiesAsync(countryId, false);
             var citiesDto = _mapper.Map<IEnumerable<CityDto>>(citiesFromDb);
             return Ok(citiesDto);
         }
         [HttpGet("{id}", Name = "GetCity")]
-        public IActionResult GetCity(Guid partWorldId, Guid countryId, Guid id)
+        public async Task<IActionResult> GetCityAsync(Guid partWorldId, Guid countryId, Guid id)
         {
-            var actionResult = checkResult(partWorldId, countryId);
+            var actionResult = await checkResultAsync(partWorldId, countryId);
             if (actionResult != null)
                 return actionResult;
-            var cityDb = _repository.City.GetCity(countryId, id, false);
+            var cityDb = await _repository.City.GetCityAsync(countryId, id, false);
             if (cityDb == null)
             {
                 _logger.LogInfo($"City with id: {id} doesn't exist in the database.");
@@ -47,7 +47,7 @@ namespace lrs.Controllers
             return Ok(city);
         }
         [HttpPost]
-        public IActionResult CreateCity(Guid partWorldId, Guid countryId, [FromBody] CityCreateDto city)
+        public async Task<IActionResult> CreateCityAsync(Guid partWorldId, Guid countryId, [FromBody] CityCreateDto city)
         {
             if (city == null)
             {
@@ -59,12 +59,12 @@ namespace lrs.Controllers
                 _logger.LogError("Invalid model state for the CityCreateDto object");
                 return UnprocessableEntity(ModelState);
             }
-            var actionResult = checkResult(partWorldId, countryId);
+            var actionResult = await checkResultAsync(partWorldId, countryId);
             if (actionResult != null)
                 return actionResult;
             var cityEntity = _mapper.Map<City>(city);
             _repository.City.CreateCity(countryId, cityEntity);
-            _repository.Save();
+            _repository.SaveAsync();
             var cityReturn = _mapper.Map<CityDto>(cityEntity);
             return CreatedAtRoute("GetCity", new
             {
@@ -74,23 +74,23 @@ namespace lrs.Controllers
             }, cityReturn);
         }
         [HttpDelete("{id}")]
-        public IActionResult DeleteCity(Guid partWorldId, Guid countryId, Guid id)
+        public async Task<IActionResult> DeleteCityAsync(Guid partWorldId, Guid countryId, Guid id)
         {
-            var actionResult = checkResult(partWorldId, countryId);
+            var actionResult = await checkResultAsync(partWorldId, countryId);
             if (actionResult != null)
                 return actionResult;
-            var city = _repository.City.GetCity(countryId, id, false);
+            var city = await _repository.City.GetCityAsync(countryId, id, false);
             if (city == null)
             {
                 _logger.LogInfo($"City with id: {id} doesn't exist in the database.");
                 return NotFound();
             }
             _repository.City.DeleteCity(city);
-            _repository.Save();
+            _repository.SaveAsync();
             return NoContent();
         }
         [HttpPut("{id}")]
-        public IActionResult UpdateCity(Guid partWorldId, Guid countryId, Guid id, [FromBody] CityUpdateDto city)
+        public async Task<IActionResult> UpdateCityAsync(Guid partWorldId, Guid countryId, Guid id, [FromBody] CityUpdateDto city)
         {
             if (city == null)
             {
@@ -102,28 +102,28 @@ namespace lrs.Controllers
                 _logger.LogError("Invalid model state for the CityUpdateDto object");
                 return UnprocessableEntity(ModelState);
             }
-            var actionResult = checkResult(partWorldId, countryId);
+            var actionResult = await checkResultAsync(partWorldId, countryId);
             if (actionResult != null)
                 return actionResult;
-            var cityEntity = _repository.City.GetCity(countryId, id, true);
+            var cityEntity = await _repository.City.GetCityAsync(countryId, id, true);
             if (cityEntity == null)
             {
                 _logger.LogInfo($"City with id: {id} doesn't exist in the database.");
                 return NotFound();
             }
             _mapper.Map(city, cityEntity);
-            _repository.Save();
+            _repository.SaveAsync();
             return NoContent();
         }
-        private IActionResult checkResult(Guid partWorldId, Guid countryId)
+        private async Task<IActionResult> checkResultAsync(Guid partWorldId, Guid countryId)
         {
-            var partWorld = _repository.PartWorld.GetPartWorld(partWorldId, false);
+            var partWorld = await _repository.PartWorld.GetPartWorldAsync(partWorldId, false);
             if (partWorld == null)
             {
                 _logger.LogInfo($"Partworld with id: {partWorldId} doesn't exist in the database.");
                 return NotFound();
             }
-            var country = _repository.Country.GetCountry(partWorldId, countryId, false);
+            var country = await _repository.Country.GetCountryAsync(partWorldId, countryId, false);
             if (country == null)
             {
                 _logger.LogInfo($"Country with id: {countryId} doesn't exist in the database.");

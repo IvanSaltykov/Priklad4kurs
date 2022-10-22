@@ -22,9 +22,9 @@ namespace lrs.Controllers
             _mapper = mapper;
         }
         [HttpGet("{id}", Name = "GetPartWorld")]
-        public IActionResult GetPartWorld(Guid id)
+        public async Task<IActionResult> GetPartWorldAsync(Guid id)
         {
-            var partWorld = _repository.PartWorld.GetPartWorld(id, false);
+            var partWorld = await _repository.PartWorld.GetPartWorldAsync(id, false);
             if (partWorld == null)
             {
                 _logger.LogInfo($"PartWorld with id: {id} doesn't exist in the database.");
@@ -37,27 +37,27 @@ namespace lrs.Controllers
             }
         }
         [HttpGet]
-        public IActionResult GetPartWorlds()
+        public async Task<IActionResult> GetPartWorldsAsync()
         {
-            var partWorlds = _repository.PartWorld.GetAllPartWorlds(false);
+            var partWorlds = await _repository.PartWorld.GetAllPartWorldsAsync(false);
             var partWorldsDto = _mapper.Map<IEnumerable<PartWorldDto>>(partWorlds);
             return Ok(partWorldsDto);
         }
         [HttpDelete("{id}")]
-        public IActionResult DeletePartWorld(Guid id)
+        public async Task<IActionResult> DeletePartWorldAsync(Guid id)
         {
-            var partWorld = _repository.PartWorld.GetPartWorld(id, false);
+            var partWorld = await _repository.PartWorld.GetPartWorldAsync(id, false);
             if (partWorld == null)
             {
                 _logger.LogInfo($"PartWorld with id: {id} doesn't exist in the database.");
                 return NotFound();
             }
             _repository.PartWorld.DeletePartWorld(partWorld);
-            _repository.Save();
+            _repository.SaveAsync();
             return NoContent();
         }
         [HttpPost]
-        public IActionResult CreatePartWorld([FromBody] PartWorldCreateDto partWorld)
+        public async Task<IActionResult> CreatePartWorldAsync([FromBody] PartWorldCreateDto partWorld)
         {
             if (partWorld == null)
             {
@@ -71,7 +71,7 @@ namespace lrs.Controllers
             }
             var partWorldEntity = _mapper.Map<PartWorld>(partWorld);
             _repository.PartWorld.CreatePartWorld(partWorldEntity);
-            _repository.Save();
+            _repository.SaveAsync();
             var partWorldReturn = _mapper.Map<PartWorldDto>(partWorldEntity);
             return CreatedAtRoute("GetPartWorld", new
             {
@@ -79,7 +79,7 @@ namespace lrs.Controllers
             }, partWorldReturn);
         }
         [HttpPut("{id}")]
-        public IActionResult UpdatePartWorld(Guid id, [FromBody] PartWorldUpdateDto partWorld)
+        public async Task<IActionResult> UpdatePartWorldAsync(Guid id, [FromBody] PartWorldUpdateDto partWorld)
         {
             if (partWorld == null)
             {
@@ -91,14 +91,14 @@ namespace lrs.Controllers
                 _logger.LogError("Invalid model state for the PartWorldUpdateDto object");
                 return UnprocessableEntity(ModelState);
             }
-            var partWorldEntity = _repository.PartWorld.GetPartWorld(id, true);
+            var partWorldEntity = await _repository.PartWorld.GetPartWorldAsync(id, true);
             if (partWorldEntity == null)
             {
                 _logger.LogInfo($"PartWorld with id: {id} doesn't exist in the database.");
                 return NotFound();
             }
             _mapper.Map(partWorld, partWorldEntity);
-            _repository.Save();
+            _repository.SaveAsync();
             return NoContent();
         }
     }

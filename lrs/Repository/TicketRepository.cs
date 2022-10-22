@@ -1,6 +1,7 @@
 ﻿using Contracts;
 using Entities;
 using Entities.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,11 +16,11 @@ namespace Repository
         {
         }
 
-        public IEnumerable<Ticket> GetTickets(Guid hotelId, bool trackChanges) =>
-            FindByCondition(e => e.Hotel.Equals(hotelId), trackChanges).OrderBy(e => e.Id);
+        public async Task<IEnumerable<Ticket>> GetTicketsAsync(Guid hotelId, bool trackChanges) =>
+            await FindByCondition(e => e.Hotel.Equals(hotelId), trackChanges).OrderBy(e => e.Id).ToListAsync();
 
-        public Ticket GetTicket(Guid hotelId, Guid id, bool trackChanges) =>
-            FindByCondition(e => e.Hotel.Equals(hotelId) && e.Id.Equals(id), trackChanges).SingleOrDefault();
+        public async Task<Ticket> GetTicketAsync(Guid hotelId, Guid id, bool trackChanges) =>
+            await FindByCondition(e => e.Hotel.Equals(hotelId) && e.Id.Equals(id), trackChanges).SingleOrDefaultAsync();
 
         public void CreateTicket(Guid partWorldId, Guid countryId, Guid cityId, Guid hotelId, Ticket ticket)
         {

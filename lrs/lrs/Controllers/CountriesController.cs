@@ -24,22 +24,22 @@ namespace lrs.Controllers
             _mapper = mapper;
         }
         [HttpGet]
-        public IActionResult GetCountries(Guid partWorldId)
+        public async Task<IActionResult> GetCountriesAsync(Guid partWorldId)
         {
-            var actionResult = checkResult(partWorldId);
+            var actionResult = await checkResultAsync(partWorldId);
             if (actionResult != null)
                 return actionResult;
-            var countriesFromDb = _repository.Country.GetCountries(partWorldId, false);
+            var countriesFromDb = await _repository.Country.GetCountriesAsync(partWorldId, false);
             var countriesDto = _mapper.Map<IEnumerable<CountryDto>>(countriesFromDb);
             return Ok(countriesDto);
         }
         [HttpGet("{id}", Name = "GetCountry")]
-        public IActionResult GetCountry(Guid partWorldId, Guid id)
+        public async Task<IActionResult> GetCountryAsync(Guid partWorldId, Guid id)
         {
-            var actionResult = checkResult(partWorldId);
+            var actionResult = await checkResultAsync(partWorldId);
             if (actionResult != null)
                 return actionResult;
-            var countryDb = _repository.Country.GetCountry(partWorldId, id, false);
+            var countryDb = await _repository.Country.GetCountryAsync(partWorldId, id, false);
             if (countryDb == null)
             {
                 _logger.LogInfo($"Country with id: {id} doesn't exist in the database.");
@@ -49,7 +49,7 @@ namespace lrs.Controllers
             return Ok(country);
         }
         [HttpPost]
-        public IActionResult CreateCountry(Guid partWorldId, [FromBody] CountryCreateDto country)
+        public async Task<IActionResult> CreateCountryAsync(Guid partWorldId, [FromBody] CountryCreateDto country)
         {
             if (country == null)
             {
@@ -61,12 +61,12 @@ namespace lrs.Controllers
                 _logger.LogError("Invalid model state for the CountryCreateDto object");
                 return UnprocessableEntity(ModelState);
             }
-            var actionResult = checkResult(partWorldId);
+            var actionResult = await checkResultAsync(partWorldId);
             if (actionResult != null)
                 return actionResult;
             var countryEntity = _mapper.Map<Country>(country);
             _repository.Country.CreateCountry(partWorldId, countryEntity);
-            _repository.Save();
+            _repository.SaveAsync();
             var countryReturn = _mapper.Map<CountryDto>(countryEntity);
             return CreatedAtRoute("GetCountry", new { 
                 partWorldId,
@@ -74,23 +74,23 @@ namespace lrs.Controllers
             }, countryReturn);
         }
         [HttpDelete("{id}")]
-        public IActionResult DeleteCountry(Guid partWorldId, Guid id)
+        public async Task<IActionResult> DeleteCountryAsync(Guid partWorldId, Guid id)
         {
-            var actionResult = checkResult(partWorldId);
+            var actionResult = await checkResultAsync(partWorldId);
             if (actionResult != null)
                 return actionResult;
-            var country = _repository.Country.GetCountry(partWorldId, id, false);
+            var country = await _repository.Country.GetCountryAsync(partWorldId, id, false);
             if (country == null)
             {
                 _logger.LogInfo($"Ccountry with id: {id} doesn't exist in the database.");
                 return NotFound();
             }
             _repository.Country.DeleteCountry(country);
-            _repository.Save();
+            _repository.SaveAsync();
             return NoContent();
         }
         [HttpPut("{id}")]
-        public IActionResult UpdateCountry(Guid partWorldId, Guid id, [FromBody] CountryUpdateDto country)
+        public async Task<IActionResult> UpdateCountryAsync(Guid partWorldId, Guid id, [FromBody] CountryUpdateDto country)
         {
             if (country == null)
             {
@@ -102,22 +102,22 @@ namespace lrs.Controllers
                 _logger.LogError("Invalid model state for the CountryUpdateDto object");
                 return UnprocessableEntity(ModelState);
             }
-            var actionResult = checkResult(partWorldId);
+            var actionResult = await checkResultAsync(partWorldId);
             if (actionResult != null)
                 return actionResult;
-            var countryEntity = _repository.Country.GetCountry(partWorldId, id, true);
+            var countryEntity = await _repository.Country.GetCountryAsync(partWorldId, id, true);
             if (countryEntity == null)
             {
                 _logger.LogInfo($"Country with id: {id} doesn't exist in the database.");
                 return NotFound();
             }
             _mapper.Map(country, countryEntity);
-            _repository.Save();
+            _repository.SaveAsync();
             return NoContent();
         }
-        private IActionResult checkResult(Guid partWorldId)
+        private async Task<IActionResult> checkResultAsync(Guid partWorldId)
         {
-            var partWorld = _repository.PartWorld.GetPartWorld(partWorldId, false);
+            var partWorld = await _repository.PartWorld.GetPartWorldAsync(partWorldId, false);
             if (partWorld == null)
             {
                 _logger.LogInfo($"Partworld with id: {partWorldId} doesn't exist in the database.");

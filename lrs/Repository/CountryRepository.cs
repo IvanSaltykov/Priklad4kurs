@@ -1,6 +1,7 @@
 ﻿using Contracts;
 using Entities;
 using Entities.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,10 +27,10 @@ namespace Repository
             Delete(country);
         }
 
-        public IEnumerable<Country> GetCountries(Guid partWorldId, bool trackChanges) =>
-            FindByCondition(e => e.PartWorldId.Equals(partWorldId), trackChanges).OrderBy(e => e.Name);
+        public async Task<IEnumerable<Country>> GetCountriesAsync(Guid partWorldId, bool trackChanges) =>
+            await FindByCondition(e => e.PartWorldId.Equals(partWorldId), trackChanges).OrderBy(e => e.Name).ToListAsync();
 
-        public Country GetCountry(Guid partWorldId, Guid id, bool trackChanges) =>
-            FindByCondition(e => e.PartWorldId.Equals(partWorldId) && e.Id.Equals(id), trackChanges).SingleOrDefault();
+        public async Task<Country> GetCountryAsync(Guid partWorldId, Guid id, bool trackChanges) =>
+            await FindByCondition(e => e.PartWorldId.Equals(partWorldId) && e.Id.Equals(id), trackChanges).SingleOrDefaultAsync();
     }
 }

@@ -22,22 +22,22 @@ namespace lrs.Controllers
             _mapper = mapper;
         }
         [HttpGet]
-        public IActionResult GetHotels(Guid partWorldId, Guid countryId, Guid cityId)
+        public async Task<IActionResult> GetHotelsAsync(Guid partWorldId, Guid countryId, Guid cityId)
         {
-            var actionResult = checkResult(partWorldId, countryId, cityId);
+            var actionResult = await checkResultAsync(partWorldId, countryId, cityId);
             if (actionResult != null)
                 return actionResult;
-            var hotelsFromDb = _repository.Hotel.GetHotels(cityId, false);
+            var hotelsFromDb = await _repository.Hotel.GetHotelsAsync(cityId, false);
             var hotelsDto = _mapper.Map<IEnumerable<HotelDto>>(hotelsFromDb);
             return Ok(hotelsDto);
         }
         [HttpGet("{id}", Name = "GetHotel")]
-        public IActionResult GetHotel(Guid partWorldId, Guid countryId, Guid cityId, Guid id)
+        public async Task<IActionResult> GetHotelAsync(Guid partWorldId, Guid countryId, Guid cityId, Guid id)
         {
-            var actionResult = checkResult(partWorldId, countryId, cityId);
+            var actionResult = await checkResultAsync(partWorldId, countryId, cityId);
             if (actionResult != null)
                 return actionResult;
-            var hotelDb = _repository.Hotel.GetHotel(cityId, id, false);
+            var hotelDb = await _repository.Hotel.GetHotelAsync(cityId, id, false);
             if (hotelDb == null)
             {
                 _logger.LogInfo($"Hotel with id: {id} doesn't exist in the database.");
@@ -47,7 +47,7 @@ namespace lrs.Controllers
             return Ok(hotel);
         }
         [HttpPost]
-        public IActionResult GetHotel(Guid partWorldId, Guid countryId, Guid cityId, [FromBody] HotelCreateDto hotel)
+        public async Task<IActionResult> GetHotelAsync(Guid partWorldId, Guid countryId, Guid cityId, [FromBody] HotelCreateDto hotel)
         {
             if (hotel == null)
             {
@@ -59,12 +59,12 @@ namespace lrs.Controllers
                 _logger.LogError("Invalid model state for the HotelCreateDto object");
                 return UnprocessableEntity(ModelState);
             }
-            var actionResult = checkResult(partWorldId, countryId, cityId);
+            var actionResult = await checkResultAsync(partWorldId, countryId, cityId);
             if (actionResult != null)
                 return actionResult;
             var hotelEntity = _mapper.Map<Hotel>(hotel);
             _repository.Hotel.CreateHotel(cityId, hotelEntity);
-            _repository.Save();
+            _repository.SaveAsync();
             var hotelReturn = _mapper.Map<HotelDto>(hotelEntity);
             return CreatedAtRoute("GetHotel", new
             {
@@ -75,23 +75,23 @@ namespace lrs.Controllers
             }, hotelReturn);
         }
         [HttpDelete("{id}")]
-        public IActionResult DeleteHotel(Guid partWorldId, Guid countryId, Guid cityId, Guid id)
+        public async Task<IActionResult> DeleteHotelAsync(Guid partWorldId, Guid countryId, Guid cityId, Guid id)
         {
-            var actionResult = checkResult(partWorldId, countryId, cityId);
+            var actionResult = await checkResultAsync(partWorldId, countryId, cityId);
             if (actionResult != null)
                 return actionResult;
-            var hotel = _repository.Hotel.GetHotel(cityId, id, false);
+            var hotel = await _repository.Hotel.GetHotelAsync(cityId, id, false);
             if (hotel == null)
             {
                 _logger.LogInfo($"Hotel with id: {id} doesn't exist in the database.");
                 return NotFound();
             }
             _repository.Hotel.DeleteHotel(hotel);
-            _repository.Save();
+            _repository.SaveAsync();
             return NoContent();
         }
         [HttpPut("{id}")]
-        public IActionResult UpdateHotel(Guid partWorldId, Guid countryId, Guid cityId, Guid id, [FromBody] HotelUpdateDto hotel)
+        public async Task<IActionResult> UpdateHotel(Guid partWorldId, Guid countryId, Guid cityId, Guid id, [FromBody] HotelUpdateDto hotel)
         {
             if (hotel == null)
             {
@@ -103,34 +103,34 @@ namespace lrs.Controllers
                 _logger.LogError("Invalid model state for the HotelUpdateDto object");
                 return UnprocessableEntity(ModelState);
             }
-            var actionResult = checkResult(partWorldId, countryId, cityId);
+            var actionResult = await checkResultAsync(partWorldId, countryId, cityId);
             if (actionResult != null)
                 return actionResult;
-            var hotelEntity = _repository.Hotel.GetHotel(cityId, id, true);
+            var hotelEntity = await _repository.Hotel.GetHotelAsync(cityId, id, true);
             if (hotelEntity == null)
             {
                 _logger.LogInfo($"Hotel with id: {id} doesn't exist in the database.");
                 return NotFound();
             }
             _mapper.Map(hotel, hotelEntity);
-            _repository.Save();
+            _repository.SaveAsync();
             return NoContent();
         }
-        private IActionResult checkResult(Guid partWorldId, Guid countryId, Guid cityId)
+        private async Task<IActionResult> checkResultAsync(Guid partWorldId, Guid countryId, Guid cityId)
         {
-            var partWorld = _repository.PartWorld.GetPartWorld(partWorldId, false);
+            var partWorld = await _repository.PartWorld.GetPartWorldAsync(partWorldId, false);
             if (partWorld == null)
             {
                 _logger.LogInfo($"Partworld with id: {partWorldId} doesn't exist in the database.");
                 return NotFound();
             }
-            var country = _repository.Country.GetCountry(partWorldId, countryId, false);
+            var country = await _repository.Country.GetCountryAsync(partWorldId, countryId, false);
             if (country == null)
             {
                 _logger.LogInfo($"Country with id: {countryId} doesn't exist in the database.");
                 return NotFound();
             }
-            var city = _repository.City.GetCity(countryId, cityId, false);
+            var city = await _repository.City.GetCityAsync(countryId, cityId, false);
             if (city == null)
             {
                 _logger.LogInfo($"City with id: {countryId} doesn't exist in the database.");

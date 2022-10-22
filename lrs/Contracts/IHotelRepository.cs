@@ -9,8 +9,8 @@ namespace Contracts
 {
     public interface IHotelRepository
     {
-        IEnumerable<Hotel> GetHotels(Guid cityId, bool trackChanges);
-        Hotel GetHotel(Guid cityId, Guid id, bool trackChanges);
+        Task<IEnumerable<Hotel>> GetHotelsAsync(Guid cityId, bool trackChanges);
+        Task<Hotel> GetHotelAsync(Guid cityId, Guid id, bool trackChanges);
         void CreateHotel(Guid cityId, Hotel hotel);
         void DeleteHotel(Hotel hotel);
     }

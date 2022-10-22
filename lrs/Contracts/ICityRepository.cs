@@ -9,8 +9,8 @@ namespace Contracts
 {
     public interface ICityRepository
     {
-        IEnumerable<City> GetCities(Guid countryId, bool trackChanges);
-        City GetCity(Guid countryId, Guid id, bool trackChanges);
+        Task<IEnumerable<City>> GetCitiesAsync(Guid countryId, bool trackChanges);
+        Task<City> GetCityAsync(Guid countryId, Guid id, bool trackChanges);
         void CreateCity(Guid countryId, City city);
         void DeleteCity(City city);
     }
