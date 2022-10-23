@@ -93,28 +93,20 @@ namespace lrs.Controllers
             return CreatedAtRoute("CompanyCollection", new { ids }, companyCollectionToReturn);
         }
         [HttpDelete("{id}")]
+        [ServiceFilter(typeof(ValidateCompanyExistsAttribute))]
         public async Task<IActionResult> CreateCompanyCollection(Guid id)
         {
-            var company = await _repository.Company.GetCompanyAsync(id, false);
-            if (company == null)
-            {
-                _logger.LogInfo($"Company with id: {id} doesn't exist in the database.");
-                return NotFound();
-            }
+            var company = HttpContext.Items["company"] as Company;
             _repository.Company.DeleteCompany(company);
-            _repository.Save();
+            await _repository.SaveAsync();
             return NoContent();
         }
         [HttpPut("{id}")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
+        [ServiceFilter(typeof(ValidateCompanyExistsAttribute))]
         public async Task<IActionResult> UpdateCompany(Guid id, [FromBody] CompanyForUpdateDto company)
         {
-            var companyEntity = await _repository.Company.GetCompanyAsync(id, true);
-            if (companyEntity == null)
-            {
-                _logger.LogInfo($"Company with id: {id} doesn't exist in the database.");
-                return NotFound();
-            }
+            var companyEntity = HttpContext.Items["company"] as Company;
             _mapper.Map(company, companyEntity);
             await _repository.SaveAsync();
             return NoContent();
