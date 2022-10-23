@@ -53,7 +53,7 @@ namespace lrs.Controllers
                 return NotFound();
             }
             _repository.PartWorld.DeletePartWorld(partWorld);
-            _repository.SaveAsync();
+            await _repository.SaveAsync();
             return NoContent();
         }
         [HttpPost]
@@ -71,7 +71,7 @@ namespace lrs.Controllers
             }
             var partWorldEntity = _mapper.Map<PartWorld>(partWorld);
             _repository.PartWorld.CreatePartWorld(partWorldEntity);
-            _repository.SaveAsync();
+            await _repository.SaveAsync();
             var partWorldReturn = _mapper.Map<PartWorldDto>(partWorldEntity);
             return CreatedAtRoute("GetPartWorld", new
             {

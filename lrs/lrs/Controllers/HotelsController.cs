@@ -64,7 +64,7 @@ namespace lrs.Controllers
                 return actionResult;
             var hotelEntity = _mapper.Map<Hotel>(hotel);
             _repository.Hotel.CreateHotel(cityId, hotelEntity);
-            _repository.SaveAsync();
+            await _repository.SaveAsync();
             var hotelReturn = _mapper.Map<HotelDto>(hotelEntity);
             return CreatedAtRoute("GetHotel", new
             {
@@ -87,7 +87,7 @@ namespace lrs.Controllers
                 return NotFound();
             }
             _repository.Hotel.DeleteHotel(hotel);
-            _repository.SaveAsync();
+            await _repository.SaveAsync();
             return NoContent();
         }
         [HttpPut("{id}")]
@@ -113,7 +113,7 @@ namespace lrs.Controllers
                 return NotFound();
             }
             _mapper.Map(hotel, hotelEntity);
-            _repository.SaveAsync();
+            await _repository.SaveAsync();
             return NoContent();
         }
         private async Task<IActionResult> checkResultAsync(Guid partWorldId, Guid countryId, Guid cityId)

@@ -66,7 +66,7 @@ namespace lrs.Controllers
                 return actionResult;
             var countryEntity = _mapper.Map<Country>(country);
             _repository.Country.CreateCountry(partWorldId, countryEntity);
-            _repository.SaveAsync();
+            await _repository.SaveAsync();
             var countryReturn = _mapper.Map<CountryDto>(countryEntity);
             return CreatedAtRoute("GetCountry", new { 
                 partWorldId,
@@ -86,7 +86,7 @@ namespace lrs.Controllers
                 return NotFound();
             }
             _repository.Country.DeleteCountry(country);
-            _repository.SaveAsync();
+            await _repository.SaveAsync();
             return NoContent();
         }
         [HttpPut("{id}")]
@@ -112,7 +112,7 @@ namespace lrs.Controllers
                 return NotFound();
             }
             _mapper.Map(country, countryEntity);
-            _repository.SaveAsync();
+            await _repository.SaveAsync();
             return NoContent();
         }
         private async Task<IActionResult> checkResultAsync(Guid partWorldId)

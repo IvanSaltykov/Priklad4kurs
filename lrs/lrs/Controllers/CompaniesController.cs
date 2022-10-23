@@ -2,6 +2,7 @@
 using Contracts;
 using Entities.DataTransferObjects;
 using Entities.Models;
+using lrs.ActionFilters;
 using lrs.ModelBinders;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -46,18 +47,14 @@ namespace lrs.Controllers
             }
         }
         [HttpPost]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateCompany([FromBody] CompanyForCreationDto company)
         {
-            if (company == null)
-            {
-                _logger.LogError("CompanyForCreationDto object sent from client is null.");
-                return BadRequest("CompanyForCreationDto object is null");
-            }
             var companyEntity = _mapper.Map<Company>(company);
             _repository.Company.CreateCompany(companyEntity);
             await _repository.SaveAsync();
             var companyToReturn = _mapper.Map<CompanyDto>(companyEntity);
-            return CreatedAtRoute("CompanyById", new { id = companyToReturn.Id }, companyToReturn);
+            return CreatedAtRoute("CompanyById", new { id = companyToReturn.Id },companyToReturn);
         }
 
         [HttpGet("collection/({ids})", Name = "CompanyCollection")]
@@ -74,8 +71,7 @@ namespace lrs.Controllers
                 _logger.LogError("Some ids are not valid in a collection");
                 return NotFound();
             }
-            var companiesToReturn =
-            _mapper.Map<IEnumerable<CompanyDto>>(companyEntities);
+            var companiesToReturn = _mapper.Map<IEnumerable<CompanyDto>>(companyEntities);
             return Ok(companiesToReturn);
         }
         [HttpPost("collection")]
@@ -110,13 +106,9 @@ namespace lrs.Controllers
             return NoContent();
         }
         [HttpPut("{id}")]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> UpdateCompany(Guid id, [FromBody] CompanyForUpdateDto company)
         {
-            if (company == null)
-            {
-                _logger.LogError("CompanyForUpdateDto object sent from client is null.");
-                return BadRequest("CompanyForUpdateDto object is null");
-            }
             var companyEntity = await _repository.Company.GetCompanyAsync(id, true);
             if (companyEntity == null)
             {

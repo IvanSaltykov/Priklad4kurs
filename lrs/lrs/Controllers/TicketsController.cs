@@ -66,7 +66,7 @@ namespace lrs.Controllers
                 return actionResult;
             var ticketEntity = _mapper.Map<Ticket>(ticket);
             _repository.Ticket.CreateTicket(partWorldId, countryId, cityId, hotelId, ticketEntity);
-            _repository.SaveAsync();
+            await _repository.SaveAsync();
             var ticketReturn = _mapper.Map<TicketDto>(ticketEntity);
             return CreatedAtRoute("GetTicket", new
             {
@@ -100,7 +100,7 @@ namespace lrs.Controllers
                 return NotFound();
             }
             _mapper.Map(ticket, ticketEntity);
-            _repository.SaveAsync();
+            await _repository.SaveAsync();
             return NoContent();
         }
         [HttpDelete("{id}")]
@@ -116,7 +116,7 @@ namespace lrs.Controllers
                 return NotFound();
             }
             _repository.Ticket.DeleteTicket(ticket);
-            _repository.SaveAsync();
+            await _repository.SaveAsync();
             return NoContent();
         }
         [HttpPatch("{id}")]
@@ -139,7 +139,7 @@ namespace lrs.Controllers
             var ticketToPatch = _mapper.Map<TicketUpdateDto>(ticketEntity);
             ticket.ApplyTo(ticketToPatch);
             _mapper.Map(ticketToPatch, ticketEntity);
-            _repository.SaveAsync();
+            await _repository.SaveAsync();
             return NoContent();
         }
         private async Task<IActionResult> checkResultAsync(Guid partWorldId, Guid countryId, Guid cityId, Guid hotelId)

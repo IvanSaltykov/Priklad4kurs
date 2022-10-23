@@ -1,4 +1,5 @@
 ﻿using Contracts;
+using lrs.ActionFilters;
 using lrs.Extensions;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
@@ -33,6 +34,7 @@ public class Startup
         {
             options.SuppressModelStateInvalidFilter = true;
         });
+        services.AddScoped<ValidationFilterAttribute>();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

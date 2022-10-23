@@ -64,7 +64,7 @@ namespace lrs.Controllers
                 return actionResult;
             var cityEntity = _mapper.Map<City>(city);
             _repository.City.CreateCity(countryId, cityEntity);
-            _repository.SaveAsync();
+            await _repository.SaveAsync();
             var cityReturn = _mapper.Map<CityDto>(cityEntity);
             return CreatedAtRoute("GetCity", new
             {
@@ -86,7 +86,7 @@ namespace lrs.Controllers
                 return NotFound();
             }
             _repository.City.DeleteCity(city);
-            _repository.SaveAsync();
+            await _repository.SaveAsync();
             return NoContent();
         }
         [HttpPut("{id}")]
@@ -112,7 +112,7 @@ namespace lrs.Controllers
                 return NotFound();
             }
             _mapper.Map(city, cityEntity);
-            _repository.SaveAsync();
+            await _repository.SaveAsync();
             return NoContent();
         }
         private async Task<IActionResult> checkResultAsync(Guid partWorldId, Guid countryId)
