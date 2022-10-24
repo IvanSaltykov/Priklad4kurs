@@ -2,6 +2,7 @@
 using Contracts;
 using Entities.DataTransferObjects;
 using Entities.Models;
+using lrs.ActionFilters;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -49,18 +50,9 @@ namespace lrs.Controllers
             return Ok(country);
         }
         [HttpPost]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateCountryAsync(Guid partWorldId, [FromBody] CountryCreateDto country)
         {
-            if (country == null)
-            {
-                _logger.LogError("CountryCreateDto object sent from client is null.");
-                return BadRequest("CountryCreateDto object is null"); ;
-            }
-            if (!ModelState.IsValid)
-            {
-                _logger.LogError("Invalid model state for the CountryCreateDto object");
-                return UnprocessableEntity(ModelState);
-            }
             var actionResult = await checkResultAsync(partWorldId);
             if (actionResult != null)
                 return actionResult;
@@ -90,27 +82,11 @@ namespace lrs.Controllers
             return NoContent();
         }
         [HttpPut("{id}")]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
+        [ServiceFilter(typeof(ValidateCountryExistsAttribute))]
         public async Task<IActionResult> UpdateCountryAsync(Guid partWorldId, Guid id, [FromBody] CountryUpdateDto country)
         {
-            if (country == null)
-            {
-                _logger.LogError("CountryUpdateDto object sent from client is null.");
-                return BadRequest("CountryUpdateDto object is null");
-            }
-            if (!ModelState.IsValid)
-            {
-                _logger.LogError("Invalid model state for the CountryUpdateDto object");
-                return UnprocessableEntity(ModelState);
-            }
-            var actionResult = await checkResultAsync(partWorldId);
-            if (actionResult != null)
-                return actionResult;
-            var countryEntity = await _repository.Country.GetCountryAsync(partWorldId, id, true);
-            if (countryEntity == null)
-            {
-                _logger.LogInfo($"Country with id: {id} doesn't exist in the database.");
-                return NotFound();
-            }
+            var countryEntity = HttpContext.Items["country"] as Country;
             _mapper.Map(country, countryEntity);
             await _repository.SaveAsync();
             return NoContent();

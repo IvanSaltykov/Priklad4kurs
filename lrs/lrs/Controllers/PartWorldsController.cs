@@ -2,6 +2,7 @@
 using Contracts;
 using Entities.DataTransferObjects;
 using Entities.Models;
+using lrs.ActionFilters;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -30,11 +31,8 @@ namespace lrs.Controllers
                 _logger.LogInfo($"PartWorld with id: {id} doesn't exist in the database.");
                 return NotFound();
             }
-            else
-            {
-                var partWorldDto = _mapper.Map<PartWorldDto>(partWorld);
-                return Ok(partWorldDto);
-            }
+            var partWorldDto = _mapper.Map<PartWorldDto>(partWorld);
+            return Ok(partWorldDto);
         }
         [HttpGet]
         public async Task<IActionResult> GetPartWorldsAsync()
@@ -57,18 +55,9 @@ namespace lrs.Controllers
             return NoContent();
         }
         [HttpPost]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreatePartWorldAsync([FromBody] PartWorldCreateDto partWorld)
         {
-            if (partWorld == null)
-            {
-                _logger.LogError("PartWorldCreateDto object sent from client is null.");
-                return BadRequest("PartWorldCreateDto object is null");
-            }
-            if (!ModelState.IsValid)
-            {
-                _logger.LogError("Invalid model state for the PartWorldCreateDto object");
-                return UnprocessableEntity(ModelState);
-            }
             var partWorldEntity = _mapper.Map<PartWorld>(partWorld);
             _repository.PartWorld.CreatePartWorld(partWorldEntity);
             await _repository.SaveAsync();
@@ -79,24 +68,11 @@ namespace lrs.Controllers
             }, partWorldReturn);
         }
         [HttpPut("{id}")]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
+        [ServiceFilter(typeof(ValidatePartWorldExistsAttribute))]
         public async Task<IActionResult> UpdatePartWorldAsync(Guid id, [FromBody] PartWorldUpdateDto partWorld)
         {
-            if (partWorld == null)
-            {
-                _logger.LogError("PartWorldCreateDto object sent from client is null.");
-                return BadRequest("PartWorldCreateDto object is null");
-            }
-            if (!ModelState.IsValid)
-            {
-                _logger.LogError("Invalid model state for the PartWorldUpdateDto object");
-                return UnprocessableEntity(ModelState);
-            }
-            var partWorldEntity = await _repository.PartWorld.GetPartWorldAsync(id, true);
-            if (partWorldEntity == null)
-            {
-                _logger.LogInfo($"PartWorld with id: {id} doesn't exist in the database.");
-                return NotFound();
-            }
+            var partWorldEntity = HttpContext.Items["partWorld"] as PartWorld;
             _mapper.Map(partWorld, partWorldEntity);
             _repository.SaveAsync();
             return NoContent();

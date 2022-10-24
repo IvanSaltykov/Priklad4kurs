@@ -2,6 +2,7 @@
 using Contracts;
 using Entities.DataTransferObjects;
 using Entities.Models;
+using lrs.ActionFilters;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Sockets;
@@ -47,18 +48,9 @@ namespace lrs.Controllers
             return Ok(hotel);
         }
         [HttpPost]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> GetHotelAsync(Guid partWorldId, Guid countryId, Guid cityId, [FromBody] HotelCreateDto hotel)
         {
-            if (hotel == null)
-            {
-                _logger.LogError("HotelCreateDto object sent from client is null.");
-                return BadRequest("HotelCreateDto object is null");
-            }
-            if (!ModelState.IsValid)
-            {
-                _logger.LogError("Invalid model state for the HotelCreateDto object");
-                return UnprocessableEntity(ModelState);
-            }
             var actionResult = await checkResultAsync(partWorldId, countryId, cityId);
             if (actionResult != null)
                 return actionResult;
@@ -91,27 +83,11 @@ namespace lrs.Controllers
             return NoContent();
         }
         [HttpPut("{id}")]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
+        [ServiceFilter(typeof(ValidateHotelExistsAttribute))]
         public async Task<IActionResult> UpdateHotel(Guid partWorldId, Guid countryId, Guid cityId, Guid id, [FromBody] HotelUpdateDto hotel)
         {
-            if (hotel == null)
-            {
-                _logger.LogError("HotelUpdateDto object sent from client is null.");
-                return BadRequest("HotelUpdateDto object is null");
-            }
-            if (!ModelState.IsValid)
-            {
-                _logger.LogError("Invalid model state for the HotelUpdateDto object");
-                return UnprocessableEntity(ModelState);
-            }
-            var actionResult = await checkResultAsync(partWorldId, countryId, cityId);
-            if (actionResult != null)
-                return actionResult;
-            var hotelEntity = await _repository.Hotel.GetHotelAsync(cityId, id, true);
-            if (hotelEntity == null)
-            {
-                _logger.LogInfo($"Hotel with id: {id} doesn't exist in the database.");
-                return NotFound();
-            }
+            var hotelEntity = HttpContext.Items["hotel"] as Hotel;
             _mapper.Map(hotel, hotelEntity);
             await _repository.SaveAsync();
             return NoContent();

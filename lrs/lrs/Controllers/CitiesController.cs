@@ -2,6 +2,7 @@
 using Contracts;
 using Entities.DataTransferObjects;
 using Entities.Models;
+using lrs.ActionFilters;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -47,18 +48,9 @@ namespace lrs.Controllers
             return Ok(city);
         }
         [HttpPost]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateCityAsync(Guid partWorldId, Guid countryId, [FromBody] CityCreateDto city)
         {
-            if (city == null)
-            {
-                _logger.LogError("CityCreateDto object sent from client is null.");
-                return BadRequest("CityCreateDto object is null");
-            }
-            if (!ModelState.IsValid)
-            {
-                _logger.LogError("Invalid model state for the CityCreateDto object");
-                return UnprocessableEntity(ModelState);
-            }
             var actionResult = await checkResultAsync(partWorldId, countryId);
             if (actionResult != null)
                 return actionResult;
@@ -90,27 +82,11 @@ namespace lrs.Controllers
             return NoContent();
         }
         [HttpPut("{id}")]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
+        [ServiceFilter(typeof(ValidateCityExistsAttribute))]
         public async Task<IActionResult> UpdateCityAsync(Guid partWorldId, Guid countryId, Guid id, [FromBody] CityUpdateDto city)
         {
-            if (city == null)
-            {
-                _logger.LogError("CityUpdateDto object sent from client is null.");
-                return BadRequest("CityUpdateDto object is null");
-            }
-            if (!ModelState.IsValid)
-            {
-                _logger.LogError("Invalid model state for the CityUpdateDto object");
-                return UnprocessableEntity(ModelState);
-            }
-            var actionResult = await checkResultAsync(partWorldId, countryId);
-            if (actionResult != null)
-                return actionResult;
-            var cityEntity = await _repository.City.GetCityAsync(countryId, id, true);
-            if (cityEntity == null)
-            {
-                _logger.LogInfo($"City with id: {id} doesn't exist in the database.");
-                return NotFound();
-            }
+            var cityEntity = HttpContext.Items["city"] as City;
             _mapper.Map(city, cityEntity);
             await _repository.SaveAsync();
             return NoContent();

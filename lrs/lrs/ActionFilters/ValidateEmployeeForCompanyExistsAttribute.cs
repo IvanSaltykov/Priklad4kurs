@@ -8,15 +8,12 @@ namespace lrs.ActionFilters
     {
         private readonly IRepositoryManager _repository;
         private readonly ILoggerManager _logger;
-        public ValidateEmployeeForCompanyExistsAttribute(IRepositoryManager
-        repository,
-        ILoggerManager logger)
+        public ValidateEmployeeForCompanyExistsAttribute(IRepositoryManager repository, ILoggerManager logger)
         {
             _repository = repository;
             _logger = logger;
         }
-        public async Task OnActionExecutionAsync(ActionExecutingContext context,
-        ActionExecutionDelegate next)
+        public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
             var method = context.HttpContext.Request.Method;
             var trackChanges = (method.Equals("PUT") || method.Equals("PATCH")) ? true : false;

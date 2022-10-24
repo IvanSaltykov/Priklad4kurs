@@ -2,6 +2,7 @@
 using Contracts;
 using Entities.DataTransferObjects;
 using Entities.Models;
+using lrs.ActionFilters;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
@@ -49,18 +50,9 @@ namespace lrs.Controllers
             return Ok(ticket);
         }
         [HttpPost]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateTicket(Guid partWorldId, Guid countryId, Guid cityId, Guid hotelId, [FromBody] TicketCreateDto ticket)
         {
-            if (ticket == null)
-            {
-                _logger.LogError("TicketCreationDto object sent from client is null.");
-                return BadRequest("TicketCreationDto object is null");
-            }
-            if (!ModelState.IsValid)
-            {
-                _logger.LogError("Invalid model state for the TicketCreateDto object");
-                return UnprocessableEntity(ModelState);
-            }
             var actionResult = await checkResultAsync(partWorldId, countryId, cityId, hotelId);
             if (actionResult != null)
                 return actionResult;
@@ -78,27 +70,11 @@ namespace lrs.Controllers
             }, ticketReturn);
         }
         [HttpPut("{id}")]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
+        [ServiceFilter(typeof(ValidateTicketExistsAttribute))]
         public async Task<IActionResult> UpdateTicket(Guid partWorldId, Guid countryId, Guid cityId, Guid hotelId, Guid id, [FromBody] TicketUpdateDto ticket)
         {
-            if (ticket == null)
-            {
-                _logger.LogError("TicketCreationDto object sent from client is null.");
-                return BadRequest("TicketCreationDto object is null");
-            }
-            if (!ModelState.IsValid)
-            {
-                _logger.LogError("Invalid model state for the TicketUpdateDto object");
-                return UnprocessableEntity(ModelState);
-            }
-            var actionResult = await checkResultAsync(partWorldId, countryId, cityId, hotelId);
-            if (actionResult != null)
-                return actionResult;
-            var ticketEntity = await _repository.Ticket.GetTicketAsync(hotelId, id, true);
-            if (ticketEntity == null)
-            {
-                _logger.LogInfo($"Ticket with id: {id} doesn't exist in the database.");
-                return NotFound();
-            }
+            var ticketEntity = HttpContext.Items["ticket"] as Ticket;
             _mapper.Map(ticket, ticketEntity);
             await _repository.SaveAsync();
             return NoContent();

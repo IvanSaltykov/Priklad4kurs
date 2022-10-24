@@ -70,6 +70,7 @@ namespace lrs.Controllers
             }, employeeToReturn);
         }
         [HttpDelete("{id}")]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ServiceFilter(typeof(ValidateEmployeeForCompanyExistsAttribute))]
         public async Task<IActionResult> DeleteEmployeeForCompany(Guid companyId, Guid id)
         {
