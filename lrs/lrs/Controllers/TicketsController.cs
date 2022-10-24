@@ -96,6 +96,7 @@ namespace lrs.Controllers
             return NoContent();
         }
         [HttpPatch("{id}")]
+        [ServiceFilter(typeof(ValidateTicketExistsAttribute))]
         public async Task<IActionResult> PatchUpdateTicket(Guid partWorldId, Guid countryId, Guid cityId, Guid hotelId, Guid id, [FromBody] JsonPatchDocument<TicketUpdateDto> ticket)
         {
             if (ticket == null)
@@ -103,17 +104,15 @@ namespace lrs.Controllers
                 _logger.LogError("TicketUpdateDto object sent from client is null.");
                 return BadRequest("TicketUpdateDto object is null");
             }
-            var actionResult = await checkResultAsync(partWorldId, countryId, cityId, hotelId);
-            if (actionResult != null)
-                return actionResult;
-            var ticketEntity = await _repository.Ticket.GetTicketAsync(hotelId, id, true);
-            if (ticketEntity == null)
-            {
-                _logger.LogInfo($"Ticket with id: {id} doesn't exist in the database.");
-                return NotFound();
-            }
+            var ticketEntity = HttpContext.Items["ticket"] as Ticket;
             var ticketToPatch = _mapper.Map<TicketUpdateDto>(ticketEntity);
-            ticket.ApplyTo(ticketToPatch);
+            ticket.ApplyTo(ticketToPatch, ModelState);
+            TryValidateModel(ticketToPatch);
+            if (!ModelState.IsValid)
+            {
+                _logger.LogError("Invalid model state for the patch document");
+                return UnprocessableEntity(ModelState);
+            }
             _mapper.Map(ticketToPatch, ticketEntity);
             await _repository.SaveAsync();
             return NoContent();
