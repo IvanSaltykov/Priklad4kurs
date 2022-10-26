@@ -28,7 +28,9 @@ namespace lrs.Controllers
 
         [HttpGet]
         public async Task<IActionResult> GetTicketsAsync(Guid partWorldId, Guid countryId, Guid cityId, Guid hotelId, [FromQuery] TicketParameters parameters)
-        { 
+        {
+            if (!parameters.ValidPriceRange)
+                return BadRequest("Max price can't be less than min price.");
             var actionResult = await checkResultAsync(partWorldId, countryId, cityId, hotelId);
             if (actionResult != null)
                 return actionResult;
