@@ -16,6 +16,5 @@ namespace Contracts
         IHotelRepository Hotel { get; }
         ITicketRepository Ticket { get; }
         Task SaveAsync();
-        void Save();
     }
 }
