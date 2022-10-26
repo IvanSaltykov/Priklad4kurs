@@ -1,6 +1,7 @@
 ﻿using Contracts;
 using Entities;
 using Entities.Models;
+using Entities.RequestFeatures;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -16,8 +17,11 @@ namespace Repository
         {
         }
 
-        public async Task<IEnumerable<Ticket>> GetTicketsAsync(Guid hotelId, bool trackChanges) =>
-            await FindByCondition(e => e.Hotel.Equals(hotelId), trackChanges).OrderBy(e => e.Id).ToListAsync();
+        public async Task<PagedList<Ticket>> GetTicketsAsync(Guid hotelId, TicketParameters parameters, bool trackChanges)
+        {
+            var tickets = await FindByCondition(e => e.Hotel.Equals(hotelId), trackChanges).OrderBy(e => e.Id).ToListAsync();
+            return PagedList<Ticket>.ToPagedList(tickets, parameters.PageNumber, parameters.PageSize);
+        }
 
         public async Task<Ticket> GetTicketAsync(Guid hotelId, Guid id, bool trackChanges) =>
             await FindByCondition(e => e.Hotel.Equals(hotelId) && e.Id.Equals(id), trackChanges).SingleOrDefaultAsync();

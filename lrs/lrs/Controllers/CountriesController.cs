@@ -2,9 +2,11 @@
 using Contracts;
 using Entities.DataTransferObjects;
 using Entities.Models;
+using Entities.RequestFeatures;
 using lrs.ActionFilters;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 
@@ -25,12 +27,13 @@ namespace lrs.Controllers
             _mapper = mapper;
         }
         [HttpGet]
-        public async Task<IActionResult> GetCountriesAsync(Guid partWorldId)
+        public async Task<IActionResult> GetCountriesAsync(Guid partWorldId, [FromQuery] CountryParameters parameters)
         {
             var actionResult = await checkResultAsync(partWorldId);
             if (actionResult != null)
                 return actionResult;
-            var countriesFromDb = await _repository.Country.GetCountriesAsync(partWorldId, false);
+            var countriesFromDb = await _repository.Country.GetCountriesAsync(partWorldId, parameters, false);
+            Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(countriesFromDb.MetaData));
             var countriesDto = _mapper.Map<IEnumerable<CountryDto>>(countriesFromDb);
             return Ok(countriesDto);
         }

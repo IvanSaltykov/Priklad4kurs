@@ -2,10 +2,12 @@
 using Contracts;
 using Entities.DataTransferObjects;
 using Entities.Models;
+using Entities.RequestFeatures;
 using lrs.ActionFilters;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace lrs.Controllers
 {
@@ -25,12 +27,13 @@ namespace lrs.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetTicketsAsync(Guid partWorldId, Guid countryId, Guid cityId, Guid hotelId)
+        public async Task<IActionResult> GetTicketsAsync(Guid partWorldId, Guid countryId, Guid cityId, Guid hotelId, [FromQuery] TicketParameters parameters)
         { 
             var actionResult = await checkResultAsync(partWorldId, countryId, cityId, hotelId);
             if (actionResult != null)
                 return actionResult;
-            var ticketsFromDb = await _repository.Ticket.GetTicketsAsync(hotelId, false);
+            var ticketsFromDb = await _repository.Ticket.GetTicketsAsync(hotelId, parameters, false);
+            Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(ticketsFromDb.MetaData));
             var ticketsDto = _mapper.Map<IEnumerable<TicketDto>>(ticketsFromDb);
             return Ok(ticketsDto);
         }

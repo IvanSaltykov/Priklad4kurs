@@ -2,9 +2,11 @@
 using Contracts;
 using Entities.DataTransferObjects;
 using Entities.Models;
+using Entities.RequestFeatures;
 using lrs.ActionFilters;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System.Net.Sockets;
 
 namespace lrs.Controllers
@@ -23,12 +25,13 @@ namespace lrs.Controllers
             _mapper = mapper;
         }
         [HttpGet]
-        public async Task<IActionResult> GetHotelsAsync(Guid partWorldId, Guid countryId, Guid cityId)
+        public async Task<IActionResult> GetHotelsAsync(Guid partWorldId, Guid countryId, Guid cityId, [FromQuery] HotelParameters parameters)
         {
             var actionResult = await checkResultAsync(partWorldId, countryId, cityId);
             if (actionResult != null)
                 return actionResult;
-            var hotelsFromDb = await _repository.Hotel.GetHotelsAsync(cityId, false);
+            var hotelsFromDb = await _repository.Hotel.GetHotelsAsync(cityId, parameters, false);
+            Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(hotelsFromDb.MetaData));
             var hotelsDto = _mapper.Map<IEnumerable<HotelDto>>(hotelsFromDb);
             return Ok(hotelsDto);
         }

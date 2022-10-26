@@ -2,10 +2,12 @@
 using Contracts;
 using Entities.DataTransferObjects;
 using Entities.Models;
+using Entities.RequestFeatures;
 using lrs.ActionFilters;
 using lrs.ModelBinders;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Data.SqlTypes;
 
@@ -25,9 +27,10 @@ namespace lrs.Controllers
             _mapper = mapper;
         }
         [HttpGet]
-        public async Task<IActionResult> GetCompanies()
+        public async Task<IActionResult> GetCompanies([FromQuery] CompanyParameters parameters)
         {
-            var companies = await _repository.Company.GetAllCompaniesAsync(false);
+            var companies = await _repository.Company.GetAllCompaniesAsync(false, parameters);
+            Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(companies.MetaData));
             var companyDto = _mapper.Map<IEnumerable<CompanyDto>>(companies);
             return Ok(companyDto);
         }
