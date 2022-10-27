@@ -3,6 +3,7 @@ using Entities;
 using Entities.Models;
 using Entities.RequestFeatures;
 using Microsoft.EntityFrameworkCore;
+using Repository.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace Repository
             var tickets = await FindByCondition(
                 e => e.Hotel.Equals(hotelId) && (e.Price >= parameters.MinPrice && e.Price <= parameters.MaxPrice), 
                 trackChanges
-            ).OrderBy(e => e.Id).ToListAsync();
+            ).Search(parameters.Search).OrderBy(e => e.Id).ToListAsync();
             return PagedList<Ticket>.ToPagedList(tickets, parameters.PageNumber, parameters.PageSize);
         }
 

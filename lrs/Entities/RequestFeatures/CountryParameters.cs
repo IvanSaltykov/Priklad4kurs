@@ -8,5 +8,6 @@ namespace Entities.RequestFeatures
 {
     public class CountryParameters : RequestParameters
     {
+        public string Search { get; set; }
     }
 }

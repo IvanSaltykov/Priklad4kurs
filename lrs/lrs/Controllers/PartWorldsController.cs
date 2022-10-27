@@ -2,6 +2,7 @@
 using Contracts;
 using Entities.DataTransferObjects;
 using Entities.Models;
+using Entities.RequestFeatures;
 using lrs.ActionFilters;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -35,9 +36,9 @@ namespace lrs.Controllers
             return Ok(partWorldDto);
         }
         [HttpGet]
-        public async Task<IActionResult> GetPartWorldsAsync()
+        public async Task<IActionResult> GetPartWorldsAsync([FromQuery] PartWorldParameters parameters)
         {
-            var partWorlds = await _repository.PartWorld.GetAllPartWorldsAsync(false);
+            var partWorlds = await _repository.PartWorld.GetAllPartWorldsAsync(false, parameters);
             var partWorldsDto = _mapper.Map<IEnumerable<PartWorldDto>>(partWorlds);
             return Ok(partWorldsDto);
         }

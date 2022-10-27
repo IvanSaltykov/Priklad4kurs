@@ -1,7 +1,9 @@
 ﻿using Contracts;
 using Entities;
 using Entities.Models;
+using Entities.RequestFeatures;
 using Microsoft.EntityFrameworkCore;
+using Repository.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,8 +28,12 @@ namespace Repository
             Delete(partWorld);
         }
 
-        public async Task<IEnumerable<PartWorld>> GetAllPartWorldsAsync(bool trackChanges) =>
-            await FindAll(trackChanges).OrderBy(c => c.Name).ToListAsync();
+        public async Task<PagedList<PartWorld>> GetAllPartWorldsAsync(bool trackChanges, PartWorldParameters parameters)
+        {
+            var partWorlds = await FindAll(trackChanges).OrderBy(c => c.Name).Search(parameters.Search).ToListAsync();
+            return PagedList<PartWorld>.ToPagedList(partWorlds, parameters.PageNumber, parameters.PageSize);
+        }
+            
 
         public async Task<PartWorld> GetPartWorldAsync(Guid partWorldId, bool trackChanges) =>
             await FindByCondition(c => c.Id.Equals(partWorldId), trackChanges).SingleOrDefaultAsync();

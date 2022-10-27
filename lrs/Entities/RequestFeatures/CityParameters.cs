@@ -8,5 +8,6 @@ namespace Entities.RequestFeatures
 {
     public class CityParameters : RequestParameters
     {
+        public string Search { get; set; }
     }
 }

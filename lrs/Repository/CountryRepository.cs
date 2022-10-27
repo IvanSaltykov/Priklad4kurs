@@ -3,6 +3,7 @@ using Entities;
 using Entities.Models;
 using Entities.RequestFeatures;
 using Microsoft.EntityFrameworkCore;
+using Repository.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +31,7 @@ namespace Repository
 
         public async Task<PagedList<Country>> GetCountriesAsync(Guid partWorldId, CountryParameters parameters, bool trackChanges)
         {
-            var countries = await FindByCondition(e => e.PartWorldId.Equals(partWorldId), trackChanges).OrderBy(e => e.Name).ToListAsync();
+            var countries = await FindByCondition(e => e.PartWorldId.Equals(partWorldId), trackChanges).Search(parameters.Search).OrderBy(e => e.Name).ToListAsync();
             return PagedList<Country>.ToPagedList(countries, parameters.PageNumber, parameters.PageSize);
         }
 

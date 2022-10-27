@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entities.RequestFeatures
 {
-    public class HotelParameters : RequestParameters
+    public class PartWorldParameters : RequestParameters
     {
         public string Search { get; set; }
     }
