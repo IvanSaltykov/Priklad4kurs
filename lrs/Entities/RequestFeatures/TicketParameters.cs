@@ -11,6 +11,5 @@ namespace Entities.RequestFeatures
         public uint MinPrice { get; set; }
         public uint MaxPrice { get; set; } = int.MaxValue;
         public bool ValidPriceRange => MinPrice <= MaxPrice;
-        public string Search { get; set; }
     }
 }

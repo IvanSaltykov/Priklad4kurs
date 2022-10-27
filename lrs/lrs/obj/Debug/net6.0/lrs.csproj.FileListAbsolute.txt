@@ -367,3 +367,4 @@ E:\files\4курс\прикладное4\lrs_in_git\Priklad4kurs\lrs\lrs\obj\Deb
 E:\files\4курс\прикладное4\lrs_in_git\Priklad4kurs\lrs\lrs\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
 E:\files\4курс\прикладное4\lrs_in_git\Priklad4kurs\lrs\lrs\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 E:\files\4курс\прикладное4\lrs_in_git\Priklad4kurs\lrs\lrs\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
+E:\files\4курс\прикладное4\lrs_in_git\Priklad4kurs\lrs\lrs\bin\Debug\net6.0\System.Linq.Dynamic.Core.dll

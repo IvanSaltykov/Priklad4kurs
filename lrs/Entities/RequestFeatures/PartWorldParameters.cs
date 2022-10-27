@@ -8,6 +8,5 @@ namespace Entities.RequestFeatures
 {
     public class PartWorldParameters : RequestParameters
     {
-        public string Search { get; set; }
     }
 }

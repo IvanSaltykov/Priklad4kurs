@@ -494,6 +494,14 @@
           }
         }
       },
+      "System.Linq.Dynamic.Core/1.2.20": {
+        "runtime": {
+          "lib/net6.0/System.Linq.Dynamic.Core.dll": {
+            "assemblyVersion": "1.2.20.0",
+            "fileVersion": "1.2.20.0"
+          }
+        }
+      },
       "System.Runtime.Caching/4.7.0": {
         "dependencies": {
           "System.Configuration.ConfigurationManager": "4.7.0"
@@ -603,7 +611,8 @@
       "Repository/1.0.0": {
         "dependencies": {
           "Contracts": "1.0.0",
-          "Entities": "1.0.0"
+          "Entities": "1.0.0",
+          "System.Linq.Dynamic.Core": "1.2.20"
         },
         "runtime": {
           "Repository.dll": {}
@@ -952,6 +961,13 @@
       "sha512": "sha512-5tBCjAub2Bhd5qmcd0WhR5s354e4oLYa//kOWrkX+6/7ZbDDJjMTfwLSOiZ/MMpWdE4DWPLOfTLOq/juj9CKzA==",
       "path": "system.identitymodel.tokens.jwt/6.8.0",
       "hashPath": "system.identitymodel.tokens.jwt.6.8.0.nupkg.sha512"
+    },
+    "System.Linq.Dynamic.Core/1.2.20": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-JyggojPaq2QM603WCwghxxwNmi8ESDLCSTTjfq/TVFvj0J2XjXfvfa0X7pe8NOruF4CbPG2K46AWmgvk0Umoqg==",
+      "path": "system.linq.dynamic.core/1.2.20",
+      "hashPath": "system.linq.dynamic.core.1.2.20.nupkg.sha512"
     },
     "System.Runtime.Caching/4.7.0": {
       "type": "package",

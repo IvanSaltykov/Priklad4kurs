@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "wjqEE+isNren0bSj0FR9xjOn4w6Nw/ASInNIZG/qEX6ZXo1BS9ICB5CghekTD+BUjjmN6xgUR9i0o1hXtUiN3Q==",
+  "dgSpecHash": "LGY3k88C5SLJrlDe2w4QfwU0jYQWLaKr+kHXrhbD2OD3FSbwjfSgO9jLK9zfJ+uS3dl+FI9Uz9sFvKdlUHwpbQ==",
   "success": true,
   "projectFilePath": "E:\\files\\4курс\\прикладное4\\lrs_in_git\\Priklad4kurs\\lrs\\lrs\\lrs.csproj",
   "expectedPackageFiles": [
@@ -52,6 +52,7 @@
     "C:\\Users\\Админ\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.0\\system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",
     "C:\\Users\\Админ\\.nuget\\packages\\system.drawing.common\\4.7.0\\system.drawing.common.4.7.0.nupkg.sha512",
     "C:\\Users\\Админ\\.nuget\\packages\\system.identitymodel.tokens.jwt\\6.8.0\\system.identitymodel.tokens.jwt.6.8.0.nupkg.sha512",
+    "C:\\Users\\Админ\\.nuget\\packages\\system.linq.dynamic.core\\1.2.20\\system.linq.dynamic.core.1.2.20.nupkg.sha512",
     "C:\\Users\\Админ\\.nuget\\packages\\system.runtime.caching\\4.7.0\\system.runtime.caching.4.7.0.nupkg.sha512",
     "C:\\Users\\Админ\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "C:\\Users\\Админ\\.nuget\\packages\\system.security.accesscontrol\\4.7.0\\system.security.accesscontrol.4.7.0.nupkg.sha512",
