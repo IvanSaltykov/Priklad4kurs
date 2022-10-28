@@ -8,5 +8,9 @@ namespace Entities.RequestFeatures
 {
     public class PartWorldParameters : RequestParameters
     {
+        public PartWorldParameters()
+        {
+            OrderBy = "Name";
+        }
     }
 }

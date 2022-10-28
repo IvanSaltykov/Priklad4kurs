@@ -30,10 +30,13 @@ namespace Repository
 
         public async Task<PagedList<PartWorld>> GetAllPartWorldsAsync(bool trackChanges, PartWorldParameters parameters)
         {
-            var partWorlds = await FindAll(trackChanges).OrderBy(c => c.Name).Search(parameters.Search).ToListAsync();
+            var partWorlds = await FindAll(trackChanges)
+                .Search(parameters.Search)
+                .Sort(parameters.OrderBy)
+                .ToListAsync();
             return PagedList<PartWorld>.ToPagedList(partWorlds, parameters.PageNumber, parameters.PageSize);
         }
-            
+
 
         public async Task<PartWorld> GetPartWorldAsync(Guid partWorldId, bool trackChanges) =>
             await FindByCondition(c => c.Id.Equals(partWorldId), trackChanges).SingleOrDefaultAsync();

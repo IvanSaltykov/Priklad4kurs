@@ -31,7 +31,10 @@ namespace Repository
 
         public async Task<PagedList<Country>> GetCountriesAsync(Guid partWorldId, CountryParameters parameters, bool trackChanges)
         {
-            var countries = await FindByCondition(e => e.PartWorldId.Equals(partWorldId), trackChanges).Search(parameters.Search).OrderBy(e => e.Name).ToListAsync();
+            var countries = await FindByCondition(e => e.PartWorldId.Equals(partWorldId), trackChanges)
+                .Search(parameters.Search)
+                .Sort(parameters.OrderBy)
+                .ToListAsync();
             return PagedList<Country>.ToPagedList(countries, parameters.PageNumber, parameters.PageSize);
         }
 

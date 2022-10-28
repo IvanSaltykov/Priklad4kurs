@@ -8,5 +8,9 @@ namespace Entities.RequestFeatures
 {
     public class HotelParameters : RequestParameters
     {
+        public HotelParameters()
+        {
+            OrderBy = "Name";
+        }
     }
 }

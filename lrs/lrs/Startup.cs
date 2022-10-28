@@ -1,9 +1,11 @@
 ﻿using Contracts;
+using Entities.DataTransferObjects;
 using lrs.ActionFilters;
 using lrs.Extensions;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
 using NLog;
+using Repository.DataShaping;
 
 public class Startup
 {
@@ -42,6 +44,7 @@ public class Startup
         services.AddScoped<ValidateCityExistsAttribute>();
         services.AddScoped<ValidateHotelExistsAttribute>();
         services.AddScoped<ValidateTicketExistsAttribute>();
+        services.AddScoped<IDataShaper<EmployeeDto>, DataShaper<EmployeeDto>>();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -33,7 +33,10 @@ namespace Repository
 
         public async Task<PagedList<Hotel>> GetHotelsAsync(Guid cityId, HotelParameters parameters, bool trackChanges)
         {
-            var hotels = await FindByCondition(e => e.CityId.Equals(cityId), trackChanges).Search(parameters.Search).OrderBy(e => e.Name).ToListAsync();
+            var hotels = await FindByCondition(e => e.CityId.Equals(cityId), trackChanges)
+                .Search(parameters.Search)
+                .Sort(parameters.OrderBy)
+                .ToListAsync();
             return PagedList<Hotel>.ToPagedList(hotels, parameters.PageNumber, parameters.PageSize);
         }
     }

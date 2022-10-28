@@ -31,7 +31,10 @@ namespace Repository
 
         public async Task<PagedList<City>> GetCitiesAsync(Guid countryId, CityParameters parameters, bool trackChanges)
         {
-            var cities = await FindByCondition(e => e.CountryId.Equals(countryId), trackChanges).Search(parameters.Search).OrderBy(e => e.Name).ToListAsync();
+            var cities = await FindByCondition(e => e.CountryId.Equals(countryId), trackChanges)
+                .Search(parameters.Search)
+                .Sort(parameters.OrderBy)
+                .ToListAsync();
             return PagedList<City>.ToPagedList(cities, parameters.PageNumber, parameters.PageSize);
         }
 
