@@ -26,6 +26,7 @@ namespace lrs.Controllers
             _dataShaper = dataShaper;
         }
         [HttpGet("{id}", Name = "GetPartWorld")]
+        [HttpHead("{id}")]
         public async Task<IActionResult> GetPartWorldAsync(Guid id, [FromQuery] PartWorldParameters parameters)
         {
             var partWorld = await _repository.PartWorld.GetPartWorldAsync(id, false);
@@ -37,6 +38,7 @@ namespace lrs.Controllers
             var partWorldDto = _mapper.Map<PartWorldDto>(partWorld);
             return Ok(_dataShaper.ShapeData(partWorldDto, parameters.Fields));
         }
+        [HttpHead]
         [HttpGet]
         public async Task<IActionResult> GetPartWorldsAsync([FromQuery] PartWorldParameters parameters)
         {

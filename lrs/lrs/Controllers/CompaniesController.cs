@@ -29,6 +29,7 @@ namespace lrs.Controllers
             _dataShaper = dataShaper;
         }
         [HttpGet]
+        [HttpHead]
         public async Task<IActionResult> GetCompanies([FromQuery] CompanyParameters parameters)
         {
             var companies = await _repository.Company.GetAllCompaniesAsync(false, parameters);
@@ -37,6 +38,7 @@ namespace lrs.Controllers
             return Ok(_dataShaper.ShapeData(companyDto, parameters.Fields));
         }
         [HttpGet("{id}", Name = "CompanyById")]
+        [HttpHead("{id}")]
         public async Task<IActionResult> GetCompany(Guid id, [FromQuery] CompanyParameters parameters)
         {
             var company = await _repository.Company.GetCompanyAsync(id, false);

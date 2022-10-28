@@ -27,6 +27,7 @@ namespace lrs.Controllers
             _dataShaper = dataShaper;
         }
         [HttpGet]
+        [HttpHead]
         public async Task<IActionResult> GetHotelsAsync(Guid partWorldId, Guid countryId, Guid cityId, [FromQuery] HotelParameters parameters)
         {
             var actionResult = await checkResultAsync(partWorldId, countryId, cityId);
@@ -38,6 +39,7 @@ namespace lrs.Controllers
             return Ok(_dataShaper.ShapeData(hotelsDto, parameters.Fields));
         }
         [HttpGet("{id}", Name = "GetHotel")]
+        [HttpHead("{id}")]
         public async Task<IActionResult> GetHotelAsync(Guid partWorldId, Guid countryId, Guid cityId, Guid id, [FromQuery] HotelParameters parameters)
         {
             var actionResult = await checkResultAsync(partWorldId, countryId, cityId);

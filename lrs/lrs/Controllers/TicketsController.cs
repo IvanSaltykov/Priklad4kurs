@@ -29,6 +29,7 @@ namespace lrs.Controllers
         }
 
         [HttpGet]
+        [HttpHead]
         public async Task<IActionResult> GetTicketsAsync(Guid partWorldId, Guid countryId, Guid cityId, Guid hotelId, [FromQuery] TicketParameters parameters)
         {
             if (!parameters.ValidPriceRange)
@@ -42,6 +43,7 @@ namespace lrs.Controllers
             return Ok(_dataShaper.ShapeData(ticketsDto, parameters.Fields));
         }
         [HttpGet("{id}", Name = "GetTicket")]
+        [HttpHead("{id}")]
         public async Task<IActionResult> GetTicket(Guid partWorldId, Guid countryId, Guid cityId, Guid hotelId, Guid id, [FromQuery] TicketParameters parameters)
         {
             var actionResult = await checkResultAsync(partWorldId, countryId, cityId, hotelId);
