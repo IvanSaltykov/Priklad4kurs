@@ -118,5 +118,11 @@ namespace lrs.Controllers
             await _repository.SaveAsync();
             return NoContent();
         }
+        [HttpOptions]
+        public IActionResult GetOptions()
+        {
+            Response.Headers.Add("Allow", "GET, OPTIONS, POST, DELETE, PUT, PATCH");
+            return Ok();
+        }
     }
 }

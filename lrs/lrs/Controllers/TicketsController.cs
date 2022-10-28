@@ -152,5 +152,11 @@ namespace lrs.Controllers
             }
             return null;
         }
+        [HttpOptions]
+        public IActionResult GetOptions()
+        {
+            Response.Headers.Add("Allow", "GET, OPTIONS, POST, DELETE, PUT, PATCH");
+            return Ok();
+        }
     }
 }

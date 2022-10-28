@@ -116,7 +116,7 @@ namespace lrs.Controllers
         [HttpOptions]
         public IActionResult GetCompaniesOptions()
         {
-            Response.Headers.Add("Allow", "GET, OPTIONS, POST");
+            Response.Headers.Add("Allow", "GET, OPTIONS, POST, DELETE, PUT");
             return Ok();
         }
     }
