@@ -18,12 +18,14 @@ namespace lrs.Controllers
         private readonly IRepositoryManager _repository;
         private readonly ILoggerManager _logger;
         private readonly IMapper _mapper;
+        private readonly IDataShaper<TicketDto> _dataShaper;
 
-        public TicketsController(IRepositoryManager repository, ILoggerManager logger, IMapper mapper)
+        public TicketsController(IRepositoryManager repository, ILoggerManager logger, IMapper mapper, IDataShaper<TicketDto> dataShaper)
         {
             _repository = repository;
             _logger = logger;
             _mapper = mapper;
+            _dataShaper = dataShaper;
         }
 
         [HttpGet]
@@ -37,10 +39,10 @@ namespace lrs.Controllers
             var ticketsFromDb = await _repository.Ticket.GetTicketsAsync(hotelId, parameters, false);
             Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(ticketsFromDb.MetaData));
             var ticketsDto = _mapper.Map<IEnumerable<TicketDto>>(ticketsFromDb);
-            return Ok(ticketsDto);
+            return Ok(_dataShaper.ShapeData(ticketsDto, parameters.Fields));
         }
         [HttpGet("{id}", Name = "GetTicket")]
-        public async Task<IActionResult> GetTicket(Guid partWorldId, Guid countryId, Guid cityId, Guid hotelId, Guid id)
+        public async Task<IActionResult> GetTicket(Guid partWorldId, Guid countryId, Guid cityId, Guid hotelId, Guid id, [FromQuery] TicketParameters parameters)
         {
             var actionResult = await checkResultAsync(partWorldId, countryId, cityId, hotelId);
             if (actionResult != null)
@@ -51,8 +53,8 @@ namespace lrs.Controllers
                 _logger.LogInfo($"Ticket with id: {id} doesn't exist in the database.");
                 return NotFound();
             }
-            var ticket = _mapper.Map<TicketDto>(ticketDb);
-            return Ok(ticket);
+            var ticketDto = _mapper.Map<TicketDto>(ticketDb);
+            return Ok(_dataShaper.ShapeData(ticketDto, parameters.Fields));
         }
         [HttpPost]
         [ServiceFilter(typeof(ValidationFilterAttribute))]

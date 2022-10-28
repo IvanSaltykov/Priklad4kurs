@@ -18,11 +18,13 @@ namespace lrs.Controllers
         private readonly IRepositoryManager _repository;
         private readonly ILoggerManager _logger;
         private readonly IMapper _mapper;
-        public HotelsController(IRepositoryManager repository, ILoggerManager logger, IMapper mapper)
+        private readonly IDataShaper<HotelDto> _dataShaper;
+        public HotelsController(IRepositoryManager repository, ILoggerManager logger, IMapper mapper, IDataShaper<HotelDto> dataShaper)
         {
             _repository = repository;
             _logger = logger;
             _mapper = mapper;
+            _dataShaper = dataShaper;
         }
         [HttpGet]
         public async Task<IActionResult> GetHotelsAsync(Guid partWorldId, Guid countryId, Guid cityId, [FromQuery] HotelParameters parameters)
@@ -33,10 +35,10 @@ namespace lrs.Controllers
             var hotelsFromDb = await _repository.Hotel.GetHotelsAsync(cityId, parameters, false);
             Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(hotelsFromDb.MetaData));
             var hotelsDto = _mapper.Map<IEnumerable<HotelDto>>(hotelsFromDb);
-            return Ok(hotelsDto);
+            return Ok(_dataShaper.ShapeData(hotelsDto, parameters.Fields));
         }
         [HttpGet("{id}", Name = "GetHotel")]
-        public async Task<IActionResult> GetHotelAsync(Guid partWorldId, Guid countryId, Guid cityId, Guid id)
+        public async Task<IActionResult> GetHotelAsync(Guid partWorldId, Guid countryId, Guid cityId, Guid id, [FromQuery] HotelParameters parameters)
         {
             var actionResult = await checkResultAsync(partWorldId, countryId, cityId);
             if (actionResult != null)
@@ -47,8 +49,8 @@ namespace lrs.Controllers
                 _logger.LogInfo($"Hotel with id: {id} doesn't exist in the database.");
                 return NotFound();
             }
-            var hotel = _mapper.Map<HotelDto>(hotelDb);
-            return Ok(hotel);
+            var hotelDto = _mapper.Map<HotelDto>(hotelDb);
+            return Ok(_dataShaper.ShapeData(hotelDto, parameters.Fields));
         }
         [HttpPost]
         [ServiceFilter(typeof(ValidationFilterAttribute))]

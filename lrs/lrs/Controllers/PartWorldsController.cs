@@ -16,15 +16,17 @@ namespace lrs.Controllers
         private readonly IRepositoryManager _repository;
         private readonly ILoggerManager _logger;
         private readonly IMapper _mapper;
+        private readonly IDataShaper<PartWorldDto> _dataShaper;
 
-        public PartWorldsController(IRepositoryManager repository, ILoggerManager logger, IMapper mapper)
+        public PartWorldsController(IRepositoryManager repository, ILoggerManager logger, IMapper mapper, IDataShaper<PartWorldDto> dataShaper)
         {
             _repository = repository;
             _logger = logger;
             _mapper = mapper;
+            _dataShaper = dataShaper;
         }
         [HttpGet("{id}", Name = "GetPartWorld")]
-        public async Task<IActionResult> GetPartWorldAsync(Guid id)
+        public async Task<IActionResult> GetPartWorldAsync(Guid id, [FromQuery] PartWorldParameters parameters)
         {
             var partWorld = await _repository.PartWorld.GetPartWorldAsync(id, false);
             if (partWorld == null)
@@ -33,14 +35,14 @@ namespace lrs.Controllers
                 return NotFound();
             }
             var partWorldDto = _mapper.Map<PartWorldDto>(partWorld);
-            return Ok(partWorldDto);
+            return Ok(_dataShaper.ShapeData(partWorldDto, parameters.Fields));
         }
         [HttpGet]
         public async Task<IActionResult> GetPartWorldsAsync([FromQuery] PartWorldParameters parameters)
         {
             var partWorlds = await _repository.PartWorld.GetAllPartWorldsAsync(false, parameters);
             var partWorldsDto = _mapper.Map<IEnumerable<PartWorldDto>>(partWorlds);
-            return Ok(partWorldsDto);
+            return Ok(_dataShaper.ShapeData(partWorldsDto, parameters.Fields));
         }
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePartWorldAsync(Guid id)

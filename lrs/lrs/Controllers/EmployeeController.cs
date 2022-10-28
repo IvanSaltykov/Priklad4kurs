@@ -45,7 +45,7 @@ namespace lrs.Controllers
             return Ok(_dataShaper.ShapeData(employeesDto, employeeParameters.Fields));
         }
         [HttpGet("{id}", Name = "GetEmployeeForCompany")]
-        public async Task<IActionResult> GetEmployeesForCompany(Guid companyId, Guid id)
+        public async Task<IActionResult> GetEmployeesForCompany(Guid companyId, Guid id, [FromQuery] EmployeeParameters employeeParameters)
         {
             var company = await _repository.Company.GetCompanyAsync(companyId, false);
             if (company == null)
@@ -59,8 +59,8 @@ namespace lrs.Controllers
                 _logger.LogInfo($"Employee with id: {id} doesn't exist in the database.");
                 return NotFound();
             }
-            var employee = _mapper.Map<EmployeeDto>(employeeDb);
-            return Ok(employee);
+            var employeeDto = _mapper.Map<EmployeeDto>(employeeDb);
+            return Ok(_dataShaper.ShapeData(employeeDto, employeeParameters.Fields));
         }
         [HttpPost]
         [ServiceFilter(typeof(ValidationFilterAttribute))]

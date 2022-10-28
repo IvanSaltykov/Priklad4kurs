@@ -45,6 +45,12 @@ public class Startup
         services.AddScoped<ValidateHotelExistsAttribute>();
         services.AddScoped<ValidateTicketExistsAttribute>();
         services.AddScoped<IDataShaper<EmployeeDto>, DataShaper<EmployeeDto>>();
+        services.AddScoped<IDataShaper<CompanyDto>, DataShaper<CompanyDto>>();
+        services.AddScoped<IDataShaper<PartWorldDto>, DataShaper<PartWorldDto>>();
+        services.AddScoped<IDataShaper<CountryDto>, DataShaper<CountryDto>>();
+        services.AddScoped<IDataShaper<CityDto>, DataShaper<CityDto>>();
+        services.AddScoped<IDataShaper<HotelDto>, DataShaper<HotelDto>>();
+        services.AddScoped<IDataShaper<TicketDto>, DataShaper<TicketDto>>();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

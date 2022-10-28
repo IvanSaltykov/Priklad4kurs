@@ -19,12 +19,14 @@ namespace lrs.Controllers
         private readonly IRepositoryManager _repository;
         private readonly ILoggerManager _logger;
         private readonly IMapper _mapper;
+        private readonly IDataShaper<CountryDto> _dataShaper;
 
-        public CountriesController(IRepositoryManager repository, ILoggerManager logger, IMapper mapper)
+        public CountriesController(IRepositoryManager repository, ILoggerManager logger, IMapper mapper, IDataShaper<CountryDto> dataShaper)
         {
             _repository = repository;
             _logger = logger;
             _mapper = mapper;
+            _dataShaper = dataShaper;
         }
         [HttpGet]
         public async Task<IActionResult> GetCountriesAsync(Guid partWorldId, [FromQuery] CountryParameters parameters)
@@ -35,10 +37,10 @@ namespace lrs.Controllers
             var countriesFromDb = await _repository.Country.GetCountriesAsync(partWorldId, parameters, false);
             Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(countriesFromDb.MetaData));
             var countriesDto = _mapper.Map<IEnumerable<CountryDto>>(countriesFromDb);
-            return Ok(countriesDto);
+            return Ok(_dataShaper.ShapeData(countriesDto, parameters.Fields));
         }
         [HttpGet("{id}", Name = "GetCountry")]
-        public async Task<IActionResult> GetCountryAsync(Guid partWorldId, Guid id)
+        public async Task<IActionResult> GetCountryAsync(Guid partWorldId, Guid id, [FromQuery] CountryParameters parameters)
         {
             var actionResult = await checkResultAsync(partWorldId);
             if (actionResult != null)
@@ -49,8 +51,8 @@ namespace lrs.Controllers
                 _logger.LogInfo($"Country with id: {id} doesn't exist in the database.");
                 return NotFound();
             }
-            var country = _mapper.Map<CountryDto>(countryDb);
-            return Ok(country);
+            var countryDto = _mapper.Map<CountryDto>(countryDb);
+            return Ok(_dataShaper.ShapeData(countryDto, parameters.Fields));
         }
         [HttpPost]
         [ServiceFilter(typeof(ValidationFilterAttribute))]

@@ -17,14 +17,16 @@ namespace lrs.Controllers
     [ApiController]
     public class CompaniesController : ControllerBase
     {
+        private readonly IDataShaper<CompanyDto> _dataShaper;
         private readonly IRepositoryManager _repository;
         private readonly ILoggerManager _logger;
         private readonly IMapper _mapper;
-        public CompaniesController(IRepositoryManager repository, ILoggerManager logger, IMapper mapper)
+        public CompaniesController(IRepositoryManager repository, ILoggerManager logger, IMapper mapper, IDataShaper<CompanyDto> dataShaper)
         {
             _repository = repository;
             _logger = logger;
             _mapper = mapper;
+            _dataShaper = dataShaper;
         }
         [HttpGet]
         public async Task<IActionResult> GetCompanies([FromQuery] CompanyParameters parameters)
@@ -32,10 +34,10 @@ namespace lrs.Controllers
             var companies = await _repository.Company.GetAllCompaniesAsync(false, parameters);
             Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(companies.MetaData));
             var companyDto = _mapper.Map<IEnumerable<CompanyDto>>(companies);
-            return Ok(companyDto);
+            return Ok(_dataShaper.ShapeData(companyDto, parameters.Fields));
         }
         [HttpGet("{id}", Name = "CompanyById")]
-        public async Task<IActionResult> GetCompany(Guid id)
+        public async Task<IActionResult> GetCompany(Guid id, [FromQuery] CompanyParameters parameters)
         {
             var company = await _repository.Company.GetCompanyAsync(id, false);
             if (company == null)
@@ -44,7 +46,7 @@ namespace lrs.Controllers
                 return NotFound();
             }
             var companyDto = _mapper.Map<CompanyDto>(company);
-            return Ok(companyDto);
+            return Ok(_dataShaper.ShapeData(companyDto, parameters.Fields));
         }
         [HttpPost]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
