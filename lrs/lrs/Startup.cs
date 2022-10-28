@@ -52,6 +52,8 @@ public class Startup
         services.AddScoped<IDataShaper<HotelDto>, DataShaper<HotelDto>>();
         services.AddScoped<IDataShaper<TicketDto>, DataShaper<TicketDto>>();
         services.ConfigureVersioning();
+        services.AddAuthentication();
+        services.ConfigureIdentity();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -74,6 +76,7 @@ public class Startup
             ForwardedHeaders = ForwardedHeaders.All
         });
         app.UseRouting();
+        app.UseAuthentication();
         app.UseAuthorization();
         app.UseEndpoints(endpoints =>
         {

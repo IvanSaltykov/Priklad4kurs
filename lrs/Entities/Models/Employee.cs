@@ -13,7 +13,7 @@ namespace Entities.Models
         [Column("EmployeeId")]
         public Guid Id { get; set; }
         [Required(ErrorMessage = "Employee name is a required field.")]
-        [MaxLength(30, ErrorMessage = "Maximum length for the Name is 30 characters.")] 
+        [MaxLength(30, ErrorMessage = "Maximum length for the Name is 30characters.")] 
         public string Name { get; set; }
         [Required(ErrorMessage = "Age is a required field.")]
         public int Age { get; set; }

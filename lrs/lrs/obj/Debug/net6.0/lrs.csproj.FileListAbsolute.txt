@@ -369,3 +369,9 @@ E:\files\4курс\прикладное4\lrs_in_git\Priklad4kurs\lrs\lrs\bin\Deb
 E:\files\4курс\прикладное4\lrs_in_git\Priklad4kurs\lrs\lrs\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
 E:\files\4курс\прикладное4\lrs_in_git\Priklad4kurs\lrs\lrs\bin\Debug\net6.0\System.Linq.Dynamic.Core.dll
 E:\files\4курс\прикладное4\lrs_in_git\Priklad4kurs\lrs\lrs\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.Versioning.dll
+E:\files\4курс\прикладное4\lrs_in_git\Priklad4kurs\lrs\lrs\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+E:\files\4курс\прикладное4\lrs_in_git\Priklad4kurs\lrs\lrs\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+E:\files\4курс\прикладное4\lrs_in_git\Priklad4kurs\lrs\lrs\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+E:\files\4курс\прикладное4\lrs_in_git\Priklad4kurs\lrs\lrs\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+E:\files\4курс\прикладное4\lrs_in_git\Priklad4kurs\lrs\lrs\bin\Debug\net6.0\Microsoft.Extensions.Identity.Core.dll
+E:\files\4курс\прикладное4\lrs_in_git\Priklad4kurs\lrs\lrs\bin\Debug\net6.0\Microsoft.Extensions.Identity.Stores.dll
