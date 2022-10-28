@@ -368,3 +368,4 @@ E:\files\4курс\прикладное4\lrs_in_git\Priklad4kurs\lrs\lrs\bin\Deb
 E:\files\4курс\прикладное4\lrs_in_git\Priklad4kurs\lrs\lrs\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 E:\files\4курс\прикладное4\lrs_in_git\Priklad4kurs\lrs\lrs\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
 E:\files\4курс\прикладное4\lrs_in_git\Priklad4kurs\lrs\lrs\bin\Debug\net6.0\System.Linq.Dynamic.Core.dll
+E:\files\4курс\прикладное4\lrs_in_git\Priklad4kurs\lrs\lrs\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.Versioning.dll

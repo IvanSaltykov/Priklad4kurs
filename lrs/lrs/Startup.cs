@@ -51,6 +51,7 @@ public class Startup
         services.AddScoped<IDataShaper<CityDto>, DataShaper<CityDto>>();
         services.AddScoped<IDataShaper<HotelDto>, DataShaper<HotelDto>>();
         services.AddScoped<IDataShaper<TicketDto>, DataShaper<TicketDto>>();
+        services.ConfigureVersioning();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

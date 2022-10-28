@@ -13,6 +13,7 @@ using System.Data.SqlTypes;
 
 namespace lrs.Controllers
 {
+    [ApiVersion("1.0")]
     [Route("api/companies")]
     [ApiController]
     public class CompaniesController : ControllerBase
