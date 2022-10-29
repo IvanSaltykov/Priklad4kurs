@@ -28,6 +28,12 @@ namespace lrs.Controllers
             _mapper = mapper;
             _dataShaper = dataShaper;
         }
+        /// <summary>
+        /// Возращает спискок стран части света
+        /// </summary>
+        /// <param name="partWorldId"></param>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
         [HttpGet]
         [HttpHead]
         public async Task<IActionResult> GetCountriesAsync(Guid partWorldId, [FromQuery] CountryParameters parameters)
@@ -40,6 +46,13 @@ namespace lrs.Controllers
             var countriesDto = _mapper.Map<IEnumerable<CountryDto>>(countriesFromDb);
             return Ok(_dataShaper.ShapeData(countriesDto, parameters.Fields));
         }
+        /// <summary>
+        /// Возращает страну части света
+        /// </summary>
+        /// <param name="partWorldId"></param>
+        /// <param name="id"></param>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
         [HttpGet("{id}", Name = "GetCountry")]
         [HttpHead("{id}")]
         public async Task<IActionResult> GetCountryAsync(Guid partWorldId, Guid id, [FromQuery] CountryParameters parameters)
@@ -56,6 +69,12 @@ namespace lrs.Controllers
             var countryDto = _mapper.Map<CountryDto>(countryDb);
             return Ok(_dataShaper.ShapeData(countryDto, parameters.Fields));
         }
+        /// <summary>
+        /// Создает новую страну
+        /// </summary>
+        /// <param name="partWorldId"></param>
+        /// <param name="country"></param>
+        /// <returns></returns>
         [HttpPost]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateCountryAsync(Guid partWorldId, [FromBody] CountryCreateDto country)
@@ -72,6 +91,12 @@ namespace lrs.Controllers
                 countryReturn.Id
             }, countryReturn);
         }
+        /// <summary>
+        /// Удалает страну
+        /// </summary>
+        /// <param name="partWorldId"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCountryAsync(Guid partWorldId, Guid id)
         {
@@ -88,6 +113,13 @@ namespace lrs.Controllers
             await _repository.SaveAsync();
             return NoContent();
         }
+        /// <summary>
+        /// Обновляет страну
+        /// </summary>
+        /// <param name="partWorldId"></param>
+        /// <param name="id"></param>
+        /// <param name="country"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ServiceFilter(typeof(ValidateCountryExistsAttribute))]
@@ -108,6 +140,10 @@ namespace lrs.Controllers
             }
             return null;
         }
+        /// <summary>
+        /// Возвращает заголовки запросов
+        /// </summary>
+        /// <returns></returns>
         [HttpOptions]
         public IActionResult GetOptions()
         {

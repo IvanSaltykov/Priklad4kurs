@@ -26,6 +26,13 @@ namespace lrs.Controllers
             _mapper = mapper;
             _dataShaper = dataShaper;
         }
+        /// <summary>
+        /// Возвращает список городов страны
+        /// </summary>
+        /// <param name="partWorldId"></param>
+        /// <param name="countryId"></param>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
         [HttpGet]
         [HttpHead]
         public async Task<IActionResult> GetCitiesAsync(Guid partWorldId, Guid countryId, [FromQuery] CityParameters parameters)
@@ -38,6 +45,14 @@ namespace lrs.Controllers
             var citiesDto = _mapper.Map<IEnumerable<CityDto>>(citiesFromDb);
             return Ok(_dataShaper.ShapeData(citiesDto, parameters.Fields));
         }
+        /// <summary>
+        /// Возвращает город страны id
+        /// </summary>
+        /// <param name="partWorldId"></param>
+        /// <param name="countryId"></param>
+        /// <param name="id"></param>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
         [HttpGet("{id}", Name = "GetCity")]
         [HttpHead("{id}")]
         public async Task<IActionResult> GetCityAsync(Guid partWorldId, Guid countryId, Guid id, [FromQuery] CityParameters parameters)
@@ -54,6 +69,13 @@ namespace lrs.Controllers
             var cityDto = _mapper.Map<CityDto>(cityDb);
             return Ok(_dataShaper.ShapeData(cityDto, parameters.Fields));
         }
+        /// <summary>
+        /// Создает город
+        /// </summary>
+        /// <param name="partWorldId"></param>
+        /// <param name="countryId"></param>
+        /// <param name="city"></param>
+        /// <returns></returns>
         [HttpPost]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateCityAsync(Guid partWorldId, Guid countryId, [FromBody] CityCreateDto city)
@@ -72,6 +94,13 @@ namespace lrs.Controllers
                 cityReturn.Id
             }, cityReturn);
         }
+        /// <summary>
+        /// Удалает город
+        /// </summary>
+        /// <param name="partWorldId"></param>
+        /// <param name="countryId"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCityAsync(Guid partWorldId, Guid countryId, Guid id)
         {
@@ -88,6 +117,14 @@ namespace lrs.Controllers
             await _repository.SaveAsync();
             return NoContent();
         }
+        /// <summary>
+        /// Обновляет город
+        /// </summary>
+        /// <param name="partWorldId"></param>
+        /// <param name="countryId"></param>
+        /// <param name="id"></param>
+        /// <param name="city"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ServiceFilter(typeof(ValidateCityExistsAttribute))]
@@ -114,6 +151,10 @@ namespace lrs.Controllers
             }
             return null;
         }
+        /// <summary>
+        /// Возвращает заголовки запросов
+        /// </summary>
+        /// <returns></returns>
         [HttpOptions]
         public IActionResult GetOptions()
         {

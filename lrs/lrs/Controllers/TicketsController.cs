@@ -27,7 +27,15 @@ namespace lrs.Controllers
             _mapper = mapper;
             _dataShaper = dataShaper;
         }
-
+        /// <summary>
+        /// Возвращает список путевок в отель
+        /// </summary>
+        /// <param name="partWorldId"></param>
+        /// <param name="countryId"></param>
+        /// <param name="cityId"></param>
+        /// <param name="hotelId"></param>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
         [HttpGet]
         [HttpHead]
         public async Task<IActionResult> GetTicketsAsync(Guid partWorldId, Guid countryId, Guid cityId, Guid hotelId, [FromQuery] TicketParameters parameters)
@@ -42,6 +50,16 @@ namespace lrs.Controllers
             var ticketsDto = _mapper.Map<IEnumerable<TicketDto>>(ticketsFromDb);
             return Ok(_dataShaper.ShapeData(ticketsDto, parameters.Fields));
         }
+        /// <summary>
+        /// Возвращает путевку в отель
+        /// </summary>
+        /// <param name="partWorldId"></param>
+        /// <param name="countryId"></param>
+        /// <param name="cityId"></param>
+        /// <param name="hotelId"></param>
+        /// <param name="id"></param>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
         [HttpGet("{id}", Name = "GetTicket")]
         [HttpHead("{id}")]
         public async Task<IActionResult> GetTicket(Guid partWorldId, Guid countryId, Guid cityId, Guid hotelId, Guid id, [FromQuery] TicketParameters parameters)
@@ -58,6 +76,15 @@ namespace lrs.Controllers
             var ticketDto = _mapper.Map<TicketDto>(ticketDb);
             return Ok(_dataShaper.ShapeData(ticketDto, parameters.Fields));
         }
+        /// <summary>
+        /// Создает путевку
+        /// </summary>
+        /// <param name="partWorldId"></param>
+        /// <param name="countryId"></param>
+        /// <param name="cityId"></param>
+        /// <param name="hotelId"></param>
+        /// <param name="ticket"></param>
+        /// <returns></returns>
         [HttpPost]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateTicket(Guid partWorldId, Guid countryId, Guid cityId, Guid hotelId, [FromBody] TicketCreateDto ticket)
@@ -78,6 +105,16 @@ namespace lrs.Controllers
                 ticketReturn.Id
             }, ticketReturn);
         }
+        /// <summary>
+        /// Обновляет путевку
+        /// </summary>
+        /// <param name="partWorldId"></param>
+        /// <param name="countryId"></param>
+        /// <param name="cityId"></param>
+        /// <param name="hotelId"></param>
+        /// <param name="id"></param>
+        /// <param name="ticket"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ServiceFilter(typeof(ValidateTicketExistsAttribute))]
@@ -88,6 +125,15 @@ namespace lrs.Controllers
             await _repository.SaveAsync();
             return NoContent();
         }
+        /// <summary>
+        /// Удаляет путевку
+        /// </summary>
+        /// <param name="partWorldId"></param>
+        /// <param name="countryId"></param>
+        /// <param name="cityId"></param>
+        /// <param name="hotelId"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTicket(Guid partWorldId, Guid countryId, Guid cityId, Guid hotelId, Guid id)
         {
@@ -104,6 +150,16 @@ namespace lrs.Controllers
             await _repository.SaveAsync();
             return NoContent();
         }
+        /// <summary>
+        /// Обновляет путевку
+        /// </summary>
+        /// <param name="partWorldId"></param>
+        /// <param name="countryId"></param>
+        /// <param name="cityId"></param>
+        /// <param name="hotelId"></param>
+        /// <param name="id"></param>
+        /// <param name="ticket"></param>
+        /// <returns></returns>
         [HttpPatch("{id}")]
         [ServiceFilter(typeof(ValidateTicketExistsAttribute))]
         public async Task<IActionResult> PatchUpdateTicket(Guid partWorldId, Guid countryId, Guid cityId, Guid hotelId, Guid id, [FromBody] JsonPatchDocument<TicketUpdateDto> ticket)
@@ -154,6 +210,10 @@ namespace lrs.Controllers
             }
             return null;
         }
+        /// <summary>
+        /// Возвращает заголовки запросов
+        /// </summary>
+        /// <returns></returns>
         [HttpOptions]
         public IActionResult GetOptions()
         {

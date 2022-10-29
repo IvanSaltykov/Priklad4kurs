@@ -31,6 +31,12 @@ namespace lrs.Controllers
             _mapper = mapper;
             _dataShaper = dataShaper;
         }
+        /// <summary>
+        /// Возвращает все компании
+        /// </summary>
+        /// <param name="parameters"></param>
+        /// <returns>Компании</returns>
+        /// <response code="401">Требуется авторизация пользователя</response>
         [HttpGet(Name = "GetCompanies"), Authorize(Roles = "Manager")]
         [HttpHead]
         public async Task<IActionResult> GetCompanies([FromQuery] CompanyParameters parameters)
@@ -40,6 +46,12 @@ namespace lrs.Controllers
             var companyDto = _mapper.Map<IEnumerable<CompanyDto>>(companies);
             return Ok(_dataShaper.ShapeData(companyDto, parameters.Fields));
         }
+        /// <summary>
+        /// Возвращает компанию по id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
         [HttpGet("{id}", Name = "CompanyById")]
         [HttpHead("{id}")]
         public async Task<IActionResult> GetCompany(Guid id, [FromQuery] CompanyParameters parameters)
@@ -53,6 +65,11 @@ namespace lrs.Controllers
             var companyDto = _mapper.Map<CompanyDto>(company);
             return Ok(_dataShaper.ShapeData(companyDto, parameters.Fields));
         }
+        /// <summary>
+        /// Создает новую компанию в базе данных
+        /// </summary>
+        /// <param name="company"></param>
+        /// <returns></returns>
         [HttpPost]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateCompany([FromBody] CompanyForCreationDto company)
@@ -63,7 +80,11 @@ namespace lrs.Controllers
             var companyToReturn = _mapper.Map<CompanyDto>(companyEntity);
             return CreatedAtRoute("CompanyById", new { id = companyToReturn.Id },companyToReturn);
         }
-
+        /// <summary>
+        /// Возвращает коллекцию компаний
+        /// </summary>
+        /// <param name="ids"></param>
+        /// <returns></returns>
         [HttpGet("collection/({ids})", Name = "CompanyCollection")]
         public async Task<IActionResult> GetCompanyCollection([ModelBinder(BinderType = typeof(ArrayModelBinder))] IEnumerable<Guid> ids)
         {
@@ -81,6 +102,11 @@ namespace lrs.Controllers
             var companiesToReturn = _mapper.Map<IEnumerable<CompanyDto>>(companyEntities);
             return Ok(companiesToReturn);
         }
+        /// <summary>
+        /// Создает коллекцию компаний
+        /// </summary>
+        /// <param name="companyCollection"></param>
+        /// <returns></returns>
         [HttpPost("collection")]
         public async Task<IActionResult> CreateCompanyCollection([FromBody] IEnumerable<CompanyForCreationDto> companyCollection)
         {
@@ -99,15 +125,26 @@ namespace lrs.Controllers
             var ids = string.Join(",", companyCollectionToReturn.Select(c => c.Id));
             return CreatedAtRoute("CompanyCollection", new { ids }, companyCollectionToReturn);
         }
+        /// <summary>
+        /// Удаляет компанию по id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         [ServiceFilter(typeof(ValidateCompanyExistsAttribute))]
-        public async Task<IActionResult> CreateCompanyCollection(Guid id)
+        public async Task<IActionResult> DeleteCompany(Guid id)
         {
             var company = HttpContext.Items["company"] as Company;
             _repository.Company.DeleteCompany(company);
             await _repository.SaveAsync();
             return NoContent();
         }
+        /// <summary>
+        /// Изменяет компанию
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="company"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ServiceFilter(typeof(ValidateCompanyExistsAttribute))]
@@ -118,6 +155,10 @@ namespace lrs.Controllers
             await _repository.SaveAsync();
             return NoContent();
         }
+        /// <summary>
+        /// Возвращает заголовки запросов
+        /// </summary>
+        /// <returns></returns>
         [HttpOptions]
         public IActionResult GetCompaniesOptions()
         {

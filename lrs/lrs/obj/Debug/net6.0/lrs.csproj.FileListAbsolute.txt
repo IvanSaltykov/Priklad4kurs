@@ -376,3 +376,5 @@ E:\files\4курс\прикладное4\lrs_in_git\Priklad4kurs\lrs\lrs\bin\Deb
 E:\files\4курс\прикладное4\lrs_in_git\Priklad4kurs\lrs\lrs\bin\Debug\net6.0\Microsoft.Extensions.Identity.Core.dll
 E:\files\4курс\прикладное4\lrs_in_git\Priklad4kurs\lrs\lrs\bin\Debug\net6.0\Microsoft.Extensions.Identity.Stores.dll
 E:\files\4курс\прикладное4\lrs_in_git\Priklad4kurs\lrs\lrs\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+E:\files\4курс\прикладное4\lrs_in_git\Priklad4kurs\lrs\lrs\bin\Debug\net6.0\lrs.xml
+E:\files\4курс\прикладное4\lrs_in_git\Priklad4kurs\lrs\lrs\obj\Debug\net6.0\lrs.xml

@@ -25,6 +25,11 @@ namespace lrs.Controllers
             _userManager = userManager;
             _authManager = authManager;
         }
+        /// <summary>
+        /// Создание аккаунта пользователя
+        /// </summary>
+        /// <param name="userForRegistration"></param>
+        /// <returns></returns>
         [HttpPost]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> RegisterUser([FromBody] UserForRegistrationDto userForRegistration)
@@ -42,7 +47,11 @@ namespace lrs.Controllers
             await _userManager.AddToRolesAsync(user, userForRegistration.Roles);
             return StatusCode(201);
         }
-        //Previous action
+        /// <summary>
+        /// Авторизация пользователя
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         [HttpPost("login")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> Authenticate([FromBody] UserForAuthenticationDto user)

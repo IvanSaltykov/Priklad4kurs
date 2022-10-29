@@ -26,6 +26,14 @@ namespace lrs.Controllers
             _mapper = mapper;
             _dataShaper = dataShaper;
         }
+        /// <summary>
+        /// Возвращает список отелей города
+        /// </summary>
+        /// <param name="partWorldId"></param>
+        /// <param name="countryId"></param>
+        /// <param name="cityId"></param>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
         [HttpGet]
         [HttpHead]
         public async Task<IActionResult> GetHotelsAsync(Guid partWorldId, Guid countryId, Guid cityId, [FromQuery] HotelParameters parameters)
@@ -38,6 +46,15 @@ namespace lrs.Controllers
             var hotelsDto = _mapper.Map<IEnumerable<HotelDto>>(hotelsFromDb);
             return Ok(_dataShaper.ShapeData(hotelsDto, parameters.Fields));
         }
+        /// <summary>
+        /// Возвращает отель города
+        /// </summary>
+        /// <param name="partWorldId"></param>
+        /// <param name="countryId"></param>
+        /// <param name="cityId"></param>
+        /// <param name="id"></param>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
         [HttpGet("{id}", Name = "GetHotel")]
         [HttpHead("{id}")]
         public async Task<IActionResult> GetHotelAsync(Guid partWorldId, Guid countryId, Guid cityId, Guid id, [FromQuery] HotelParameters parameters)
@@ -54,6 +71,14 @@ namespace lrs.Controllers
             var hotelDto = _mapper.Map<HotelDto>(hotelDb);
             return Ok(_dataShaper.ShapeData(hotelDto, parameters.Fields));
         }
+        /// <summary>
+        /// Создает отель
+        /// </summary>
+        /// <param name="partWorldId"></param>
+        /// <param name="countryId"></param>
+        /// <param name="cityId"></param>
+        /// <param name="hotel"></param>
+        /// <returns></returns>
         [HttpPost]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> GetHotelAsync(Guid partWorldId, Guid countryId, Guid cityId, [FromBody] HotelCreateDto hotel)
@@ -73,6 +98,14 @@ namespace lrs.Controllers
                 hotelReturn.Id
             }, hotelReturn);
         }
+        /// <summary>
+        /// Удаляет отель
+        /// </summary>
+        /// <param name="partWorldId"></param>
+        /// <param name="countryId"></param>
+        /// <param name="cityId"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteHotelAsync(Guid partWorldId, Guid countryId, Guid cityId, Guid id)
         {
@@ -89,6 +122,15 @@ namespace lrs.Controllers
             await _repository.SaveAsync();
             return NoContent();
         }
+        /// <summary>
+        /// Обновляет отель
+        /// </summary>
+        /// <param name="partWorldId"></param>
+        /// <param name="countryId"></param>
+        /// <param name="cityId"></param>
+        /// <param name="id"></param>
+        /// <param name="hotel"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ServiceFilter(typeof(ValidateHotelExistsAttribute))]
@@ -121,6 +163,10 @@ namespace lrs.Controllers
             }
             return null;
         }
+        /// <summary>
+        /// Возвращает заголовки запросов
+        /// </summary>
+        /// <returns></returns>
         [HttpOptions]
         public IActionResult GetOptions()
         {

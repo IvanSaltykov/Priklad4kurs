@@ -1,0 +1,414 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>lrs</name>
+    </assembly>
+    <members>
+        <member name="M:lrs.Controllers.AuthenticationController.RegisterUser(Entities.DataTransferObjects.UserForRegistrationDto)">
+            <summary>
+            Создание аккаунта пользователя
+            </summary>
+            <param name="userForRegistration"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lrs.Controllers.AuthenticationController.Authenticate(Entities.DataTransferObjects.UserForAuthenticationDto)">
+            <summary>
+            Авторизация пользователя
+            </summary>
+            <param name="user"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lrs.Controllers.CitiesController.GetCitiesAsync(System.Guid,System.Guid,Entities.RequestFeatures.CityParameters)">
+            <summary>
+            Возвращает список городов страны
+            </summary>
+            <param name="partWorldId"></param>
+            <param name="countryId"></param>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lrs.Controllers.CitiesController.GetCityAsync(System.Guid,System.Guid,System.Guid,Entities.RequestFeatures.CityParameters)">
+            <summary>
+            Возвращает город страны id
+            </summary>
+            <param name="partWorldId"></param>
+            <param name="countryId"></param>
+            <param name="id"></param>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lrs.Controllers.CitiesController.CreateCityAsync(System.Guid,System.Guid,Entities.DataTransferObjects.CityCreateDto)">
+            <summary>
+            Создает город
+            </summary>
+            <param name="partWorldId"></param>
+            <param name="countryId"></param>
+            <param name="city"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lrs.Controllers.CitiesController.DeleteCityAsync(System.Guid,System.Guid,System.Guid)">
+            <summary>
+            Удалает город
+            </summary>
+            <param name="partWorldId"></param>
+            <param name="countryId"></param>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lrs.Controllers.CitiesController.UpdateCityAsync(System.Guid,System.Guid,System.Guid,Entities.DataTransferObjects.CityUpdateDto)">
+            <summary>
+            Обновляет город
+            </summary>
+            <param name="partWorldId"></param>
+            <param name="countryId"></param>
+            <param name="id"></param>
+            <param name="city"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lrs.Controllers.CitiesController.GetOptions">
+            <summary>
+            Возвращает заголовки запросов
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:lrs.Controllers.CompaniesController.GetCompanies(Entities.RequestFeatures.CompanyParameters)">
+            <summary>
+            Возвращает все компании
+            </summary>
+            <param name="parameters"></param>
+            <returns>Компании</returns>
+            <response code="401">Требуется авторизация пользователя</response>
+        </member>
+        <member name="M:lrs.Controllers.CompaniesController.GetCompany(System.Guid,Entities.RequestFeatures.CompanyParameters)">
+            <summary>
+            Возвращает компанию по id
+            </summary>
+            <param name="id"></param>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lrs.Controllers.CompaniesController.CreateCompany(Entities.DataTransferObjects.CompanyForCreationDto)">
+            <summary>
+            Создает новую компанию в базе данных
+            </summary>
+            <param name="company"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lrs.Controllers.CompaniesController.GetCompanyCollection(System.Collections.Generic.IEnumerable{System.Guid})">
+            <summary>
+            Возвращает коллекцию компаний
+            </summary>
+            <param name="ids"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lrs.Controllers.CompaniesController.CreateCompanyCollection(System.Collections.Generic.IEnumerable{Entities.DataTransferObjects.CompanyForCreationDto})">
+            <summary>
+            Создает коллекцию компаний
+            </summary>
+            <param name="companyCollection"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lrs.Controllers.CompaniesController.DeleteCompany(System.Guid)">
+            <summary>
+            Удаляет компанию по id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lrs.Controllers.CompaniesController.UpdateCompany(System.Guid,Entities.DataTransferObjects.CompanyForUpdateDto)">
+            <summary>
+            Изменяет компанию
+            </summary>
+            <param name="id"></param>
+            <param name="company"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lrs.Controllers.CompaniesController.GetCompaniesOptions">
+            <summary>
+            Возвращает заголовки запросов
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:lrs.Controllers.CountriesController.GetCountriesAsync(System.Guid,Entities.RequestFeatures.CountryParameters)">
+            <summary>
+            Возращает спискок стран части света
+            </summary>
+            <param name="partWorldId"></param>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lrs.Controllers.CountriesController.GetCountryAsync(System.Guid,System.Guid,Entities.RequestFeatures.CountryParameters)">
+            <summary>
+            Возращает страну части света
+            </summary>
+            <param name="partWorldId"></param>
+            <param name="id"></param>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lrs.Controllers.CountriesController.CreateCountryAsync(System.Guid,Entities.DataTransferObjects.CountryCreateDto)">
+            <summary>
+            Создает новую страну
+            </summary>
+            <param name="partWorldId"></param>
+            <param name="country"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lrs.Controllers.CountriesController.DeleteCountryAsync(System.Guid,System.Guid)">
+            <summary>
+            Удалает страну
+            </summary>
+            <param name="partWorldId"></param>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lrs.Controllers.CountriesController.UpdateCountryAsync(System.Guid,System.Guid,Entities.DataTransferObjects.CountryUpdateDto)">
+            <summary>
+            Обновляет страну
+            </summary>
+            <param name="partWorldId"></param>
+            <param name="id"></param>
+            <param name="country"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lrs.Controllers.CountriesController.GetOptions">
+            <summary>
+            Возвращает заголовки запросов
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:lrs.Controllers.EmployeeController.GetEmployeesForCompany(System.Guid,Entities.RequestFeatures.EmployeeParameters)">
+            <summary>
+            Возвращает работников определенной компании
+            </summary>
+            <param name="companyId"></param>
+            <param name="employeeParameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lrs.Controllers.EmployeeController.GetEmployeesForCompany(System.Guid,System.Guid,Entities.RequestFeatures.EmployeeParameters)">
+            <summary>
+            Возвращает работника определенной компании
+            </summary>
+            <param name="companyId"></param>
+            <param name="id"></param>
+            <param name="employeeParameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lrs.Controllers.EmployeeController.CreateEmployeeForCompany(System.Guid,Entities.DataTransferObjects.EmployeeForCreationDto)">
+            <summary>
+            Создает нового сотрудника компании
+            </summary>
+            <param name="companyId"></param>
+            <param name="employee"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lrs.Controllers.EmployeeController.DeleteEmployeeForCompany(System.Guid,System.Guid)">
+            <summary>
+            Удаляет сотрудника компании
+            </summary>
+            <param name="companyId"></param>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lrs.Controllers.EmployeeController.UpdateEmployeeForCompany(System.Guid,System.Guid,Entities.DataTransferObjects.EmployeeForUpdateDto)">
+            <summary>
+            Обновляет сотрудника компании
+            </summary>
+            <param name="companyId"></param>
+            <param name="id"></param>
+            <param name="employee"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lrs.Controllers.EmployeeController.PartiallyUpdateEmployeeForCompany(System.Guid,System.Guid,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{Entities.DataTransferObjects.EmployeeForUpdateDto})">
+            <summary>
+            Обновляет сотрудника компании
+            </summary>
+            <param name="companyId"></param>
+            <param name="id"></param>
+            <param name="patchDoc"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lrs.Controllers.EmployeeController.GetOptions">
+            <summary>
+            Возвращает заголовки запросов
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:lrs.Controllers.HotelsController.GetHotelsAsync(System.Guid,System.Guid,System.Guid,Entities.RequestFeatures.HotelParameters)">
+            <summary>
+            Возвращает список отелей города
+            </summary>
+            <param name="partWorldId"></param>
+            <param name="countryId"></param>
+            <param name="cityId"></param>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lrs.Controllers.HotelsController.GetHotelAsync(System.Guid,System.Guid,System.Guid,System.Guid,Entities.RequestFeatures.HotelParameters)">
+            <summary>
+            Возвращает отель города
+            </summary>
+            <param name="partWorldId"></param>
+            <param name="countryId"></param>
+            <param name="cityId"></param>
+            <param name="id"></param>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lrs.Controllers.HotelsController.GetHotelAsync(System.Guid,System.Guid,System.Guid,Entities.DataTransferObjects.HotelCreateDto)">
+            <summary>
+            Создает отель
+            </summary>
+            <param name="partWorldId"></param>
+            <param name="countryId"></param>
+            <param name="cityId"></param>
+            <param name="hotel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lrs.Controllers.HotelsController.DeleteHotelAsync(System.Guid,System.Guid,System.Guid,System.Guid)">
+            <summary>
+            Удаляет отель
+            </summary>
+            <param name="partWorldId"></param>
+            <param name="countryId"></param>
+            <param name="cityId"></param>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lrs.Controllers.HotelsController.UpdateHotel(System.Guid,System.Guid,System.Guid,System.Guid,Entities.DataTransferObjects.HotelUpdateDto)">
+            <summary>
+            Обновляет отель
+            </summary>
+            <param name="partWorldId"></param>
+            <param name="countryId"></param>
+            <param name="cityId"></param>
+            <param name="id"></param>
+            <param name="hotel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lrs.Controllers.HotelsController.GetOptions">
+            <summary>
+            Возвращает заголовки запросов
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:lrs.Controllers.PartWorldsController.GetPartWorldAsync(System.Guid,Entities.RequestFeatures.PartWorldParameters)">
+            <summary>
+            Возвращает часть света по id
+            </summary>
+            <param name="id"></param>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lrs.Controllers.PartWorldsController.GetPartWorldsAsync(Entities.RequestFeatures.PartWorldParameters)">
+            <summary>
+            Возвращает список частей света
+            </summary>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lrs.Controllers.PartWorldsController.DeletePartWorldAsync(System.Guid)">
+            <summary>
+            Удаляет часть света
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lrs.Controllers.PartWorldsController.CreatePartWorldAsync(Entities.DataTransferObjects.PartWorldCreateDto)">
+            <summary>
+            Создает часть света
+            </summary>
+            <param name="partWorld"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lrs.Controllers.PartWorldsController.UpdatePartWorldAsync(System.Guid,Entities.DataTransferObjects.PartWorldUpdateDto)">
+            <summary>
+            Обновляет часть света
+            </summary>
+            <param name="id"></param>
+            <param name="partWorld"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lrs.Controllers.PartWorldsController.GetOptions">
+            <summary>
+            Возвращает заголовки запросов
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:lrs.Controllers.TicketsController.GetTicketsAsync(System.Guid,System.Guid,System.Guid,System.Guid,Entities.RequestFeatures.TicketParameters)">
+            <summary>
+            Возвращает список путевок в отель
+            </summary>
+            <param name="partWorldId"></param>
+            <param name="countryId"></param>
+            <param name="cityId"></param>
+            <param name="hotelId"></param>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lrs.Controllers.TicketsController.GetTicket(System.Guid,System.Guid,System.Guid,System.Guid,System.Guid,Entities.RequestFeatures.TicketParameters)">
+            <summary>
+            Возвращает путевку в отель
+            </summary>
+            <param name="partWorldId"></param>
+            <param name="countryId"></param>
+            <param name="cityId"></param>
+            <param name="hotelId"></param>
+            <param name="id"></param>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lrs.Controllers.TicketsController.CreateTicket(System.Guid,System.Guid,System.Guid,System.Guid,Entities.DataTransferObjects.TicketCreateDto)">
+            <summary>
+            Создает путевку
+            </summary>
+            <param name="partWorldId"></param>
+            <param name="countryId"></param>
+            <param name="cityId"></param>
+            <param name="hotelId"></param>
+            <param name="ticket"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lrs.Controllers.TicketsController.UpdateTicket(System.Guid,System.Guid,System.Guid,System.Guid,System.Guid,Entities.DataTransferObjects.TicketUpdateDto)">
+            <summary>
+            Обновляет путевку
+            </summary>
+            <param name="partWorldId"></param>
+            <param name="countryId"></param>
+            <param name="cityId"></param>
+            <param name="hotelId"></param>
+            <param name="id"></param>
+            <param name="ticket"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lrs.Controllers.TicketsController.DeleteTicket(System.Guid,System.Guid,System.Guid,System.Guid,System.Guid)">
+            <summary>
+            Удаляет путевку
+            </summary>
+            <param name="partWorldId"></param>
+            <param name="countryId"></param>
+            <param name="cityId"></param>
+            <param name="hotelId"></param>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lrs.Controllers.TicketsController.PatchUpdateTicket(System.Guid,System.Guid,System.Guid,System.Guid,System.Guid,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{Entities.DataTransferObjects.TicketUpdateDto})">
+            <summary>
+            Обновляет путевку
+            </summary>
+            <param name="partWorldId"></param>
+            <param name="countryId"></param>
+            <param name="cityId"></param>
+            <param name="hotelId"></param>
+            <param name="id"></param>
+            <param name="ticket"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lrs.Controllers.TicketsController.GetOptions">
+            <summary>
+            Возвращает заголовки запросов
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

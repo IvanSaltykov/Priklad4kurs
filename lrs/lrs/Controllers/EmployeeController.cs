@@ -28,6 +28,12 @@ namespace lrs.Controllers
             _mapper = mapper;
             _dataShaper = dataShaper;
         }
+        /// <summary>
+        /// Возвращает работников определенной компании
+        /// </summary>
+        /// <param name="companyId"></param>
+        /// <param name="employeeParameters"></param>
+        /// <returns></returns>
         [HttpGet]
         [HttpHead]
         public async Task<IActionResult> GetEmployeesForCompany(Guid companyId, [FromQuery] EmployeeParameters employeeParameters)
@@ -45,6 +51,13 @@ namespace lrs.Controllers
             var employeesDto = _mapper.Map<IEnumerable<EmployeeDto>>(employeesFromDb);
             return Ok(_dataShaper.ShapeData(employeesDto, employeeParameters.Fields));
         }
+        /// <summary>
+        /// Возвращает работника определенной компании
+        /// </summary>
+        /// <param name="companyId"></param>
+        /// <param name="id"></param>
+        /// <param name="employeeParameters"></param>
+        /// <returns></returns>
         [HttpGet("{id}", Name = "GetEmployeeForCompany")]
         [HttpHead("{id}")]
         public async Task<IActionResult> GetEmployeesForCompany(Guid companyId, Guid id, [FromQuery] EmployeeParameters employeeParameters)
@@ -64,6 +77,12 @@ namespace lrs.Controllers
             var employeeDto = _mapper.Map<EmployeeDto>(employeeDb);
             return Ok(_dataShaper.ShapeData(employeeDto, employeeParameters.Fields));
         }
+        /// <summary>
+        /// Создает нового сотрудника компании
+        /// </summary>
+        /// <param name="companyId"></param>
+        /// <param name="employee"></param>
+        /// <returns></returns>
         [HttpPost]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateEmployeeForCompany(Guid companyId, [FromBody] EmployeeForCreationDto employee)
@@ -78,6 +97,12 @@ namespace lrs.Controllers
                 id = employeeToReturn.Id
             }, employeeToReturn);
         }
+        /// <summary>
+        /// Удаляет сотрудника компании
+        /// </summary>
+        /// <param name="companyId"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ServiceFilter(typeof(ValidateEmployeeForCompanyExistsAttribute))]
@@ -88,6 +113,13 @@ namespace lrs.Controllers
             await _repository.SaveAsync();
             return NoContent();
         }
+        /// <summary>
+        /// Обновляет сотрудника компании
+        /// </summary>
+        /// <param name="companyId"></param>
+        /// <param name="id"></param>
+        /// <param name="employee"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ServiceFilter(typeof(ValidateEmployeeForCompanyExistsAttribute))]
@@ -98,6 +130,13 @@ namespace lrs.Controllers
             await _repository.SaveAsync();
             return NoContent();
         }
+        /// <summary>
+        /// Обновляет сотрудника компании
+        /// </summary>
+        /// <param name="companyId"></param>
+        /// <param name="id"></param>
+        /// <param name="patchDoc"></param>
+        /// <returns></returns>
         [HttpPatch("{id}")]
         [ServiceFilter(typeof(ValidateEmployeeForCompanyExistsAttribute))]
         public async Task<IActionResult> PartiallyUpdateEmployeeForCompany(Guid companyId, Guid id, [FromBody] JsonPatchDocument<EmployeeForUpdateDto> patchDoc)
@@ -120,6 +159,10 @@ namespace lrs.Controllers
             await _repository.SaveAsync();
             return NoContent();
         }
+        /// <summary>
+        /// Возвращает заголовки запросов
+        /// </summary>
+        /// <returns></returns>
         [HttpOptions]
         public IActionResult GetOptions()
         {
