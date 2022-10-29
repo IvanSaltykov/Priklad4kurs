@@ -56,6 +56,7 @@ public class Startup
         services.ConfigureIdentity();
         services.ConfigureJWT(Configuration);
         services.AddScoped<IAuthenticationManager, AuthenticationManager>();
+        services.ConfigureSwagger();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
