@@ -5,6 +5,7 @@ using Entities.Models;
 using Entities.RequestFeatures;
 using lrs.ActionFilters;
 using lrs.ModelBinders;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -13,7 +14,6 @@ using System.Data.SqlTypes;
 
 namespace lrs.Controllers
 {
-    [ApiVersion("1.0")]
     [Route("api/companies")]
     [ApiController]
     public class CompaniesController : ControllerBase
@@ -29,7 +29,7 @@ namespace lrs.Controllers
             _mapper = mapper;
             _dataShaper = dataShaper;
         }
-        [HttpGet]
+        [HttpGet(Name = "GetCompanies"), Authorize(Roles = "Manager")]
         [HttpHead]
         public async Task<IActionResult> GetCompanies([FromQuery] CompanyParameters parameters)
         {
