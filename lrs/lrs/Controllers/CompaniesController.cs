@@ -14,8 +14,10 @@ using System.Data.SqlTypes;
 
 namespace lrs.Controllers
 {
+    [ApiVersion("1.0")]
     [Route("api/companies")]
     [ApiController]
+    [ApiExplorerSettings(GroupName = "v1")]
     public class CompaniesController : ControllerBase
     {
         private readonly IDataShaper<CompanyDto> _dataShaper;

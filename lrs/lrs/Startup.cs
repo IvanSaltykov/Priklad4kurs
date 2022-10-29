@@ -52,6 +52,7 @@ public class Startup
         services.AddScoped<IDataShaper<CityDto>, DataShaper<CityDto>>();
         services.AddScoped<IDataShaper<HotelDto>, DataShaper<HotelDto>>();
         services.AddScoped<IDataShaper<TicketDto>, DataShaper<TicketDto>>();
+        services.ConfigureVersioning();
         services.AddAuthentication();
         services.ConfigureIdentity();
         services.ConfigureJWT(Configuration);
@@ -84,6 +85,12 @@ public class Startup
         app.UseEndpoints(endpoints =>
         {
             endpoints.MapControllers();
+        });
+        app.UseSwagger();
+        app.UseSwaggerUI(s =>
+        {
+            s.SwaggerEndpoint("/swagger/v1/swagger.json", "Code Maze API v1");
+            s.SwaggerEndpoint("/swagger/v2/swagger.json", "Code Maze API v2");
         });
     }
 }

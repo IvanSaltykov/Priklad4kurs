@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Repository;
+using System.Reflection;
 using System.Text;
 
 namespace lrs.Extensions
@@ -79,6 +80,15 @@ namespace lrs.Extensions
                 };
             });
         }
+        public static void ConfigureVersioning(this IServiceCollection services)
+        {
+            services.AddApiVersioning(opt =>
+            {
+                opt.ReportApiVersions = true;
+                opt.AssumeDefaultVersionWhenUnspecified = true;
+                opt.DefaultApiVersion = new ApiVersion(1, 0);
+            });
+        }
         public static void ConfigureSwagger(this IServiceCollection services)
         {
             services.AddSwaggerGen(s =>
@@ -86,13 +96,49 @@ namespace lrs.Extensions
                 s.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Title = "Code Maze API",
-                    Version = "v1"
+                    Version ="v1",
+                    Description = "CompanyEmployees API by CodeMaze",
+                    TermsOfService = new Uri("https://example.com/terms"),
+                    Contact = new OpenApiContact
+                    {
+                        Name = "John Doe",
+                        Email = "John.Doe@gmail.com",
+                        Url = new Uri("https://twitter.com/johndoe"),
+                    },
+                    License = new OpenApiLicense
+                    {
+                        Name = "CompanyEmployees API LICX",
+                        Url = new Uri("https://example.com/license"),
+                    }
                 });
                 s.SwaggerDoc("v2", new OpenApiInfo
                 {
                     Title = "Code Maze API",
-                    Version = "v2"
+                    Version ="v2"
                 });
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                s.IncludeXmlComments(xmlPath);
+                s.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    In = ParameterLocation.Header,
+                    Description = "Place to add JWT with Bearer",
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer"
+                });
+                s.AddSecurityRequirement(new OpenApiSecurityRequirement()
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,Id = "Bearer"
+                            },
+                            Name = "Bearer",
+                        },
+                        new List<string>()}});
             });
         }
     }
