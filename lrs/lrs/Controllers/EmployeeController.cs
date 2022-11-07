@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using Entities.RequestFeatures;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace lrs.Controllers
 {
@@ -28,7 +30,7 @@ namespace lrs.Controllers
             _mapper = mapper;
             _dataShaper = dataShaper;
         }
-        [HttpGet]
+        [HttpGet, Authorize(Roles = "Manager")]
         [HttpHead]
         public async Task<IActionResult> GetEmployeesForCompany(Guid companyId, [FromQuery] EmployeeParameters employeeParameters)
         {
@@ -45,7 +47,7 @@ namespace lrs.Controllers
             var employeesDto = _mapper.Map<IEnumerable<EmployeeDto>>(employeesFromDb);
             return Ok(_dataShaper.ShapeData(employeesDto, employeeParameters.Fields));
         }
-        [HttpGet("{id}", Name = "GetEmployeeForCompany")]
+        [HttpGet("{id}", Name = "GetEmployeeForCompany"), Authorize(Roles = "ADMINISTRATOR")]
         [HttpHead("{id}")]
         public async Task<IActionResult> GetEmployeesForCompany(Guid companyId, Guid id, [FromQuery] EmployeeParameters employeeParameters)
         {
@@ -64,7 +66,7 @@ namespace lrs.Controllers
             var employeeDto = _mapper.Map<EmployeeDto>(employeeDb);
             return Ok(_dataShaper.ShapeData(employeeDto, employeeParameters.Fields));
         }
-        [HttpPost]
+        [HttpPost, Authorize]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateEmployeeForCompany(Guid companyId, [FromBody] EmployeeForCreationDto employee)
         {
@@ -78,7 +80,7 @@ namespace lrs.Controllers
                 id = employeeToReturn.Id
             }, employeeToReturn);
         }
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}"), Authorize(Roles = "ADMINISTRATOR")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ServiceFilter(typeof(ValidateEmployeeForCompanyExistsAttribute))]
         public async Task<IActionResult> DeleteEmployeeForCompany(Guid companyId, Guid id)
@@ -88,7 +90,7 @@ namespace lrs.Controllers
             await _repository.SaveAsync();
             return NoContent();
         }
-        [HttpPut("{id}")]
+        [HttpPut("{id}"), Authorize]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ServiceFilter(typeof(ValidateEmployeeForCompanyExistsAttribute))]
         public async Task<IActionResult> UpdateEmployeeForCompany(Guid companyId, Guid id, [FromBody] EmployeeForUpdateDto employee)
@@ -98,7 +100,7 @@ namespace lrs.Controllers
             await _repository.SaveAsync();
             return NoContent();
         }
-        [HttpPatch("{id}")]
+        [HttpPatch("{id}"), Authorize(Roles = "ADMINISTRATOR")]
         [ServiceFilter(typeof(ValidateEmployeeForCompanyExistsAttribute))]
         public async Task<IActionResult> PartiallyUpdateEmployeeForCompany(Guid companyId, Guid id, [FromBody] JsonPatchDocument<EmployeeForUpdateDto> patchDoc)
         {
@@ -120,7 +122,7 @@ namespace lrs.Controllers
             await _repository.SaveAsync();
             return NoContent();
         }
-        [HttpOptions]
+        [HttpOptions, Authorize]
         public IActionResult GetOptions()
         {
             Response.Headers.Add("Allow", "GET, OPTIONS, POST, DELETE, PUT, PATCH");

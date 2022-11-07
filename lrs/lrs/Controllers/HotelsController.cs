@@ -4,6 +4,7 @@ using Entities.DataTransferObjects;
 using Entities.Models;
 using Entities.RequestFeatures;
 using lrs.ActionFilters;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -26,7 +27,7 @@ namespace lrs.Controllers
             _mapper = mapper;
             _dataShaper = dataShaper;
         }
-        [HttpGet]
+        [HttpGet, Authorize]
         [HttpHead]
         public async Task<IActionResult> GetHotelsAsync(Guid partWorldId, Guid countryId, Guid cityId, [FromQuery] HotelParameters parameters)
         {
@@ -38,7 +39,7 @@ namespace lrs.Controllers
             var hotelsDto = _mapper.Map<IEnumerable<HotelDto>>(hotelsFromDb);
             return Ok(_dataShaper.ShapeData(hotelsDto, parameters.Fields));
         }
-        [HttpGet("{id}", Name = "GetHotel")]
+        [HttpGet("{id}", Name = "GetHotel"), Authorize]
         [HttpHead("{id}")]
         public async Task<IActionResult> GetHotelAsync(Guid partWorldId, Guid countryId, Guid cityId, Guid id, [FromQuery] HotelParameters parameters)
         {
@@ -54,7 +55,7 @@ namespace lrs.Controllers
             var hotelDto = _mapper.Map<HotelDto>(hotelDb);
             return Ok(_dataShaper.ShapeData(hotelDto, parameters.Fields));
         }
-        [HttpPost]
+        [HttpPost, Authorize]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> GetHotelAsync(Guid partWorldId, Guid countryId, Guid cityId, [FromBody] HotelCreateDto hotel)
         {
@@ -73,7 +74,7 @@ namespace lrs.Controllers
                 hotelReturn.Id
             }, hotelReturn);
         }
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}"), Authorize]
         public async Task<IActionResult> DeleteHotelAsync(Guid partWorldId, Guid countryId, Guid cityId, Guid id)
         {
             var actionResult = await checkResultAsync(partWorldId, countryId, cityId);
@@ -89,7 +90,7 @@ namespace lrs.Controllers
             await _repository.SaveAsync();
             return NoContent();
         }
-        [HttpPut("{id}")]
+        [HttpPut("{id}"), Authorize]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ServiceFilter(typeof(ValidateHotelExistsAttribute))]
         public async Task<IActionResult> UpdateHotel(Guid partWorldId, Guid countryId, Guid cityId, Guid id, [FromBody] HotelUpdateDto hotel)
@@ -121,7 +122,7 @@ namespace lrs.Controllers
             }
             return null;
         }
-        [HttpOptions]
+        [HttpOptions, Authorize]
         public IActionResult GetOptions()
         {
             Response.Headers.Add("Allow", "GET, OPTIONS, POST, DELETE, PUT, PATCH");

@@ -4,6 +4,7 @@ using Entities.DataTransferObjects;
 using Entities.Models;
 using Entities.RequestFeatures;
 using lrs.ActionFilters;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
@@ -28,7 +29,7 @@ namespace lrs.Controllers
             _dataShaper = dataShaper;
         }
 
-        [HttpGet]
+        [HttpGet, Authorize]
         [HttpHead]
         public async Task<IActionResult> GetTicketsAsync(Guid partWorldId, Guid countryId, Guid cityId, Guid hotelId, [FromQuery] TicketParameters parameters)
         {
@@ -42,7 +43,7 @@ namespace lrs.Controllers
             var ticketsDto = _mapper.Map<IEnumerable<TicketDto>>(ticketsFromDb);
             return Ok(_dataShaper.ShapeData(ticketsDto, parameters.Fields));
         }
-        [HttpGet("{id}", Name = "GetTicket")]
+        [HttpGet("{id}", Name = "GetTicket"), Authorize]
         [HttpHead("{id}")]
         public async Task<IActionResult> GetTicket(Guid partWorldId, Guid countryId, Guid cityId, Guid hotelId, Guid id, [FromQuery] TicketParameters parameters)
         {
@@ -58,7 +59,7 @@ namespace lrs.Controllers
             var ticketDto = _mapper.Map<TicketDto>(ticketDb);
             return Ok(_dataShaper.ShapeData(ticketDto, parameters.Fields));
         }
-        [HttpPost]
+        [HttpPost, Authorize]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateTicket(Guid partWorldId, Guid countryId, Guid cityId, Guid hotelId, [FromBody] TicketCreateDto ticket)
         {
@@ -78,7 +79,7 @@ namespace lrs.Controllers
                 ticketReturn.Id
             }, ticketReturn);
         }
-        [HttpPut("{id}")]
+        [HttpPut("{id}"), Authorize]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ServiceFilter(typeof(ValidateTicketExistsAttribute))]
         public async Task<IActionResult> UpdateTicket(Guid partWorldId, Guid countryId, Guid cityId, Guid hotelId, Guid id, [FromBody] TicketUpdateDto ticket)
@@ -88,7 +89,7 @@ namespace lrs.Controllers
             await _repository.SaveAsync();
             return NoContent();
         }
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}"), Authorize]
         public async Task<IActionResult> DeleteTicket(Guid partWorldId, Guid countryId, Guid cityId, Guid hotelId, Guid id)
         {
             var actionResult = await checkResultAsync(partWorldId, countryId, cityId, hotelId);
@@ -104,7 +105,7 @@ namespace lrs.Controllers
             await _repository.SaveAsync();
             return NoContent();
         }
-        [HttpPatch("{id}")]
+        [HttpPatch("{id}"), Authorize]
         [ServiceFilter(typeof(ValidateTicketExistsAttribute))]
         public async Task<IActionResult> PatchUpdateTicket(Guid partWorldId, Guid countryId, Guid cityId, Guid hotelId, Guid id, [FromBody] JsonPatchDocument<TicketUpdateDto> ticket)
         {
@@ -154,7 +155,7 @@ namespace lrs.Controllers
             }
             return null;
         }
-        [HttpOptions]
+        [HttpOptions, Authorize]
         public IActionResult GetOptions()
         {
             Response.Headers.Add("Allow", "GET, OPTIONS, POST, DELETE, PUT, PATCH");
