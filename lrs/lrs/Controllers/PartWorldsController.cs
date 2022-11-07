@@ -47,7 +47,7 @@ namespace lrs.Controllers
             var partWorldsDto = _mapper.Map<IEnumerable<PartWorldDto>>(partWorlds);
             return Ok(_dataShaper.ShapeData(partWorldsDto, parameters.Fields));
         }
-        [HttpDelete("{id}"), Authorize
+        [HttpDelete("{id}"), Authorize]
         public async Task<IActionResult> DeletePartWorldAsync(Guid id)
         {
             var partWorld = await _repository.PartWorld.GetPartWorldAsync(id, false);

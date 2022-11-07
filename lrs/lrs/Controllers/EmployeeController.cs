@@ -30,7 +30,7 @@ namespace lrs.Controllers
             _mapper = mapper;
             _dataShaper = dataShaper;
         }
-        [HttpGet, Authorize(Roles = "Manager")]
+        [HttpGet, Authorize]
         [HttpHead]
         public async Task<IActionResult> GetEmployeesForCompany(Guid companyId, [FromQuery] EmployeeParameters employeeParameters)
         {
@@ -47,7 +47,7 @@ namespace lrs.Controllers
             var employeesDto = _mapper.Map<IEnumerable<EmployeeDto>>(employeesFromDb);
             return Ok(_dataShaper.ShapeData(employeesDto, employeeParameters.Fields));
         }
-        [HttpGet("{id}", Name = "GetEmployeeForCompany"), Authorize(Roles = "ADMINISTRATOR")]
+        [HttpGet("{id}", Name = "GetEmployeeForCompany"), Authorize]
         [HttpHead("{id}")]
         public async Task<IActionResult> GetEmployeesForCompany(Guid companyId, Guid id, [FromQuery] EmployeeParameters employeeParameters)
         {
@@ -80,7 +80,7 @@ namespace lrs.Controllers
                 id = employeeToReturn.Id
             }, employeeToReturn);
         }
-        [HttpDelete("{id}"), Authorize(Roles = "ADMINISTRATOR")]
+        [HttpDelete("{id}"), Authorize]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ServiceFilter(typeof(ValidateEmployeeForCompanyExistsAttribute))]
         public async Task<IActionResult> DeleteEmployeeForCompany(Guid companyId, Guid id)
@@ -100,7 +100,7 @@ namespace lrs.Controllers
             await _repository.SaveAsync();
             return NoContent();
         }
-        [HttpPatch("{id}"), Authorize(Roles = "ADMINISTRATOR")]
+        [HttpPatch("{id}"), Authorize]
         [ServiceFilter(typeof(ValidateEmployeeForCompanyExistsAttribute))]
         public async Task<IActionResult> PartiallyUpdateEmployeeForCompany(Guid companyId, Guid id, [FromBody] JsonPatchDocument<EmployeeForUpdateDto> patchDoc)
         {

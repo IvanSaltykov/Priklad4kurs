@@ -28,7 +28,7 @@ namespace lrs.Controllers
             _mapper = mapper;
             _dataShaper = dataShaper;
         }
-        [HttpGet, Authorize(Roles = "ADMINISTRATOR")]
+        [HttpGet, Authorize]
         [HttpHead]
         public async Task<IActionResult> GetCitiesAsync(Guid partWorldId, Guid countryId, [FromQuery] CityParameters parameters)
         {
@@ -40,7 +40,7 @@ namespace lrs.Controllers
             var citiesDto = _mapper.Map<IEnumerable<CityDto>>(citiesFromDb);
             return Ok(_dataShaper.ShapeData(citiesDto, parameters.Fields));
         }
-        [HttpGet("{id}", Name = "GetCity"), Authorize(Roles = "Manager")]
+        [HttpGet("{id}", Name = "GetCity"), Authorize]
         [HttpHead("{id}")]
         public async Task<IActionResult> GetCityAsync(Guid partWorldId, Guid countryId, Guid id, [FromQuery] CityParameters parameters)
         {
@@ -56,7 +56,7 @@ namespace lrs.Controllers
             var cityDto = _mapper.Map<CityDto>(cityDb);
             return Ok(_dataShaper.ShapeData(cityDto, parameters.Fields));
         }
-        [HttpPost, Authorize(Roles = "ADMINISTRATOR")]
+        [HttpPost, Authorize]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateCityAsync(Guid partWorldId, Guid countryId, [FromBody] CityCreateDto city)
         {
@@ -74,7 +74,7 @@ namespace lrs.Controllers
                 cityReturn.Id
             }, cityReturn);
         }
-        [HttpDelete("{id}"), Authorize(Roles = "Manager")]
+        [HttpDelete("{id}"), Authorize]
         public async Task<IActionResult> DeleteCityAsync(Guid partWorldId, Guid countryId, Guid id)
         {
             var actionResult = await checkResultAsync(partWorldId, countryId);
@@ -90,7 +90,7 @@ namespace lrs.Controllers
             await _repository.SaveAsync();
             return NoContent();
         }
-        [HttpPut("{id}"), Authorize(Roles = "ADMINISTRATOR")]
+        [HttpPut("{id}"), Authorize]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ServiceFilter(typeof(ValidateCityExistsAttribute))]
         public async Task<IActionResult> UpdateCityAsync(Guid partWorldId, Guid countryId, Guid id, [FromBody] CityUpdateDto city)
@@ -116,7 +116,7 @@ namespace lrs.Controllers
             }
             return null;
         }
-        [HttpOptions, Authorize(Roles = "Manager")]
+        [HttpOptions, Authorize]
         public IActionResult GetOptions()
         {
             Response.Headers.Add("Allow", "GET, OPTIONS, POST, DELETE, PUT, PATCH");

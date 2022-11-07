@@ -29,7 +29,7 @@ namespace lrs.Controllers
             _mapper = mapper;
             _dataShaper = dataShaper;
         }
-        [HttpGet(Name = "GetCompanies"), Authorize(Roles = "Manager")]
+        [HttpGet(Name = "GetCompanies"), Authorize]
         [HttpHead]
         public async Task<IActionResult> GetCompanies([FromQuery] CompanyParameters parameters)
         {
@@ -38,7 +38,7 @@ namespace lrs.Controllers
             var companyDto = _mapper.Map<IEnumerable<CompanyDto>>(companies);
             return Ok(_dataShaper.ShapeData(companyDto, parameters.Fields));
         }
-        [HttpGet("{id}", Name = "CompanyById"), Authorize(Roles = "ADMINISTRATOR")]
+        [HttpGet("{id}", Name = "CompanyById"), Authorize]
         [HttpHead("{id}")]
         public async Task<IActionResult> GetCompany(Guid id, [FromQuery] CompanyParameters parameters)
         {
@@ -51,7 +51,7 @@ namespace lrs.Controllers
             var companyDto = _mapper.Map<CompanyDto>(company);
             return Ok(_dataShaper.ShapeData(companyDto, parameters.Fields));
         }
-        [HttpPost, Authorize(Roles = "Manager")]
+        [HttpPost, Authorize]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateCompany([FromBody] CompanyForCreationDto company)
         {
@@ -62,7 +62,7 @@ namespace lrs.Controllers
             return CreatedAtRoute("CompanyById", new { id = companyToReturn.Id },companyToReturn);
         }
 
-        [HttpGet("collection/({ids})", Name = "CompanyCollection"), Authorize(Roles = "Manager")]
+        [HttpGet("collection/({ids})", Name = "CompanyCollection"), Authorize]
         public async Task<IActionResult> GetCompanyCollection([ModelBinder(BinderType = typeof(ArrayModelBinder))] IEnumerable<Guid> ids)
         {
             if (ids == null)
@@ -79,7 +79,7 @@ namespace lrs.Controllers
             var companiesToReturn = _mapper.Map<IEnumerable<CompanyDto>>(companyEntities);
             return Ok(companiesToReturn);
         }
-        [HttpPost("collection"), Authorize(Roles = "Manager")]
+        [HttpPost("collection"), Authorize]
         public async Task<IActionResult> CreateCompanyCollection([FromBody] IEnumerable<CompanyForCreationDto> companyCollection)
         {
             if (companyCollection == null)
@@ -97,7 +97,7 @@ namespace lrs.Controllers
             var ids = string.Join(",", companyCollectionToReturn.Select(c => c.Id));
             return CreatedAtRoute("CompanyCollection", new { ids }, companyCollectionToReturn);
         }
-        [HttpDelete("{id}"), Authorize(Roles = "Manager")]
+        [HttpDelete("{id}"), Authorize]
         [ServiceFilter(typeof(ValidateCompanyExistsAttribute))]
         public async Task<IActionResult> CreateCompanyCollection(Guid id)
         {
@@ -106,7 +106,7 @@ namespace lrs.Controllers
             await _repository.SaveAsync();
             return NoContent();
         }
-        [HttpPut("{id}"), Authorize(Roles = "ADMINISTRATOR")]
+        [HttpPut("{id}"), Authorize]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ServiceFilter(typeof(ValidateCompanyExistsAttribute))]
         public async Task<IActionResult> UpdateCompany(Guid id, [FromBody] CompanyForUpdateDto company)

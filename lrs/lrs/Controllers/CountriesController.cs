@@ -30,7 +30,7 @@ namespace lrs.Controllers
             _mapper = mapper;
             _dataShaper = dataShaper;
         }
-        [HttpGet, Authorize(Roles = "Manager")]
+        [HttpGet, Authorize]
         [HttpHead]
         public async Task<IActionResult> GetCountriesAsync(Guid partWorldId, [FromQuery] CountryParameters parameters)
         {
@@ -42,7 +42,7 @@ namespace lrs.Controllers
             var countriesDto = _mapper.Map<IEnumerable<CountryDto>>(countriesFromDb);
             return Ok(_dataShaper.ShapeData(countriesDto, parameters.Fields));
         }
-        [HttpGet("{id}", Name = "GetCountry"), Authorize(Roles = "ADMINISTRATOR")]
+        [HttpGet("{id}", Name = "GetCountry"), Authorize]
         [HttpHead("{id}")]
         public async Task<IActionResult> GetCountryAsync(Guid partWorldId, Guid id, [FromQuery] CountryParameters parameters)
         {
@@ -58,7 +58,7 @@ namespace lrs.Controllers
             var countryDto = _mapper.Map<CountryDto>(countryDb);
             return Ok(_dataShaper.ShapeData(countryDto, parameters.Fields));
         }
-        [HttpPost, Authorize(Roles = "Manager")]
+        [HttpPost, Authorize]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateCountryAsync(Guid partWorldId, [FromBody] CountryCreateDto country)
         {
@@ -74,7 +74,7 @@ namespace lrs.Controllers
                 countryReturn.Id
             }, countryReturn);
         }
-        [HttpDelete("{id}"), Authorize(Roles = "ADMINISTRATOR")]
+        [HttpDelete("{id}"), Authorize]
         public async Task<IActionResult> DeleteCountryAsync(Guid partWorldId, Guid id)
         {
             var actionResult = await checkResultAsync(partWorldId);
@@ -90,7 +90,7 @@ namespace lrs.Controllers
             await _repository.SaveAsync();
             return NoContent();
         }
-        [HttpPut("{id}"), Authorize(Roles = "Manager")]
+        [HttpPut("{id}"), Authorize]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ServiceFilter(typeof(ValidateCountryExistsAttribute))]
         public async Task<IActionResult> UpdateCountryAsync(Guid partWorldId, Guid id, [FromBody] CountryUpdateDto country)
@@ -110,7 +110,7 @@ namespace lrs.Controllers
             }
             return null;
         }
-        [HttpOptions, Authorize(Roles = "ADMINISTRATOR")]
+        [HttpOptions, Authorize]
         public IActionResult GetOptions()
         {
             Response.Headers.Add("Allow", "GET, OPTIONS, POST, DELETE, PUT, PATCH");
