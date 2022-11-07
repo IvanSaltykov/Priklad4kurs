@@ -29,9 +29,9 @@ namespace lrs.Controllers
         /// <summary>
         /// Возвращает список отелей города
         /// </summary>
-        /// <param name="partWorldId"></param>
-        /// <param name="countryId"></param>
-        /// <param name="cityId"></param>
+        /// <param name="partWorldId">Id части света</param>
+        /// <param name="countryId">Id страны</param>
+        /// <param name="cityId">Id города</param>
         /// <param name="parameters"></param>
         /// <returns></returns>
         [HttpGet]
@@ -49,10 +49,10 @@ namespace lrs.Controllers
         /// <summary>
         /// Возвращает отель города
         /// </summary>
-        /// <param name="partWorldId"></param>
-        /// <param name="countryId"></param>
-        /// <param name="cityId"></param>
-        /// <param name="id"></param>
+        /// <param name="partWorldId">Id части света</param>
+        /// <param name="countryId">Id страны</param>
+        /// <param name="cityId">Id города</param>
+        /// <param name="id">Id отеля</param>
         /// <param name="parameters"></param>
         /// <returns></returns>
         [HttpGet("{id}", Name = "GetHotel")]
@@ -74,9 +74,9 @@ namespace lrs.Controllers
         /// <summary>
         /// Создает отель
         /// </summary>
-        /// <param name="partWorldId"></param>
-        /// <param name="countryId"></param>
-        /// <param name="cityId"></param>
+        /// <param name="partWorldId">Id части света</param>
+        /// <param name="countryId">Id страны</param>
+        /// <param name="cityId">Id города</param>
         /// <param name="hotel"></param>
         /// <returns></returns>
         [HttpPost]
@@ -101,10 +101,10 @@ namespace lrs.Controllers
         /// <summary>
         /// Удаляет отель
         /// </summary>
-        /// <param name="partWorldId"></param>
-        /// <param name="countryId"></param>
-        /// <param name="cityId"></param>
-        /// <param name="id"></param>
+        /// <param name="partWorldId">Id части света</param>
+        /// <param name="countryId">Id страны</param>
+        /// <param name="cityId">Id города</param>
+        /// <param name="id">Id отеля</param>
         /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteHotelAsync(Guid partWorldId, Guid countryId, Guid cityId, Guid id)
@@ -125,10 +125,10 @@ namespace lrs.Controllers
         /// <summary>
         /// Обновляет отель
         /// </summary>
-        /// <param name="partWorldId"></param>
-        /// <param name="countryId"></param>
-        /// <param name="cityId"></param>
-        /// <param name="id"></param>
+        /// <param name="partWorldId">Id части света</param>
+        /// <param name="countryId">Id страны</param>
+        /// <param name="cityId">Id города</param>
+        /// <param name="id">Id отеля</param>
         /// <param name="hotel"></param>
         /// <returns></returns>
         [HttpPut("{id}")]

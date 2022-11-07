@@ -31,7 +31,7 @@ namespace lrs.Controllers
         /// <summary>
         /// Возращает спискок стран части света
         /// </summary>
-        /// <param name="partWorldId"></param>
+        /// <param name="partWorldId">Id части света</param>
         /// <param name="parameters"></param>
         /// <returns></returns>
         [HttpGet]
@@ -49,8 +49,8 @@ namespace lrs.Controllers
         /// <summary>
         /// Возращает страну части света
         /// </summary>
-        /// <param name="partWorldId"></param>
-        /// <param name="id"></param>
+        /// <param name="partWorldId">Id части света</param>
+        /// <param name="id">Id стараны</param>
         /// <param name="parameters"></param>
         /// <returns></returns>
         [HttpGet("{id}", Name = "GetCountry")]
@@ -72,7 +72,7 @@ namespace lrs.Controllers
         /// <summary>
         /// Создает новую страну
         /// </summary>
-        /// <param name="partWorldId"></param>
+        /// <param name="partWorldId">Id части света</param>
         /// <param name="country"></param>
         /// <returns></returns>
         [HttpPost]
@@ -94,8 +94,8 @@ namespace lrs.Controllers
         /// <summary>
         /// Удалает страну
         /// </summary>
-        /// <param name="partWorldId"></param>
-        /// <param name="id"></param>
+        /// <param name="partWorldId">Id части света</param>
+        /// <param name="id">Id страны</param>
         /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCountryAsync(Guid partWorldId, Guid id)
@@ -116,8 +116,8 @@ namespace lrs.Controllers
         /// <summary>
         /// Обновляет страну
         /// </summary>
-        /// <param name="partWorldId"></param>
-        /// <param name="id"></param>
+        /// <param name="partWorldId">Id части света</param>
+        /// <param name="id">Id страны</param>
         /// <param name="country"></param>
         /// <returns></returns>
         [HttpPut("{id}")]

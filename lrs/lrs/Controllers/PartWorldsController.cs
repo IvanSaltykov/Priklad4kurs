@@ -28,7 +28,7 @@ namespace lrs.Controllers
         /// <summary>
         /// Возвращает часть света по id
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">Id части света</param>
         /// <param name="parameters"></param>
         /// <returns></returns>
         [HttpGet("{id}", Name = "GetPartWorld")]
@@ -60,7 +60,7 @@ namespace lrs.Controllers
         /// <summary>
         /// Удаляет часть света
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">Id части света</param>
         /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePartWorldAsync(Guid id)
@@ -96,7 +96,7 @@ namespace lrs.Controllers
         /// <summary>
         /// Обновляет часть света
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">Id части света</param>
         /// <param name="partWorld"></param>
         /// <returns></returns>
         [HttpPut("{id}")]

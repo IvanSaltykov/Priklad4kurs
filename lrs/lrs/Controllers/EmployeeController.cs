@@ -31,7 +31,7 @@ namespace lrs.Controllers
         /// <summary>
         /// Возвращает работников определенной компании
         /// </summary>
-        /// <param name="companyId"></param>
+        /// <param name="companyId">Id компании</param>
         /// <param name="employeeParameters"></param>
         /// <returns></returns>
         [HttpGet]
@@ -54,8 +54,8 @@ namespace lrs.Controllers
         /// <summary>
         /// Возвращает работника определенной компании
         /// </summary>
-        /// <param name="companyId"></param>
-        /// <param name="id"></param>
+        /// <param name="companyId">Id компании</param>
+        /// <param name="id">Id работника</param>
         /// <param name="employeeParameters"></param>
         /// <returns></returns>
         [HttpGet("{id}", Name = "GetEmployeeForCompany")]
@@ -80,7 +80,7 @@ namespace lrs.Controllers
         /// <summary>
         /// Создает нового сотрудника компании
         /// </summary>
-        /// <param name="companyId"></param>
+        /// <param name="companyId">Id компании</param>
         /// <param name="employee"></param>
         /// <returns></returns>
         [HttpPost]
@@ -100,8 +100,8 @@ namespace lrs.Controllers
         /// <summary>
         /// Удаляет сотрудника компании
         /// </summary>
-        /// <param name="companyId"></param>
-        /// <param name="id"></param>
+        /// <param name="companyId">Id компании</param>
+        /// <param name="id">Id работника</param>
         /// <returns></returns>
         [HttpDelete("{id}")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
@@ -116,8 +116,8 @@ namespace lrs.Controllers
         /// <summary>
         /// Обновляет сотрудника компании
         /// </summary>
-        /// <param name="companyId"></param>
-        /// <param name="id"></param>
+        /// <param name="companyId">Id компании</param>
+        /// <param name="id">Id работника</param>
         /// <param name="employee"></param>
         /// <returns></returns>
         [HttpPut("{id}")]
@@ -133,8 +133,8 @@ namespace lrs.Controllers
         /// <summary>
         /// Обновляет сотрудника компании
         /// </summary>
-        /// <param name="companyId"></param>
-        /// <param name="id"></param>
+        /// <param name="companyId">Id компании</param>
+        /// <param name="id">Id работника</param>
         /// <param name="patchDoc"></param>
         /// <returns></returns>
         [HttpPatch("{id}")]

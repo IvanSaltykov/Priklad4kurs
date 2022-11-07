@@ -29,9 +29,8 @@ namespace lrs.Controllers
         /// <summary>
         /// Возвращает список городов страны
         /// </summary>
-        /// <param name="partWorldId"></param>
-        /// <param name="countryId"></param>
-        /// <param name="parameters"></param>
+        /// <param name="partWorldId">Id Части света</param>
+        /// <param name="countryId">Id Страны</param>
         /// <returns></returns>
         [HttpGet]
         [HttpHead]
@@ -48,9 +47,9 @@ namespace lrs.Controllers
         /// <summary>
         /// Возвращает город страны id
         /// </summary>
-        /// <param name="partWorldId"></param>
-        /// <param name="countryId"></param>
-        /// <param name="id"></param>
+        /// <param name="partWorldId">Id Части света</param>
+        /// <param name="countryId">Id Страны</param>
+        /// <param name="id">Id города</param>
         /// <param name="parameters"></param>
         /// <returns></returns>
         [HttpGet("{id}", Name = "GetCity")]
@@ -72,8 +71,8 @@ namespace lrs.Controllers
         /// <summary>
         /// Создает город
         /// </summary>
-        /// <param name="partWorldId"></param>
-        /// <param name="countryId"></param>
+        /// <param name="partWorldId">Id Части света</param>
+        /// <param name="countryId">Id Страны</param>
         /// <param name="city"></param>
         /// <returns></returns>
         [HttpPost]
@@ -97,9 +96,9 @@ namespace lrs.Controllers
         /// <summary>
         /// Удалает город
         /// </summary>
-        /// <param name="partWorldId"></param>
-        /// <param name="countryId"></param>
-        /// <param name="id"></param>
+        /// <param name="partWorldId">Id Части света</param>
+        /// <param name="countryId">Id Страны</param>
+        /// <param name="id">Id города</param>
         /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCityAsync(Guid partWorldId, Guid countryId, Guid id)
@@ -120,9 +119,9 @@ namespace lrs.Controllers
         /// <summary>
         /// Обновляет город
         /// </summary>
-        /// <param name="partWorldId"></param>
-        /// <param name="countryId"></param>
-        /// <param name="id"></param>
+        /// <param name="partWorldId">Id Части света</param>
+        /// <param name="countryId">Id Страны</param>
+        /// <param name="id">Id города</param>
         /// <param name="city"></param>
         /// <returns></returns>
         [HttpPut("{id}")]

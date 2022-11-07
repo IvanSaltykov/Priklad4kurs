@@ -30,10 +30,10 @@ namespace lrs.Controllers
         /// <summary>
         /// Возвращает список путевок в отель
         /// </summary>
-        /// <param name="partWorldId"></param>
-        /// <param name="countryId"></param>
-        /// <param name="cityId"></param>
-        /// <param name="hotelId"></param>
+        /// <param name="partWorldId">Id части света</param>
+        /// <param name="countryId">Id страны</param>
+        /// <param name="cityId">Id города</param>
+        /// <param name="hotelId">Id отеля</param>
         /// <param name="parameters"></param>
         /// <returns></returns>
         [HttpGet]
@@ -53,11 +53,11 @@ namespace lrs.Controllers
         /// <summary>
         /// Возвращает путевку в отель
         /// </summary>
-        /// <param name="partWorldId"></param>
-        /// <param name="countryId"></param>
-        /// <param name="cityId"></param>
-        /// <param name="hotelId"></param>
-        /// <param name="id"></param>
+        /// <param name="partWorldId">Id части света</param>
+        /// <param name="countryId">Id страны</param>
+        /// <param name="cityId">Id города</param>
+        /// <param name="hotelId">Id отеля</param>
+        /// <param name="id">Id билета</param>
         /// <param name="parameters"></param>
         /// <returns></returns>
         [HttpGet("{id}", Name = "GetTicket")]
@@ -79,10 +79,10 @@ namespace lrs.Controllers
         /// <summary>
         /// Создает путевку
         /// </summary>
-        /// <param name="partWorldId"></param>
-        /// <param name="countryId"></param>
-        /// <param name="cityId"></param>
-        /// <param name="hotelId"></param>
+        /// <param name="partWorldId">Id части света</param>
+        /// <param name="countryId">Id страны</param>
+        /// <param name="cityId">Id города</param>
+        /// <param name="hotelId">Id отеля</param>
         /// <param name="ticket"></param>
         /// <returns></returns>
         [HttpPost]
@@ -108,11 +108,11 @@ namespace lrs.Controllers
         /// <summary>
         /// Обновляет путевку
         /// </summary>
-        /// <param name="partWorldId"></param>
-        /// <param name="countryId"></param>
-        /// <param name="cityId"></param>
-        /// <param name="hotelId"></param>
-        /// <param name="id"></param>
+        /// <param name="partWorldId">Id части света</param>
+        /// <param name="countryId">Id страны</param>
+        /// <param name="cityId">Id города</param>
+        /// <param name="hotelId">Id отеля</param>
+        /// <param name="id">Id билета</param>
         /// <param name="ticket"></param>
         /// <returns></returns>
         [HttpPut("{id}")]
@@ -128,11 +128,11 @@ namespace lrs.Controllers
         /// <summary>
         /// Удаляет путевку
         /// </summary>
-        /// <param name="partWorldId"></param>
-        /// <param name="countryId"></param>
-        /// <param name="cityId"></param>
-        /// <param name="hotelId"></param>
-        /// <param name="id"></param>
+        /// <param name="partWorldId">Id части света</param>
+        /// <param name="countryId">Id страны</param>
+        /// <param name="cityId">Id города</param>
+        /// <param name="hotelId">Id отеля</param>
+        /// <param name="id">Id билета</param>
         /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTicket(Guid partWorldId, Guid countryId, Guid cityId, Guid hotelId, Guid id)
@@ -153,11 +153,11 @@ namespace lrs.Controllers
         /// <summary>
         /// Обновляет путевку
         /// </summary>
-        /// <param name="partWorldId"></param>
-        /// <param name="countryId"></param>
-        /// <param name="cityId"></param>
-        /// <param name="hotelId"></param>
-        /// <param name="id"></param>
+        /// <param name="partWorldId">Id части света</param>
+        /// <param name="countryId">Id страны</param>
+        /// <param name="cityId">Id города</param>
+        /// <param name="hotelId">Id отеля</param>
+        /// <param name="id">Id билета</param>
         /// <param name="ticket"></param>
         /// <returns></returns>
         [HttpPatch("{id}")]

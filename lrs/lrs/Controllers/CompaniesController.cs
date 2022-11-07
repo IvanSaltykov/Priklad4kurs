@@ -49,7 +49,7 @@ namespace lrs.Controllers
         /// <summary>
         /// Возвращает компанию по id
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">Id сомпании</param>
         /// <param name="parameters"></param>
         /// <returns></returns>
         [HttpGet("{id}", Name = "CompanyById")]
@@ -83,7 +83,7 @@ namespace lrs.Controllers
         /// <summary>
         /// Возвращает коллекцию компаний
         /// </summary>
-        /// <param name="ids"></param>
+        /// <param name="ids">Список Id компаний</param>
         /// <returns></returns>
         [HttpGet("collection/({ids})", Name = "CompanyCollection")]
         public async Task<IActionResult> GetCompanyCollection([ModelBinder(BinderType = typeof(ArrayModelBinder))] IEnumerable<Guid> ids)
@@ -105,7 +105,7 @@ namespace lrs.Controllers
         /// <summary>
         /// Создает коллекцию компаний
         /// </summary>
-        /// <param name="companyCollection"></param>
+        /// <param name="companyCollection">Массив сомпаний</param>
         /// <returns></returns>
         [HttpPost("collection")]
         public async Task<IActionResult> CreateCompanyCollection([FromBody] IEnumerable<CompanyForCreationDto> companyCollection)
@@ -128,7 +128,7 @@ namespace lrs.Controllers
         /// <summary>
         /// Удаляет компанию по id
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">Id компании</param>
         /// <returns></returns>
         [HttpDelete("{id}")]
         [ServiceFilter(typeof(ValidateCompanyExistsAttribute))]
@@ -142,8 +142,8 @@ namespace lrs.Controllers
         /// <summary>
         /// Изменяет компанию
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="company"></param>
+        /// <param name="id">Id компании</param>
+        /// <param name="company">Компания</param>
         /// <returns></returns>
         [HttpPut("{id}")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
