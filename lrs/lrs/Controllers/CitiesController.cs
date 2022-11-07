@@ -4,6 +4,7 @@ using Entities.DataTransferObjects;
 using Entities.Models;
 using Entities.RequestFeatures;
 using lrs.ActionFilters;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -33,7 +34,7 @@ namespace lrs.Controllers
         /// <param name="countryId">Id Страны</param>
         /// <param name="parameters">Параметра возвращения массива данных</param>
         /// <returns></returns>
-        [HttpGet]
+        [HttpGet, Authorize]
         [HttpHead]
         public async Task<IActionResult> GetCitiesAsync(Guid partWorldId, Guid countryId, [FromQuery] CityParameters parameters)
         {
@@ -53,7 +54,7 @@ namespace lrs.Controllers
         /// <param name="id">Id города</param>
         /// <param name="parameters">Параметра возвращения массива данных</param>
         /// <returns></returns>
-        [HttpGet("{id}", Name = "GetCity")]
+        [HttpGet("{id}", Name = "GetCity"), Authorize]
         [HttpHead("{id}")]
         public async Task<IActionResult> GetCityAsync(Guid partWorldId, Guid countryId, Guid id, [FromQuery] CityParameters parameters)
         {
@@ -76,7 +77,7 @@ namespace lrs.Controllers
         /// <param name="countryId">Id Страны</param>
         /// <param name="city">Название города</param>
         /// <returns></returns>
-        [HttpPost]
+        [HttpPost, Authorize]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateCityAsync(Guid partWorldId, Guid countryId, [FromBody] CityCreateDto city)
         {
@@ -101,7 +102,7 @@ namespace lrs.Controllers
         /// <param name="countryId">Id Страны</param>
         /// <param name="id">Id города</param>
         /// <returns></returns>
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}"), Authorize]
         public async Task<IActionResult> DeleteCityAsync(Guid partWorldId, Guid countryId, Guid id)
         {
             var actionResult = await checkResultAsync(partWorldId, countryId);
@@ -125,7 +126,7 @@ namespace lrs.Controllers
         /// <param name="id">Id города</param>
         /// <param name="city">Новое название города</param>
         /// <returns></returns>
-        [HttpPut("{id}")]
+        [HttpPut("{id}"), Authorize]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ServiceFilter(typeof(ValidateCityExistsAttribute))]
         public async Task<IActionResult> UpdateCityAsync(Guid partWorldId, Guid countryId, Guid id, [FromBody] CityUpdateDto city)
@@ -155,7 +156,7 @@ namespace lrs.Controllers
         /// Возвращает заголовки запросов
         /// </summary>
         /// <returns></returns>
-        [HttpOptions]
+        [HttpOptions, Authorize]
         public IActionResult GetOptions()
         {
             Response.Headers.Add("Allow", "GET, OPTIONS, POST, DELETE, PUT, PATCH");

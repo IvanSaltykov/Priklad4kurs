@@ -4,6 +4,7 @@ using Entities.DataTransferObjects;
 using Entities.Models;
 using Entities.RequestFeatures;
 using lrs.ActionFilters;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -34,8 +35,8 @@ namespace lrs.Controllers
         /// <param name="cityId">Id города</param>
         /// <param name="parameters">Параметра возвращения массива данных</param>
         /// <returns></returns>
-        [HttpGet]
-        [HttpHead]
+        [HttpGet, Authorize]
+        [HttpHead, Authorize]
         public async Task<IActionResult> GetHotelsAsync(Guid partWorldId, Guid countryId, Guid cityId, [FromQuery] HotelParameters parameters)
         {
             var actionResult = await checkResultAsync(partWorldId, countryId, cityId);
@@ -55,8 +56,8 @@ namespace lrs.Controllers
         /// <param name="id">Id отеля</param>
         /// <param name="parameters">Параметра возвращения массива данных</param>
         /// <returns></returns>
-        [HttpGet("{id}", Name = "GetHotel")]
-        [HttpHead("{id}")]
+        [HttpGet("{id}", Name = "GetHotel"), Authorize]
+        [HttpHead("{id}"), Authorize]
         public async Task<IActionResult> GetHotelAsync(Guid partWorldId, Guid countryId, Guid cityId, Guid id, [FromQuery] HotelParameters parameters)
         {
             var actionResult = await checkResultAsync(partWorldId, countryId, cityId);
@@ -79,7 +80,7 @@ namespace lrs.Controllers
         /// <param name="cityId">Id города</param>
         /// <param name="hotel">Название отеля</param>
         /// <returns></returns>
-        [HttpPost]
+        [HttpPost, Authorize]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> GetHotelAsync(Guid partWorldId, Guid countryId, Guid cityId, [FromBody] HotelCreateDto hotel)
         {
@@ -106,7 +107,7 @@ namespace lrs.Controllers
         /// <param name="cityId">Id города</param>
         /// <param name="id">Id отеля</param>
         /// <returns></returns>
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}"), Authorize]
         public async Task<IActionResult> DeleteHotelAsync(Guid partWorldId, Guid countryId, Guid cityId, Guid id)
         {
             var actionResult = await checkResultAsync(partWorldId, countryId, cityId);
@@ -131,7 +132,7 @@ namespace lrs.Controllers
         /// <param name="id">Id отеля</param>
         /// <param name="hotel">Новое название отеля</param>
         /// <returns></returns>
-        [HttpPut("{id}")]
+        [HttpPut("{id}"), Authorize]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ServiceFilter(typeof(ValidateHotelExistsAttribute))]
         public async Task<IActionResult> UpdateHotel(Guid partWorldId, Guid countryId, Guid cityId, Guid id, [FromBody] HotelUpdateDto hotel)
@@ -167,7 +168,7 @@ namespace lrs.Controllers
         /// Возвращает заголовки запросов
         /// </summary>
         /// <returns></returns>
-        [HttpOptions]
+        [HttpOptions, Authorize]
         public IActionResult GetOptions()
         {
             Response.Headers.Add("Allow", "GET, OPTIONS, POST, DELETE, PUT, PATCH");

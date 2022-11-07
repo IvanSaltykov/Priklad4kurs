@@ -37,7 +37,7 @@ namespace lrs.Controllers
         /// <param name="parameters">Параметра возвращения массива данных</param>
         /// <returns>Компании</returns>
         /// <response code="401">Требуется авторизация пользователя</response>
-        [HttpGet(Name = "GetCompanies"), Authorize(Roles = "Manager")]
+        [HttpGet(Name = "GetCompanies"), Authorize]
         [HttpHead]
         public async Task<IActionResult> GetCompanies([FromQuery] CompanyParameters parameters)
         {
@@ -52,7 +52,7 @@ namespace lrs.Controllers
         /// <param name="id">Id сомпании</param>
         /// <param name="parameters">Параметра возвращения массива данных</param>
         /// <returns></returns>
-        [HttpGet("{id}", Name = "CompanyById")]
+        [HttpGet("{id}", Name = "CompanyById"), Authorize]
         [HttpHead("{id}")]
         public async Task<IActionResult> GetCompany(Guid id, [FromQuery] CompanyParameters parameters)
         {
@@ -70,7 +70,7 @@ namespace lrs.Controllers
         /// </summary>
         /// <param name="company">Данные компании</param>
         /// <returns></returns>
-        [HttpPost]
+        [HttpPost, Authorize]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateCompany([FromBody] CompanyForCreationDto company)
         {
@@ -85,7 +85,7 @@ namespace lrs.Controllers
         /// </summary>
         /// <param name="ids">Список Id компаний</param>
         /// <returns></returns>
-        [HttpGet("collection/({ids})", Name = "CompanyCollection")]
+        [HttpGet("collection/({ids})", Name = "CompanyCollection"), Authorize]
         public async Task<IActionResult> GetCompanyCollection([ModelBinder(BinderType = typeof(ArrayModelBinder))] IEnumerable<Guid> ids)
         {
             if (ids == null)
@@ -107,7 +107,7 @@ namespace lrs.Controllers
         /// </summary>
         /// <param name="companyCollection">Массив сомпаний</param>
         /// <returns></returns>
-        [HttpPost("collection")]
+        [HttpPost("collection"), Authorize]
         public async Task<IActionResult> CreateCompanyCollection([FromBody] IEnumerable<CompanyForCreationDto> companyCollection)
         {
             if (companyCollection == null)
@@ -130,7 +130,7 @@ namespace lrs.Controllers
         /// </summary>
         /// <param name="id">Id компании</param>
         /// <returns></returns>
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}"), Authorize]
         [ServiceFilter(typeof(ValidateCompanyExistsAttribute))]
         public async Task<IActionResult> DeleteCompany(Guid id)
         {
@@ -145,7 +145,7 @@ namespace lrs.Controllers
         /// <param name="id">Id компании</param>
         /// <param name="company">Новые данные компании</param>
         /// <returns></returns>
-        [HttpPut("{id}")]
+        [HttpPut("{id}"), Authorize]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ServiceFilter(typeof(ValidateCompanyExistsAttribute))]
         public async Task<IActionResult> UpdateCompany(Guid id, [FromBody] CompanyForUpdateDto company)
@@ -159,7 +159,7 @@ namespace lrs.Controllers
         /// Возвращает заголовки запросов
         /// </summary>
         /// <returns></returns>
-        [HttpOptions]
+        [HttpOptions, Authorize]
         public IActionResult GetCompaniesOptions()
         {
             Response.Headers.Add("Allow", "GET, OPTIONS, POST, DELETE, PUT");

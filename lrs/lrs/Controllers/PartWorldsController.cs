@@ -4,6 +4,7 @@ using Entities.DataTransferObjects;
 using Entities.Models;
 using Entities.RequestFeatures;
 using lrs.ActionFilters;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -31,8 +32,8 @@ namespace lrs.Controllers
         /// <param name="id">Id части света</param>
         /// <param name="parameters">Параметра возвращения массива данных</param>
         /// <returns></returns>
-        [HttpGet("{id}", Name = "GetPartWorld")]
-        [HttpHead("{id}")]
+        [HttpGet("{id}", Name = "GetPartWorld"), Authorize]
+        [HttpHead("{id}"), Authorize]
         public async Task<IActionResult> GetPartWorldAsync(Guid id, [FromQuery] PartWorldParameters parameters)
         {
             var partWorld = await _repository.PartWorld.GetPartWorldAsync(id, false);
@@ -49,8 +50,8 @@ namespace lrs.Controllers
         /// </summary>
         /// <param name="parameters">Параметра возвращения массива данных</param>
         /// <returns></returns>
-        [HttpHead]
-        [HttpGet]
+        [HttpHead, Authorize]
+        [HttpGet, Authorize]
         public async Task<IActionResult> GetPartWorldsAsync([FromQuery] PartWorldParameters parameters)
         {
             var partWorlds = await _repository.PartWorld.GetAllPartWorldsAsync(false, parameters);
@@ -62,7 +63,7 @@ namespace lrs.Controllers
         /// </summary>
         /// <param name="id">Id части света</param>
         /// <returns></returns>
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}"), Authorize]
         public async Task<IActionResult> DeletePartWorldAsync(Guid id)
         {
             var partWorld = await _repository.PartWorld.GetPartWorldAsync(id, false);
@@ -80,7 +81,7 @@ namespace lrs.Controllers
         /// </summary>
         /// <param name="partWorld">Название части света</param>
         /// <returns></returns>
-        [HttpPost]
+        [HttpPost, Authorize]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreatePartWorldAsync([FromBody] PartWorldCreateDto partWorld)
         {
@@ -99,7 +100,7 @@ namespace lrs.Controllers
         /// <param name="id">Id части света</param>
         /// <param name="partWorld">Новое название части света</param>
         /// <returns></returns>
-        [HttpPut("{id}")]
+        [HttpPut("{id}"), Authorize]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ServiceFilter(typeof(ValidatePartWorldExistsAttribute))]
         public async Task<IActionResult> UpdatePartWorldAsync(Guid id, [FromBody] PartWorldUpdateDto partWorld)
@@ -113,7 +114,7 @@ namespace lrs.Controllers
         /// Возвращает заголовки запросов
         /// </summary>
         /// <returns></returns>
-        [HttpOptions]
+        [HttpOptions, Authorize]
         public IActionResult GetOptions()
         {
             Response.Headers.Add("Allow", "GET, OPTIONS, POST, DELETE, PUT, PATCH");

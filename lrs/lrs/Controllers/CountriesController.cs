@@ -4,6 +4,7 @@ using Entities.DataTransferObjects;
 using Entities.Models;
 using Entities.RequestFeatures;
 using lrs.ActionFilters;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -34,8 +35,8 @@ namespace lrs.Controllers
         /// <param name="partWorldId">Id части света</param>
         /// <param name="parameters">Параметра возвращения массива данных</param>
         /// <returns></returns>
-        [HttpGet]
-        [HttpHead]
+        [HttpGet, Authorize]
+        [HttpHead, Authorize]
         public async Task<IActionResult> GetCountriesAsync(Guid partWorldId, [FromQuery] CountryParameters parameters)
         {
             var actionResult = await checkResultAsync(partWorldId);
@@ -53,7 +54,7 @@ namespace lrs.Controllers
         /// <param name="id">Id стараны</param>
         /// <param name="parameters">Параметра возвращения массива данных</param>
         /// <returns></returns>
-        [HttpGet("{id}", Name = "GetCountry")]
+        [HttpGet("{id}", Name = "GetCountry"), Authorize]
         [HttpHead("{id}")]
         public async Task<IActionResult> GetCountryAsync(Guid partWorldId, Guid id, [FromQuery] CountryParameters parameters)
         {
@@ -75,7 +76,7 @@ namespace lrs.Controllers
         /// <param name="partWorldId">Id части света</param>
         /// <param name="country">Название страны</param>
         /// <returns></returns>
-        [HttpPost]
+        [HttpPost, Authorize]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateCountryAsync(Guid partWorldId, [FromBody] CountryCreateDto country)
         {
@@ -97,7 +98,7 @@ namespace lrs.Controllers
         /// <param name="partWorldId">Id части света</param>
         /// <param name="id">Id страны</param>
         /// <returns></returns>
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}"), Authorize]
         public async Task<IActionResult> DeleteCountryAsync(Guid partWorldId, Guid id)
         {
             var actionResult = await checkResultAsync(partWorldId);
@@ -120,7 +121,7 @@ namespace lrs.Controllers
         /// <param name="id">Id страны</param>
         /// <param name="country">Новое название страны</param>
         /// <returns></returns>
-        [HttpPut("{id}")]
+        [HttpPut("{id}"), Authorize]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ServiceFilter(typeof(ValidateCountryExistsAttribute))]
         public async Task<IActionResult> UpdateCountryAsync(Guid partWorldId, Guid id, [FromBody] CountryUpdateDto country)
@@ -144,7 +145,7 @@ namespace lrs.Controllers
         /// Возвращает заголовки запросов
         /// </summary>
         /// <returns></returns>
-        [HttpOptions]
+        [HttpOptions, Authorize]
         public IActionResult GetOptions()
         {
             Response.Headers.Add("Allow", "GET, OPTIONS, POST, DELETE, PUT, PATCH");

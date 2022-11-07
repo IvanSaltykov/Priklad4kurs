@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using Entities.RequestFeatures;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Authorization;
 
 namespace lrs.Controllers
 {
@@ -34,8 +35,8 @@ namespace lrs.Controllers
         /// <param name="companyId">Id компании</param>
         /// <param name="employeeParameters">Параметра возвращения массива данных</param>
         /// <returns></returns>
-        [HttpGet]
-        [HttpHead]
+        [HttpGet, Authorize]
+        [HttpHead, Authorize]
         public async Task<IActionResult> GetEmployeesForCompany(Guid companyId, [FromQuery] EmployeeParameters employeeParameters)
         {
             if (!employeeParameters.ValidAgeRange)
@@ -58,8 +59,8 @@ namespace lrs.Controllers
         /// <param name="id">Id работника</param>
         /// <param name="employeeParameters">Параметра возвращения массива данных</param>
         /// <returns></returns>
-        [HttpGet("{id}", Name = "GetEmployeeForCompany")]
-        [HttpHead("{id}")]
+        [HttpGet("{id}", Name = "GetEmployeeForCompany"), Authorize]
+        [HttpHead("{id}"), Authorize]
         public async Task<IActionResult> GetEmployeesForCompany(Guid companyId, Guid id, [FromQuery] EmployeeParameters employeeParameters)
         {
             var company = await _repository.Company.GetCompanyAsync(companyId, false);
@@ -83,7 +84,7 @@ namespace lrs.Controllers
         /// <param name="companyId">Id компании</param>
         /// <param name="employee">Данные работника</param>
         /// <returns></returns>
-        [HttpPost]
+        [HttpPost, Authorize]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateEmployeeForCompany(Guid companyId, [FromBody] EmployeeForCreationDto employee)
         {
@@ -103,7 +104,7 @@ namespace lrs.Controllers
         /// <param name="companyId">Id компании</param>
         /// <param name="id">Id работника</param>
         /// <returns></returns>
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}"), Authorize]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ServiceFilter(typeof(ValidateEmployeeForCompanyExistsAttribute))]
         public async Task<IActionResult> DeleteEmployeeForCompany(Guid companyId, Guid id)
@@ -120,7 +121,7 @@ namespace lrs.Controllers
         /// <param name="id">Id работника</param>
         /// <param name="employee">Новые данные работника</param>
         /// <returns></returns>
-        [HttpPut("{id}")]
+        [HttpPut("{id}"), Authorize]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ServiceFilter(typeof(ValidateEmployeeForCompanyExistsAttribute))]
         public async Task<IActionResult> UpdateEmployeeForCompany(Guid companyId, Guid id, [FromBody] EmployeeForUpdateDto employee)
@@ -137,7 +138,7 @@ namespace lrs.Controllers
         /// <param name="id">Id работника</param>
         /// <param name="patchDoc">Новые данные работника</param>
         /// <returns></returns>
-        [HttpPatch("{id}")]
+        [HttpPatch("{id}"), Authorize]
         [ServiceFilter(typeof(ValidateEmployeeForCompanyExistsAttribute))]
         public async Task<IActionResult> PartiallyUpdateEmployeeForCompany(Guid companyId, Guid id, [FromBody] JsonPatchDocument<EmployeeForUpdateDto> patchDoc)
         {
@@ -163,7 +164,7 @@ namespace lrs.Controllers
         /// Возвращает заголовки запросов
         /// </summary>
         /// <returns></returns>
-        [HttpOptions]
+        [HttpOptions, Authorize]
         public IActionResult GetOptions()
         {
             Response.Headers.Add("Allow", "GET, OPTIONS, POST, DELETE, PUT, PATCH");
