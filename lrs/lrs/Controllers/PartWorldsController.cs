@@ -29,7 +29,7 @@ namespace lrs.Controllers
         /// Возвращает часть света по id
         /// </summary>
         /// <param name="id">Id части света</param>
-        /// <param name="parameters"></param>
+        /// <param name="parameters">Параметра возвращения массива данных</param>
         /// <returns></returns>
         [HttpGet("{id}", Name = "GetPartWorld")]
         [HttpHead("{id}")]
@@ -47,7 +47,7 @@ namespace lrs.Controllers
         /// <summary>
         /// Возвращает список частей света
         /// </summary>
-        /// <param name="parameters"></param>
+        /// <param name="parameters">Параметра возвращения массива данных</param>
         /// <returns></returns>
         [HttpHead]
         [HttpGet]
@@ -78,7 +78,7 @@ namespace lrs.Controllers
         /// <summary>
         /// Создает часть света
         /// </summary>
-        /// <param name="partWorld"></param>
+        /// <param name="partWorld">Название части света</param>
         /// <returns></returns>
         [HttpPost]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
@@ -97,7 +97,7 @@ namespace lrs.Controllers
         /// Обновляет часть света
         /// </summary>
         /// <param name="id">Id части света</param>
-        /// <param name="partWorld"></param>
+        /// <param name="partWorld">Новое название части света</param>
         /// <returns></returns>
         [HttpPut("{id}")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]

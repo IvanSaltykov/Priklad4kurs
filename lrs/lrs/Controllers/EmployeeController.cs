@@ -32,7 +32,7 @@ namespace lrs.Controllers
         /// Возвращает работников определенной компании
         /// </summary>
         /// <param name="companyId">Id компании</param>
-        /// <param name="employeeParameters"></param>
+        /// <param name="employeeParameters">Параметра возвращения массива данных</param>
         /// <returns></returns>
         [HttpGet]
         [HttpHead]
@@ -56,7 +56,7 @@ namespace lrs.Controllers
         /// </summary>
         /// <param name="companyId">Id компании</param>
         /// <param name="id">Id работника</param>
-        /// <param name="employeeParameters"></param>
+        /// <param name="employeeParameters">Параметра возвращения массива данных</param>
         /// <returns></returns>
         [HttpGet("{id}", Name = "GetEmployeeForCompany")]
         [HttpHead("{id}")]
@@ -81,7 +81,7 @@ namespace lrs.Controllers
         /// Создает нового сотрудника компании
         /// </summary>
         /// <param name="companyId">Id компании</param>
-        /// <param name="employee"></param>
+        /// <param name="employee">Данные работника</param>
         /// <returns></returns>
         [HttpPost]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
@@ -118,7 +118,7 @@ namespace lrs.Controllers
         /// </summary>
         /// <param name="companyId">Id компании</param>
         /// <param name="id">Id работника</param>
-        /// <param name="employee"></param>
+        /// <param name="employee">Новые данные работника</param>
         /// <returns></returns>
         [HttpPut("{id}")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
@@ -135,7 +135,7 @@ namespace lrs.Controllers
         /// </summary>
         /// <param name="companyId">Id компании</param>
         /// <param name="id">Id работника</param>
-        /// <param name="patchDoc"></param>
+        /// <param name="patchDoc">Новые данные работника</param>
         /// <returns></returns>
         [HttpPatch("{id}")]
         [ServiceFilter(typeof(ValidateEmployeeForCompanyExistsAttribute))]

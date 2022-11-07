@@ -34,7 +34,7 @@ namespace lrs.Controllers
         /// <summary>
         /// Возвращает все компании
         /// </summary>
-        /// <param name="parameters"></param>
+        /// <param name="parameters">Параметра возвращения массива данных</param>
         /// <returns>Компании</returns>
         /// <response code="401">Требуется авторизация пользователя</response>
         [HttpGet(Name = "GetCompanies"), Authorize(Roles = "Manager")]
@@ -50,7 +50,7 @@ namespace lrs.Controllers
         /// Возвращает компанию по id
         /// </summary>
         /// <param name="id">Id сомпании</param>
-        /// <param name="parameters"></param>
+        /// <param name="parameters">Параметра возвращения массива данных</param>
         /// <returns></returns>
         [HttpGet("{id}", Name = "CompanyById")]
         [HttpHead("{id}")]
@@ -68,7 +68,7 @@ namespace lrs.Controllers
         /// <summary>
         /// Создает новую компанию в базе данных
         /// </summary>
-        /// <param name="company"></param>
+        /// <param name="company">Данные компании</param>
         /// <returns></returns>
         [HttpPost]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
@@ -143,7 +143,7 @@ namespace lrs.Controllers
         /// Изменяет компанию
         /// </summary>
         /// <param name="id">Id компании</param>
-        /// <param name="company">Компания</param>
+        /// <param name="company">Новые данные компании</param>
         /// <returns></returns>
         [HttpPut("{id}")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]

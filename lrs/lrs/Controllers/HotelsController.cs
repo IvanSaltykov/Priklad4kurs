@@ -32,7 +32,7 @@ namespace lrs.Controllers
         /// <param name="partWorldId">Id части света</param>
         /// <param name="countryId">Id страны</param>
         /// <param name="cityId">Id города</param>
-        /// <param name="parameters"></param>
+        /// <param name="parameters">Параметра возвращения массива данных</param>
         /// <returns></returns>
         [HttpGet]
         [HttpHead]
@@ -53,7 +53,7 @@ namespace lrs.Controllers
         /// <param name="countryId">Id страны</param>
         /// <param name="cityId">Id города</param>
         /// <param name="id">Id отеля</param>
-        /// <param name="parameters"></param>
+        /// <param name="parameters">Параметра возвращения массива данных</param>
         /// <returns></returns>
         [HttpGet("{id}", Name = "GetHotel")]
         [HttpHead("{id}")]
@@ -77,7 +77,7 @@ namespace lrs.Controllers
         /// <param name="partWorldId">Id части света</param>
         /// <param name="countryId">Id страны</param>
         /// <param name="cityId">Id города</param>
-        /// <param name="hotel"></param>
+        /// <param name="hotel">Название отеля</param>
         /// <returns></returns>
         [HttpPost]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
@@ -129,7 +129,7 @@ namespace lrs.Controllers
         /// <param name="countryId">Id страны</param>
         /// <param name="cityId">Id города</param>
         /// <param name="id">Id отеля</param>
-        /// <param name="hotel"></param>
+        /// <param name="hotel">Новое название отеля</param>
         /// <returns></returns>
         [HttpPut("{id}")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]

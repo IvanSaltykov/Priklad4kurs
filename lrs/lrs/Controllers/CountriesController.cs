@@ -32,7 +32,7 @@ namespace lrs.Controllers
         /// Возращает спискок стран части света
         /// </summary>
         /// <param name="partWorldId">Id части света</param>
-        /// <param name="parameters"></param>
+        /// <param name="parameters">Параметра возвращения массива данных</param>
         /// <returns></returns>
         [HttpGet]
         [HttpHead]
@@ -51,7 +51,7 @@ namespace lrs.Controllers
         /// </summary>
         /// <param name="partWorldId">Id части света</param>
         /// <param name="id">Id стараны</param>
-        /// <param name="parameters"></param>
+        /// <param name="parameters">Параметра возвращения массива данных</param>
         /// <returns></returns>
         [HttpGet("{id}", Name = "GetCountry")]
         [HttpHead("{id}")]
@@ -73,7 +73,7 @@ namespace lrs.Controllers
         /// Создает новую страну
         /// </summary>
         /// <param name="partWorldId">Id части света</param>
-        /// <param name="country"></param>
+        /// <param name="country">Название страны</param>
         /// <returns></returns>
         [HttpPost]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
@@ -118,7 +118,7 @@ namespace lrs.Controllers
         /// </summary>
         /// <param name="partWorldId">Id части света</param>
         /// <param name="id">Id страны</param>
-        /// <param name="country"></param>
+        /// <param name="country">Новое название страны</param>
         /// <returns></returns>
         [HttpPut("{id}")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]

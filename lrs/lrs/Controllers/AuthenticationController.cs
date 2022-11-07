@@ -28,7 +28,7 @@ namespace lrs.Controllers
         /// <summary>
         /// Создание аккаунта пользователя
         /// </summary>
-        /// <param name="userForRegistration"></param>
+        /// <param name="userForRegistration">Регистрационные данные пользователя</param>
         /// <returns></returns>
         [HttpPost]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
@@ -50,7 +50,7 @@ namespace lrs.Controllers
         /// <summary>
         /// Авторизация пользователя
         /// </summary>
-        /// <param name="user"></param>
+        /// <param name="user">Логин и пароль пользователя</param>
         /// <returns></returns>
         [HttpPost("login")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]

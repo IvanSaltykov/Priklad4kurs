@@ -8,14 +8,14 @@
             <summary>
             Создание аккаунта пользователя
             </summary>
-            <param name="userForRegistration"></param>
+            <param name="userForRegistration">Регистрационные данные пользователя</param>
             <returns></returns>
         </member>
         <member name="M:lrs.Controllers.AuthenticationController.Authenticate(Entities.DataTransferObjects.UserForAuthenticationDto)">
             <summary>
             Авторизация пользователя
             </summary>
-            <param name="user"></param>
+            <param name="user">Логин и пароль пользователя</param>
             <returns></returns>
         </member>
         <member name="M:lrs.Controllers.CitiesController.GetCitiesAsync(System.Guid,System.Guid,Entities.RequestFeatures.CityParameters)">
@@ -24,6 +24,7 @@
             </summary>
             <param name="partWorldId">Id Части света</param>
             <param name="countryId">Id Страны</param>
+            <param name="parameters">Параметра возвращения массива данных</param>
             <returns></returns>
         </member>
         <member name="M:lrs.Controllers.CitiesController.GetCityAsync(System.Guid,System.Guid,System.Guid,Entities.RequestFeatures.CityParameters)">
@@ -33,7 +34,7 @@
             <param name="partWorldId">Id Части света</param>
             <param name="countryId">Id Страны</param>
             <param name="id">Id города</param>
-            <param name="parameters"></param>
+            <param name="parameters">Параметра возвращения массива данных</param>
             <returns></returns>
         </member>
         <member name="M:lrs.Controllers.CitiesController.CreateCityAsync(System.Guid,System.Guid,Entities.DataTransferObjects.CityCreateDto)">
@@ -42,7 +43,7 @@
             </summary>
             <param name="partWorldId">Id Части света</param>
             <param name="countryId">Id Страны</param>
-            <param name="city"></param>
+            <param name="city">Название города</param>
             <returns></returns>
         </member>
         <member name="M:lrs.Controllers.CitiesController.DeleteCityAsync(System.Guid,System.Guid,System.Guid)">
@@ -61,7 +62,7 @@
             <param name="partWorldId">Id Части света</param>
             <param name="countryId">Id Страны</param>
             <param name="id">Id города</param>
-            <param name="city"></param>
+            <param name="city">Новое название города</param>
             <returns></returns>
         </member>
         <member name="M:lrs.Controllers.CitiesController.GetOptions">
@@ -74,7 +75,7 @@
             <summary>
             Возвращает все компании
             </summary>
-            <param name="parameters"></param>
+            <param name="parameters">Параметра возвращения массива данных</param>
             <returns>Компании</returns>
             <response code="401">Требуется авторизация пользователя</response>
         </member>
@@ -83,14 +84,14 @@
             Возвращает компанию по id
             </summary>
             <param name="id">Id сомпании</param>
-            <param name="parameters"></param>
+            <param name="parameters">Параметра возвращения массива данных</param>
             <returns></returns>
         </member>
         <member name="M:lrs.Controllers.CompaniesController.CreateCompany(Entities.DataTransferObjects.CompanyForCreationDto)">
             <summary>
             Создает новую компанию в базе данных
             </summary>
-            <param name="company"></param>
+            <param name="company">Данные компании</param>
             <returns></returns>
         </member>
         <member name="M:lrs.Controllers.CompaniesController.GetCompanyCollection(System.Collections.Generic.IEnumerable{System.Guid})">
@@ -119,7 +120,7 @@
             Изменяет компанию
             </summary>
             <param name="id">Id компании</param>
-            <param name="company">Компания</param>
+            <param name="company">Новые данные компании</param>
             <returns></returns>
         </member>
         <member name="M:lrs.Controllers.CompaniesController.GetCompaniesOptions">
@@ -133,7 +134,7 @@
             Возращает спискок стран части света
             </summary>
             <param name="partWorldId">Id части света</param>
-            <param name="parameters"></param>
+            <param name="parameters">Параметра возвращения массива данных</param>
             <returns></returns>
         </member>
         <member name="M:lrs.Controllers.CountriesController.GetCountryAsync(System.Guid,System.Guid,Entities.RequestFeatures.CountryParameters)">
@@ -142,7 +143,7 @@
             </summary>
             <param name="partWorldId">Id части света</param>
             <param name="id">Id стараны</param>
-            <param name="parameters"></param>
+            <param name="parameters">Параметра возвращения массива данных</param>
             <returns></returns>
         </member>
         <member name="M:lrs.Controllers.CountriesController.CreateCountryAsync(System.Guid,Entities.DataTransferObjects.CountryCreateDto)">
@@ -150,7 +151,7 @@
             Создает новую страну
             </summary>
             <param name="partWorldId">Id части света</param>
-            <param name="country"></param>
+            <param name="country">Название страны</param>
             <returns></returns>
         </member>
         <member name="M:lrs.Controllers.CountriesController.DeleteCountryAsync(System.Guid,System.Guid)">
@@ -167,7 +168,7 @@
             </summary>
             <param name="partWorldId">Id части света</param>
             <param name="id">Id страны</param>
-            <param name="country"></param>
+            <param name="country">Новое название страны</param>
             <returns></returns>
         </member>
         <member name="M:lrs.Controllers.CountriesController.GetOptions">
@@ -181,7 +182,7 @@
             Возвращает работников определенной компании
             </summary>
             <param name="companyId">Id компании</param>
-            <param name="employeeParameters"></param>
+            <param name="employeeParameters">Параметра возвращения массива данных</param>
             <returns></returns>
         </member>
         <member name="M:lrs.Controllers.EmployeeController.GetEmployeesForCompany(System.Guid,System.Guid,Entities.RequestFeatures.EmployeeParameters)">
@@ -190,7 +191,7 @@
             </summary>
             <param name="companyId">Id компании</param>
             <param name="id">Id работника</param>
-            <param name="employeeParameters"></param>
+            <param name="employeeParameters">Параметра возвращения массива данных</param>
             <returns></returns>
         </member>
         <member name="M:lrs.Controllers.EmployeeController.CreateEmployeeForCompany(System.Guid,Entities.DataTransferObjects.EmployeeForCreationDto)">
@@ -198,7 +199,7 @@
             Создает нового сотрудника компании
             </summary>
             <param name="companyId">Id компании</param>
-            <param name="employee"></param>
+            <param name="employee">Данные работника</param>
             <returns></returns>
         </member>
         <member name="M:lrs.Controllers.EmployeeController.DeleteEmployeeForCompany(System.Guid,System.Guid)">
@@ -215,7 +216,7 @@
             </summary>
             <param name="companyId">Id компании</param>
             <param name="id">Id работника</param>
-            <param name="employee"></param>
+            <param name="employee">Новые данные работника</param>
             <returns></returns>
         </member>
         <member name="M:lrs.Controllers.EmployeeController.PartiallyUpdateEmployeeForCompany(System.Guid,System.Guid,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{Entities.DataTransferObjects.EmployeeForUpdateDto})">
@@ -224,7 +225,7 @@
             </summary>
             <param name="companyId">Id компании</param>
             <param name="id">Id работника</param>
-            <param name="patchDoc"></param>
+            <param name="patchDoc">Новые данные работника</param>
             <returns></returns>
         </member>
         <member name="M:lrs.Controllers.EmployeeController.GetOptions">
@@ -240,7 +241,7 @@
             <param name="partWorldId">Id части света</param>
             <param name="countryId">Id страны</param>
             <param name="cityId">Id города</param>
-            <param name="parameters"></param>
+            <param name="parameters">Параметра возвращения массива данных</param>
             <returns></returns>
         </member>
         <member name="M:lrs.Controllers.HotelsController.GetHotelAsync(System.Guid,System.Guid,System.Guid,System.Guid,Entities.RequestFeatures.HotelParameters)">
@@ -251,7 +252,7 @@
             <param name="countryId">Id страны</param>
             <param name="cityId">Id города</param>
             <param name="id">Id отеля</param>
-            <param name="parameters"></param>
+            <param name="parameters">Параметра возвращения массива данных</param>
             <returns></returns>
         </member>
         <member name="M:lrs.Controllers.HotelsController.GetHotelAsync(System.Guid,System.Guid,System.Guid,Entities.DataTransferObjects.HotelCreateDto)">
@@ -261,7 +262,7 @@
             <param name="partWorldId">Id части света</param>
             <param name="countryId">Id страны</param>
             <param name="cityId">Id города</param>
-            <param name="hotel"></param>
+            <param name="hotel">Название отеля</param>
             <returns></returns>
         </member>
         <member name="M:lrs.Controllers.HotelsController.DeleteHotelAsync(System.Guid,System.Guid,System.Guid,System.Guid)">
@@ -282,7 +283,7 @@
             <param name="countryId">Id страны</param>
             <param name="cityId">Id города</param>
             <param name="id">Id отеля</param>
-            <param name="hotel"></param>
+            <param name="hotel">Новое название отеля</param>
             <returns></returns>
         </member>
         <member name="M:lrs.Controllers.HotelsController.GetOptions">
@@ -296,14 +297,14 @@
             Возвращает часть света по id
             </summary>
             <param name="id">Id части света</param>
-            <param name="parameters"></param>
+            <param name="parameters">Параметра возвращения массива данных</param>
             <returns></returns>
         </member>
         <member name="M:lrs.Controllers.PartWorldsController.GetPartWorldsAsync(Entities.RequestFeatures.PartWorldParameters)">
             <summary>
             Возвращает список частей света
             </summary>
-            <param name="parameters"></param>
+            <param name="parameters">Параметра возвращения массива данных</param>
             <returns></returns>
         </member>
         <member name="M:lrs.Controllers.PartWorldsController.DeletePartWorldAsync(System.Guid)">
@@ -317,7 +318,7 @@
             <summary>
             Создает часть света
             </summary>
-            <param name="partWorld"></param>
+            <param name="partWorld">Название части света</param>
             <returns></returns>
         </member>
         <member name="M:lrs.Controllers.PartWorldsController.UpdatePartWorldAsync(System.Guid,Entities.DataTransferObjects.PartWorldUpdateDto)">
@@ -325,7 +326,7 @@
             Обновляет часть света
             </summary>
             <param name="id">Id части света</param>
-            <param name="partWorld"></param>
+            <param name="partWorld">Новое название части света</param>
             <returns></returns>
         </member>
         <member name="M:lrs.Controllers.PartWorldsController.GetOptions">
@@ -342,7 +343,7 @@
             <param name="countryId">Id страны</param>
             <param name="cityId">Id города</param>
             <param name="hotelId">Id отеля</param>
-            <param name="parameters"></param>
+            <param name="parameters">Параметра возвращения массива данных</param>
             <returns></returns>
         </member>
         <member name="M:lrs.Controllers.TicketsController.GetTicket(System.Guid,System.Guid,System.Guid,System.Guid,System.Guid,Entities.RequestFeatures.TicketParameters)">
@@ -354,7 +355,7 @@
             <param name="cityId">Id города</param>
             <param name="hotelId">Id отеля</param>
             <param name="id">Id билета</param>
-            <param name="parameters"></param>
+            <param name="parameters">Параметра возвращения массива данных</param>
             <returns></returns>
         </member>
         <member name="M:lrs.Controllers.TicketsController.CreateTicket(System.Guid,System.Guid,System.Guid,System.Guid,Entities.DataTransferObjects.TicketCreateDto)">
@@ -365,7 +366,7 @@
             <param name="countryId">Id страны</param>
             <param name="cityId">Id города</param>
             <param name="hotelId">Id отеля</param>
-            <param name="ticket"></param>
+            <param name="ticket">Данные билета</param>
             <returns></returns>
         </member>
         <member name="M:lrs.Controllers.TicketsController.UpdateTicket(System.Guid,System.Guid,System.Guid,System.Guid,System.Guid,Entities.DataTransferObjects.TicketUpdateDto)">
@@ -377,7 +378,7 @@
             <param name="cityId">Id города</param>
             <param name="hotelId">Id отеля</param>
             <param name="id">Id билета</param>
-            <param name="ticket"></param>
+            <param name="ticket">Новые данные билета</param>
             <returns></returns>
         </member>
         <member name="M:lrs.Controllers.TicketsController.DeleteTicket(System.Guid,System.Guid,System.Guid,System.Guid,System.Guid)">
@@ -400,7 +401,7 @@
             <param name="cityId">Id города</param>
             <param name="hotelId">Id отеля</param>
             <param name="id">Id билета</param>
-            <param name="ticket"></param>
+            <param name="ticket">Новые данные билета</param>
             <returns></returns>
         </member>
         <member name="M:lrs.Controllers.TicketsController.GetOptions">

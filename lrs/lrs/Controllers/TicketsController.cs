@@ -34,7 +34,7 @@ namespace lrs.Controllers
         /// <param name="countryId">Id страны</param>
         /// <param name="cityId">Id города</param>
         /// <param name="hotelId">Id отеля</param>
-        /// <param name="parameters"></param>
+        /// <param name="parameters">Параметра возвращения массива данных</param>
         /// <returns></returns>
         [HttpGet]
         [HttpHead]
@@ -58,7 +58,7 @@ namespace lrs.Controllers
         /// <param name="cityId">Id города</param>
         /// <param name="hotelId">Id отеля</param>
         /// <param name="id">Id билета</param>
-        /// <param name="parameters"></param>
+        /// <param name="parameters">Параметра возвращения массива данных</param>
         /// <returns></returns>
         [HttpGet("{id}", Name = "GetTicket")]
         [HttpHead("{id}")]
@@ -83,7 +83,7 @@ namespace lrs.Controllers
         /// <param name="countryId">Id страны</param>
         /// <param name="cityId">Id города</param>
         /// <param name="hotelId">Id отеля</param>
-        /// <param name="ticket"></param>
+        /// <param name="ticket">Данные билета</param>
         /// <returns></returns>
         [HttpPost]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
@@ -113,7 +113,7 @@ namespace lrs.Controllers
         /// <param name="cityId">Id города</param>
         /// <param name="hotelId">Id отеля</param>
         /// <param name="id">Id билета</param>
-        /// <param name="ticket"></param>
+        /// <param name="ticket">Новые данные билета</param>
         /// <returns></returns>
         [HttpPut("{id}")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
@@ -158,7 +158,7 @@ namespace lrs.Controllers
         /// <param name="cityId">Id города</param>
         /// <param name="hotelId">Id отеля</param>
         /// <param name="id">Id билета</param>
-        /// <param name="ticket"></param>
+        /// <param name="ticket">Новые данные билета</param>
         /// <returns></returns>
         [HttpPatch("{id}")]
         [ServiceFilter(typeof(ValidateTicketExistsAttribute))]

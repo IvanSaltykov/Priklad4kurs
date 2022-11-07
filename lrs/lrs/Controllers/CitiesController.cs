@@ -31,6 +31,7 @@ namespace lrs.Controllers
         /// </summary>
         /// <param name="partWorldId">Id Части света</param>
         /// <param name="countryId">Id Страны</param>
+        /// <param name="parameters">Параметра возвращения массива данных</param>
         /// <returns></returns>
         [HttpGet]
         [HttpHead]
@@ -50,7 +51,7 @@ namespace lrs.Controllers
         /// <param name="partWorldId">Id Части света</param>
         /// <param name="countryId">Id Страны</param>
         /// <param name="id">Id города</param>
-        /// <param name="parameters"></param>
+        /// <param name="parameters">Параметра возвращения массива данных</param>
         /// <returns></returns>
         [HttpGet("{id}", Name = "GetCity")]
         [HttpHead("{id}")]
@@ -73,7 +74,7 @@ namespace lrs.Controllers
         /// </summary>
         /// <param name="partWorldId">Id Части света</param>
         /// <param name="countryId">Id Страны</param>
-        /// <param name="city"></param>
+        /// <param name="city">Название города</param>
         /// <returns></returns>
         [HttpPost]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
@@ -122,7 +123,7 @@ namespace lrs.Controllers
         /// <param name="partWorldId">Id Части света</param>
         /// <param name="countryId">Id Страны</param>
         /// <param name="id">Id города</param>
-        /// <param name="city"></param>
+        /// <param name="city">Новое название города</param>
         /// <returns></returns>
         [HttpPut("{id}")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
