@@ -14,8 +14,7 @@ namespace lrs
         private readonly UserManager<User> _userManager;
         private readonly IConfiguration _configuration;
         private User _user;
-        public AuthenticationManager(UserManager<User> userManager, IConfiguration
-        configuration)
+        public AuthenticationManager(UserManager<User> userManager, IConfiguration configuration)
         {
             _userManager = userManager;
             _configuration = configuration;
@@ -34,8 +33,7 @@ namespace lrs
         }
         private SigningCredentials GetSigningCredentials()
         {
-            var key =
-            Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("SECRET"));
+            var key = Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("SECRET"));
             var secret = new SymmetricSecurityKey(key);
             return new SigningCredentials(secret, SecurityAlgorithms.HmacSha256);
         }
@@ -43,7 +41,7 @@ namespace lrs
         {
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, _user.UserName)
+                new Claim(ClaimTypes.NameIdentifier, _user.Id)
             };
             var roles = await _userManager.GetRolesAsync(_user);
             foreach (var role in roles)
@@ -61,9 +59,7 @@ namespace lrs
                 audience: jwtSettings.GetSection("validAudience").Value,
                 claims: claims,
                 expires: DateTime.Now.AddMinutes(Convert.ToDouble(jwtSettings.GetSection("expires").Value)
-            ),
-            signingCredentials: signingCredentials
-            );
+            ), signingCredentials: signingCredentials);
             return tokenOptions;
         }
     }

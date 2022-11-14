@@ -33,6 +33,15 @@ namespace Repository
             (
                 e => e.CompanyId.Equals(companyId) && e.Id.Equals(id), trackChanges
             ).SingleOrDefaultAsync();
+        //public async Task<Employee> GetEmployeeAsync(Guid companyId, Guid id, bool trackChanges)
+        //{
+        //    var response = await FindByCondition
+        //    (
+        //        e => e.CompanyId.Equals(companyId) && e.Id.Equals(id), trackChanges
+        //    ).SingleOrDefaultAsync();
+
+        //}
+
 
         public async Task<PagedList<Employee>> GetEmployeesAsync(Guid companyId, EmployeeParameters employeeParameters, bool trackChanges)
         {

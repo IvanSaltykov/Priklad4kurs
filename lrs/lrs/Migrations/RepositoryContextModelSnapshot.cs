@@ -534,15 +534,15 @@ namespace lrs.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "9449d4c7-af38-4b8b-a23b-42d90e47ceb2",
-                            ConcurrencyStamp = "9b1828da-8a7d-498b-bbf4-d69a23c78e37",
+                            Id = "efc59b80-6e81-452f-acfe-704677cb2dea",
+                            ConcurrencyStamp = "4d4d7305-ca41-4b25-b7d0-284fb1ec13b5",
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
-                            Id = "839f14f6-643f-490f-ac01-380d1d158f76",
-                            ConcurrencyStamp = "f85cc8c6-bde5-4a59-97c3-e8ba91a1a11d",
+                            Id = "c2439a11-1354-4282-99b4-c1fbaffbe95f",
+                            ConcurrencyStamp = "af5fbd62-2905-4bd6-b00c-c9fbb1dff852",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });

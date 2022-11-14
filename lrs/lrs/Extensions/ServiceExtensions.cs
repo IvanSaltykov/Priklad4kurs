@@ -62,8 +62,7 @@ namespace lrs.Extensions
             var secretKey = Environment.GetEnvironmentVariable("SECRET");
             services.AddAuthentication(opt =>
             {
-                opt.DefaultAuthenticateScheme =
-                JwtBearerDefaults.AuthenticationScheme;
+                opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             })
             .AddJwtBearer(options =>

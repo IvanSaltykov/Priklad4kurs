@@ -21,11 +21,10 @@ namespace Repository
         public async Task<PagedList<Ticket>> GetTicketsAsync(Guid hotelId, TicketParameters parameters, bool trackChanges)
         {
             var tickets = await FindByCondition(
-                e => e.Hotel.Equals(hotelId) && (e.Price >= parameters.MinPrice && e.Price <= parameters.MaxPrice),
-                trackChanges
-            ).Search(parameters.Search)
-            .Sort(parameters.OrderBy)
-            .ToListAsync();
+                e => e.Hotel.Equals(hotelId) && (e.Price >= parameters.MinPrice && e.Price <= parameters.MaxPrice), trackChanges
+                ).Search(parameters.Search)
+                .Sort(parameters.OrderBy)
+                .ToListAsync();
             return PagedList<Ticket>.ToPagedList(tickets, parameters.PageNumber, parameters.PageSize);
         }
 
