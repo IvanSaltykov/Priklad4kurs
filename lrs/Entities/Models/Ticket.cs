@@ -33,5 +33,6 @@ namespace Entities.Models
         public int User { get; set; }
         [Required]
         public int Price { get; set; }
+        public string UserId { get; set; }
     }
 }

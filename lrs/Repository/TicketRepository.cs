@@ -18,10 +18,10 @@ namespace Repository
         {
         }
 
-        public async Task<PagedList<Ticket>> GetTicketsAsync(Guid hotelId, TicketParameters parameters, bool trackChanges)
+        public async Task<PagedList<Ticket>> GetTicketsAsync(string userId, Guid hotelId, TicketParameters parameters, bool trackChanges)
         {
             var tickets = await FindByCondition(
-                e => e.Hotel.Equals(hotelId) && (e.Price >= parameters.MinPrice && e.Price <= parameters.MaxPrice),
+                e => e.Hotel.Equals(hotelId) && e.UserId.Equals(userId) && (e.Price >= parameters.MinPrice && e.Price <= parameters.MaxPrice),
                 trackChanges
             ).Search(parameters.Search)
             .Sort(parameters.OrderBy)
@@ -29,15 +29,18 @@ namespace Repository
             return PagedList<Ticket>.ToPagedList(tickets, parameters.PageNumber, parameters.PageSize);
         }
 
+        public async Task<Ticket> GetTicketAsync(string userId, Guid hotelId, Guid id, bool trackChanges) =>
+            await FindByCondition(e => e.Hotel.Equals(hotelId) && e.UserId.Equals(userId) && e.Id.Equals(id), trackChanges).SingleOrDefaultAsync();
         public async Task<Ticket> GetTicketAsync(Guid hotelId, Guid id, bool trackChanges) =>
             await FindByCondition(e => e.Hotel.Equals(hotelId) && e.Id.Equals(id), trackChanges).SingleOrDefaultAsync();
 
-        public void CreateTicket(Guid partWorldId, Guid countryId, Guid cityId, Guid hotelId, Ticket ticket)
+        public void CreateTicket(string userId, Guid partWorldId, Guid countryId, Guid cityId, Guid hotelId, Ticket ticket)
         {
             ticket.World = partWorldId;
             ticket.Country = countryId;
             ticket.City = cityId;
             ticket.Hotel = hotelId;
+            ticket.UserId = userId;
             Create(ticket);
         }
 

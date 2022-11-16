@@ -10,9 +10,10 @@ namespace Contracts
 {
     public interface ITicketRepository
     {
-        Task<PagedList<Ticket>> GetTicketsAsync(Guid hotelId, TicketParameters parameters, bool trackChanges);
+        Task<PagedList<Ticket>> GetTicketsAsync(string userId, Guid hotelId, TicketParameters parameters, bool trackChanges);
+        Task<Ticket> GetTicketAsync(string userId, Guid hotelId, Guid id, bool trackChanges);
         Task<Ticket> GetTicketAsync(Guid hotelId, Guid id, bool trackChanges);
-        void CreateTicket(Guid partWorldId, Guid countryId, Guid cityId, Guid hotelId, Ticket ticket);
+        void CreateTicket(string userId, Guid partWorldId, Guid countryId, Guid cityId, Guid hotelId, Ticket ticket);
         void DeleteTicket(Ticket ticket);   
     }
 }

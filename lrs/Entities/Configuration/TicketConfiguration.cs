@@ -24,7 +24,8 @@ namespace Entities.Configuration
                     Hotel = new Guid("6873c93f-3d2b-4f14-92c6-7397d12a9000"),
                     Week = 2,
                     User = 1,
-                    Price = 10000
+                    Price = 10000,
+                    UserId = "6873c93f-310b-487a-acf4-3f6a4c64a000"
                 }
             );
         }

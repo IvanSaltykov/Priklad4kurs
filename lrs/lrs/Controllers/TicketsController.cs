@@ -8,7 +8,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Net.Http.Headers;
 using Newtonsoft.Json;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 namespace lrs.Controllers
 {
@@ -38,7 +41,13 @@ namespace lrs.Controllers
             var actionResult = await checkResultAsync(partWorldId, countryId, cityId, hotelId);
             if (actionResult != null)
                 return actionResult;
-            var ticketsFromDb = await _repository.Ticket.GetTicketsAsync(hotelId, parameters, false);
+
+            var token = Request.Headers[HeaderNames.Authorization].ToString().Replace("Bearer ", "");
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var securityToken = (JwtSecurityToken)tokenHandler.ReadToken(token);
+            var userId = securityToken.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+
+            var ticketsFromDb = await _repository.Ticket.GetTicketsAsync(userId, hotelId, parameters, false);
             Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(ticketsFromDb.MetaData));
             var ticketsDto = _mapper.Map<IEnumerable<TicketDto>>(ticketsFromDb);
             return Ok(_dataShaper.ShapeData(ticketsDto, parameters.Fields));
@@ -50,7 +59,15 @@ namespace lrs.Controllers
             var actionResult = await checkResultAsync(partWorldId, countryId, cityId, hotelId);
             if (actionResult != null)
                 return actionResult;
-            var ticketDb = await _repository.Ticket.GetTicketAsync(hotelId, id, false);
+
+
+            var token = Request.Headers[HeaderNames.Authorization].ToString().Replace("Bearer ", "");
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var securityToken = (JwtSecurityToken)tokenHandler.ReadToken(token);
+            var userId = securityToken.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+
+
+            var ticketDb = await _repository.Ticket.GetTicketAsync(userId, hotelId, id, false);
             if (ticketDb == null)
             {
                 _logger.LogInfo($"Ticket with id: {id} doesn't exist in the database.");
@@ -66,8 +83,16 @@ namespace lrs.Controllers
             var actionResult = await checkResultAsync(partWorldId, countryId, cityId, hotelId);
             if (actionResult != null)
                 return actionResult;
+
+
+            var token = Request.Headers[HeaderNames.Authorization].ToString().Replace("Bearer ", "");
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var securityToken = (JwtSecurityToken)tokenHandler.ReadToken(token);
+            var userId = securityToken.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+
+
             var ticketEntity = _mapper.Map<Ticket>(ticket);
-            _repository.Ticket.CreateTicket(partWorldId, countryId, cityId, hotelId, ticketEntity);
+            _repository.Ticket.CreateTicket(userId, partWorldId, countryId, cityId, hotelId, ticketEntity);
             await _repository.SaveAsync();
             var ticketReturn = _mapper.Map<TicketDto>(ticketEntity);
             return CreatedAtRoute("GetTicket", new
@@ -95,7 +120,15 @@ namespace lrs.Controllers
             var actionResult = await checkResultAsync(partWorldId, countryId, cityId, hotelId);
             if (actionResult != null)
                 return actionResult;
-            var ticket = await _repository.Ticket.GetTicketAsync(hotelId, id, false);
+
+
+            var token = Request.Headers[HeaderNames.Authorization].ToString().Replace("Bearer ", "");
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var securityToken = (JwtSecurityToken)tokenHandler.ReadToken(token);
+            var userId = securityToken.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+
+
+            var ticket = await _repository.Ticket.GetTicketAsync(userId, hotelId, id, false);
             if (ticket == null)
             {
                 _logger.LogInfo($"Ticket with id: {id} doesn't exist in the database.");

@@ -20,6 +20,8 @@ namespace lrs.ActionFilters
             var trackChanges = (method.Equals("PUT") || method.Equals("PATCH")) ? true : false;
             var partWorldId = (Guid)context.ActionArguments["partWorldId"];
             var partWorld = await _repository.PartWorld.GetPartWorldAsync(partWorldId, false);
+
+
             if (partWorld == null)
             {
                 _logger.LogInfo($"Partworld with id: {partWorldId} doesn't exist in the database.");
